@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7B28C88F-D1F5-43D4-8C20-28ABDA989245}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LFTHW.IBLL</RootNamespace>
+    <AssemblyName>LFTHW.IBLL</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseTable\IP_BrandBLL.cs" />
+    <Compile Include="BaseTable\IP_CategoryBLL.cs" />
+    <Compile Include="BaseTable\IP_CategoryBrandBLL.cs" />
+    <Compile Include="BaseTable\IP_CategoryParamGroupBLL.cs" />
+    <Compile Include="BaseTable\IP_CategoryProductBLL.cs" />
+    <Compile Include="BaseTable\IP_ParamBLL.cs" />
+    <Compile Include="BaseTable\IP_ParamGroupBLL.cs" />
+    <Compile Include="BaseTable\IP_PdtInfoBLL.cs" />
+    <Compile Include="BaseTable\IP_PdtKeywordBLL.cs" />
+    <Compile Include="BaseTable\IP_PdtParamBLL.cs" />
+    <Compile Include="BaseTable\IP_PictureBLL.cs" />
+    <Compile Include="BaseTable\IP_PriceBLL.cs" />
+    <Compile Include="BaseTable\IP_ProductBLL.cs" />
+    <Compile Include="BaseTable\IP_RouteBLL.cs" />
+    <Compile Include="BaseTable\IP_TypeBLL.cs" />
+    <Compile Include="BaseTable\IP_TypeCategoryBLL.cs" />
+    <Compile Include="BaseTable\IS_AdminBLL.cs" />
+    <Compile Include="BaseTable\IS_CityBLL.cs" />
+    <Compile Include="BaseTable\IS_DistrictBLL.cs" />
+    <Compile Include="BaseTable\IS_EmployeeBLL.cs" />
+    <Compile Include="BaseTable\IS_FriendLinkBLL.cs" />
+    <Compile Include="BaseTable\IS_FXCommisionBLL.cs" />
+    <Compile Include="BaseTable\IS_NoticeBLL.cs" />
+    <Compile Include="BaseTable\IS_ProvinceBLL.cs" />
+    <Compile Include="BaseTable\IUP_CartBLL.cs" />
+    <Compile Include="BaseTable\IUP_CommentImageBLL.cs" />
+    <Compile Include="BaseTable\IUP_CommentReplyBLL.cs" />
+    <Compile Include="BaseTable\IUP_OrderBLL.cs" />
+    <Compile Include="BaseTable\IUP_OrderDetailBLL.cs" />
+    <Compile Include="BaseTable\IUP_UserCommentBLL.cs" />
+    <Compile Include="BaseTable\IUP_UserConsumeBLL.cs" />
+    <Compile Include="BaseTable\IU_UserAccountBLL.cs" />
+    <Compile Include="BaseTable\IU_UserAddressBLL.cs" />
+    <Compile Include="BaseTable\IU_UserInfoBLL.cs" />
+    <Compile Include="BaseTable\IU_UserRegBLL.cs" />
+    <Compile Include="IBaseBLL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LFTHW.Model\LFTHW.Model.csproj">
+      <Project>{b4a1f7f3-07bd-4efc-8269-9da7216efdd8}</Project>
+      <Name>LFTHW.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
