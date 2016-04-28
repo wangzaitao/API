@@ -34,10 +34,10 @@ namespace LFTHW.WebApi.Controllers.SysManage
                 _IP_ProductBLL.Add(pProduct);
             }
 
-            [Route("update")]
-            public void PostEdit(P_Product pProduct)
+            [Route("edit")]
+            public void PostEdit(ProductBasicInfo product)
             {
-                _IP_ProductBLL.Update(pProduct, null);
+                _IP_ProductBLL.Edit(product);
             }
 
             [Route("delete")]

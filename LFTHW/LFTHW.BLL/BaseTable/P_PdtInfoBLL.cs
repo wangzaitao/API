@@ -26,6 +26,10 @@ namespace LFTHW.BLL
         {
             return _IP_PdtInfoDAL.Update(pPdtInfo);
         }
+
+        public bool UpdateTripInfoRoute(TripInfoRoute tripInfoRoute, string[] property) {
+            return _IP_PdtInfoDAL.UpdateTripInfoRoute(tripInfoRoute, property);
+        }
     }
 }
 

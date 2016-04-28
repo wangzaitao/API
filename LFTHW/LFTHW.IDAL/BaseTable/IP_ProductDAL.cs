@@ -8,5 +8,7 @@ namespace LFTHW.IDAL
         P_Product GetById(int id);
 
         bool Update(P_Product pProduct);
+
+        bool Edit(ProductBasicInfo product);
     }
 }

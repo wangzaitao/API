@@ -26,6 +26,10 @@ namespace LFTHW.BLL
         {
             return _IP_ProductDAL.Update(pProduct);
         }
+
+        public bool Edit(ProductBasicInfo product) {
+            return _IP_ProductDAL.Edit(product);
+        }
     }
 }
 

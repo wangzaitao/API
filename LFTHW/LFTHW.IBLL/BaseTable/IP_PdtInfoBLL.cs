@@ -6,5 +6,7 @@ namespace LFTHW.IBLL
         bool Delete(int id);
         P_PdtInfo GetById(int id);
         bool Update(P_PdtInfo pPdtInfo);
+
+        bool UpdateTripInfoRoute(TripInfoRoute tripInfoRoute, string[] property);
     }
 }

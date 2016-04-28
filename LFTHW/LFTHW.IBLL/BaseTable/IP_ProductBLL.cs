@@ -6,5 +6,7 @@ namespace LFTHW.IBLL
         bool Delete(int id);
         P_Product GetById(int id);
         bool Update(P_Product pProduct);
+
+        bool Edit(ProductBasicInfo product);
     }
 }

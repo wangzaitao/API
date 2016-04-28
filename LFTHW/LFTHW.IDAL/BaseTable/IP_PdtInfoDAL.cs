@@ -8,5 +8,7 @@ namespace LFTHW.IDAL
         P_PdtInfo GetById(int id);
 
         bool Update(P_PdtInfo pPdtInfo);
+
+        bool UpdateTripInfoRoute(TripInfoRoute tripInfoRoute, string[] property);
     }
 }
