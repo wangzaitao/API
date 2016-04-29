@@ -34,11 +34,11 @@ namespace LFTHW.WebApi.Controllers.SysManage
                 _IP_PriceBLL.Add(pPrice);
             }
 
-            [Route("update")]
-            public void PostEdit(P_Price pPrice)
+            [Route("edit")]
+            public void PostEdit(List<P_Price> pPriceList)
             {
-                _IP_PriceBLL.Update(pPrice, null);
-            }
+                _IP_PriceBLL.Edit(pPriceList);
+        }
 
             [Route("delete")]
             public bool Delete(int id)

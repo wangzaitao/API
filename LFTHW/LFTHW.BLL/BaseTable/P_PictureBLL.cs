@@ -2,6 +2,7 @@
 using LFTHW.IBLL;
 using LFTHW.IDAL;
 using LFTHW.Model;
+using System.Collections.Generic;
 
 namespace LFTHW.BLL
 {
@@ -25,6 +26,14 @@ namespace LFTHW.BLL
         public bool Update(P_Picture pPicture)
         {
             return _IP_PictureDAL.Update(pPicture);
+        }
+
+        public bool Edit(List<P_Picture> pPictureList)
+        {
+            if (pPictureList != null && pPictureList.Count > 0) {
+                return _IP_PictureDAL.Edit(pPictureList, pPictureList[0].PID);
+            }
+            return true;
         }
     }
 }

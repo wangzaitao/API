@@ -34,10 +34,10 @@ namespace LFTHW.WebApi.Controllers.SysManage
                 _IP_PictureBLL.Add(pPicture);
             }
 
-            [Route("update")]
-            public void PostEdit(P_Picture pPicture)
+            [Route("edit")]
+            public void PostEdit(List<P_Picture> pPictureList)
             {
-                _IP_PictureBLL.Update(pPicture, null);
+                _IP_PictureBLL.Edit(pPictureList);
             }
 
             [Route("delete")]
