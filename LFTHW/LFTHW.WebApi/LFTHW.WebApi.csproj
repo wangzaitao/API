@@ -180,6 +180,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\Common\FileUploadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SysManage\PBrandController.cs" />
     <Compile Include="Controllers\SysManage\PCategoryBrandController.cs" />
@@ -287,6 +288,10 @@
     <ProjectReference Include="..\LFTHW.Model\LFTHW.Model.csproj">
       <Project>{b4a1f7f3-07bd-4efc-8269-9da7216efdd8}</Project>
       <Name>LFTHW.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LFTHW.Utility\LFTHW.Utility.csproj">
+      <Project>{126aa0ab-cbdc-4a99-a33c-254ae9c2405c}</Project>
+      <Name>LFTHW.Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
