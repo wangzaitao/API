@@ -8,44 +8,44 @@ namespace LFTHW.WebApi.Controllers.SysManage
 {
     [RoutePrefix("api/uuserinfo")]
     public class UUserInfoController : ApiController
+    {
+        readonly IU_UserInfoBLL _IU_UserInfoBLL;
+
+        public UUserInfoController(IU_UserInfoBLL iU_UserInfoBLL)
         {
-            readonly IU_UserInfoBLL _IU_UserInfoBLL;
+            _IU_UserInfoBLL = iU_UserInfoBLL;
+        }
 
-            public UUserInfoController(IU_UserInfoBLL iU_UserInfoBLL)
-            {
-                _IU_UserInfoBLL = iU_UserInfoBLL;
-            }
+        [Route("getall")]
+        public List<U_UserInfo> GetAll()
+        {
+            return _IU_UserInfoBLL.GetAll();
+        }
 
-            [Route("getall")]
-            public List<U_UserInfo> GetAll()
-            {
-                return _IU_UserInfoBLL.GetAll();
-            }
+        [Route("getbyid")]
+        public U_UserInfo Get(int id)
+        {
+            return _IU_UserInfoBLL.GetById(id);
+        }
 
-            [Route("getbyid")]
-            public U_UserInfo Get(int id)
-            {
-                return _IU_UserInfoBLL.GetById(id);
-            }
+        [Route("add")]
+        public U_UserInfo PostAdd(U_UserInfo uUserInfo)
+        {
+            return _IU_UserInfoBLL.Add(uUserInfo);
+        }
 
-            [Route("add")]
-            public void PostAdd(U_UserInfo uUserInfo)
-            {
-                _IU_UserInfoBLL.Add(uUserInfo);
-            }
+        [Route("update")]
+        public bool PostEdit(U_UserInfo uUserInfo)
+        {
+            return _IU_UserInfoBLL.Update(uUserInfo, null);
+        }
 
-            [Route("update")]
-            public void PostEdit(U_UserInfo uUserInfo)
-            {
-                _IU_UserInfoBLL.Update(uUserInfo, null);
-            }
-
-            [Route("delete")]
-            public bool Delete(int id)
-            {
-                return _IU_UserInfoBLL.Delete(id);
-            }
+        [Route("delete")]
+        public bool Delete(int id)
+        {
+            return _IU_UserInfoBLL.Delete(id);
         }
     }
+}
 
 

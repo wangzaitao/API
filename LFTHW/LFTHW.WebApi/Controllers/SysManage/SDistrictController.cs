@@ -8,44 +8,44 @@ namespace LFTHW.WebApi.Controllers.SysManage
 {
     [RoutePrefix("api/sdistrict")]
     public class SDistrictController : ApiController
+    {
+        readonly IS_DistrictBLL _IS_DistrictBLL;
+
+        public SDistrictController(IS_DistrictBLL iS_DistrictBLL)
         {
-            readonly IS_DistrictBLL _IS_DistrictBLL;
+            _IS_DistrictBLL = iS_DistrictBLL;
+        }
 
-            public SDistrictController(IS_DistrictBLL iS_DistrictBLL)
-            {
-                _IS_DistrictBLL = iS_DistrictBLL;
-            }
+        [Route("getall")]
+        public List<S_District> GetAll()
+        {
+            return _IS_DistrictBLL.GetAll();
+        }
 
-            [Route("getall")]
-            public List<S_District> GetAll()
-            {
-                return _IS_DistrictBLL.GetAll();
-            }
+        [Route("getbyid")]
+        public S_District Get(int id)
+        {
+            return _IS_DistrictBLL.GetById(id);
+        }
 
-            [Route("getbyid")]
-            public S_District Get(int id)
-            {
-                return _IS_DistrictBLL.GetById(id);
-            }
+        [Route("add")]
+        public S_District PostAdd(S_District sDistrict)
+        {
+            return _IS_DistrictBLL.Add(sDistrict);
+        }
 
-            [Route("add")]
-            public void PostAdd(S_District sDistrict)
-            {
-                _IS_DistrictBLL.Add(sDistrict);
-            }
+        [Route("update")]
+        public bool PostEdit(S_District sDistrict)
+        {
+            return _IS_DistrictBLL.Update(sDistrict, null);
+        }
 
-            [Route("update")]
-            public void PostEdit(S_District sDistrict)
-            {
-                _IS_DistrictBLL.Update(sDistrict, null);
-            }
-
-            [Route("delete")]
-            public bool Delete(int id)
-            {
-                return _IS_DistrictBLL.Delete(id);
-            }
+        [Route("delete")]
+        public bool Delete(int id)
+        {
+            return _IS_DistrictBLL.Delete(id);
         }
     }
+}
 
 

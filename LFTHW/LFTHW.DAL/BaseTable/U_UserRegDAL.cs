@@ -11,7 +11,7 @@ namespace LFTHW.DAL
         public bool Delete(int id) {
             using (var db = new LFTHWDBModel())
             {
-                var uUserReg = db.U_UserReg.FirstOrDefault(s => s.UserID == id);  
+                var uUserReg = db.U_UserReg.FirstOrDefault(s => s.ID == id);  
                 db.U_UserReg.Remove(uUserReg); 
                 return db.SaveChanges() > 0 ? true : false;
             }
@@ -20,7 +20,7 @@ namespace LFTHW.DAL
         public U_UserReg GetById(int id) {
             using (var db = new LFTHWDBModel())
             {
-                var uUserReg = db.U_UserReg.FirstOrDefault(s => s.UserID == id);
+                var uUserReg = db.U_UserReg.FirstOrDefault(s => s.ID == id);
                 return uUserReg;
             }
         }
@@ -28,8 +28,8 @@ namespace LFTHW.DAL
         public bool Update(U_UserReg uUserReg) {
             using (var db = new LFTHWDBModel())
             {
-                var _uUserReg = db.U_UserReg.FirstOrDefault(s => s.UserID == uUserReg.UserID);
-                _uUserReg.UserID = uUserReg.UserID;
+                var _uUserReg = db.U_UserReg.FirstOrDefault(s => s.ID == uUserReg.ID);
+                _uUserReg.ID = uUserReg.ID;
 
                 return db.SaveChanges() > 0 ? true : false;
             }

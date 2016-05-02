@@ -29,15 +29,15 @@ namespace LFTHW.WebApi.Controllers.SysManage
         }
 
         [Route("add")]
-        public void PostAdd(S_FriendLink friendLink)
+        public S_FriendLink PostAdd(S_FriendLink friendLink)
         {
-            _IS_FriendLinkBLL.Add(friendLink);
+            return _IS_FriendLinkBLL.Add(friendLink);
         }
 
         [Route("update")]
-        public void PostUpdate(S_FriendLink friendLink)
+        public bool PostUpdate(S_FriendLink friendLink)
         {
-            _IS_FriendLinkBLL.Update(friendLink,null);
+            return _IS_FriendLinkBLL.Update(friendLink, null);
         }
 
         [Route("delete")]

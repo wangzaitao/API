@@ -12,8 +12,12 @@ namespace LFTHW.DAL
 
         public virtual DbSet<P_Brand> P_Brand { get; set; }
         public virtual DbSet<P_Category> P_Category { get; set; }
+        public virtual DbSet<P_CategoryBrand> P_CategoryBrand { get; set; }
+        public virtual DbSet<P_CategoryParamGroup> P_CategoryParamGroup { get; set; }
+        public virtual DbSet<P_CategoryProduct> P_CategoryProduct { get; set; }
         public virtual DbSet<P_Param> P_Param { get; set; }
         public virtual DbSet<P_ParamGroup> P_ParamGroup { get; set; }
+        public virtual DbSet<P_PdtInfo> P_PdtInfo { get; set; }
         public virtual DbSet<P_PdtKeyword> P_PdtKeyword { get; set; }
         public virtual DbSet<P_PdtParam> P_PdtParam { get; set; }
         public virtual DbSet<P_Picture> P_Picture { get; set; }
@@ -21,6 +25,7 @@ namespace LFTHW.DAL
         public virtual DbSet<P_Product> P_Product { get; set; }
         public virtual DbSet<P_Route> P_Route { get; set; }
         public virtual DbSet<P_Type> P_Type { get; set; }
+        public virtual DbSet<P_TypeCategory> P_TypeCategory { get; set; }
         public virtual DbSet<S_Admin> S_Admin { get; set; }
         public virtual DbSet<S_City> S_City { get; set; }
         public virtual DbSet<S_District> S_District { get; set; }
@@ -38,11 +43,6 @@ namespace LFTHW.DAL
         public virtual DbSet<UP_OrderDetail> UP_OrderDetail { get; set; }
         public virtual DbSet<UP_UserComment> UP_UserComment { get; set; }
         public virtual DbSet<UP_UserConsume> UP_UserConsume { get; set; }
-        public virtual DbSet<P_CategoryBrand> P_CategoryBrand { get; set; }
-        public virtual DbSet<P_CategoryParamGroup> P_CategoryParamGroup { get; set; }
-        public virtual DbSet<P_CategoryProduct> P_CategoryProduct { get; set; }
-        public virtual DbSet<P_PdtInfo> P_PdtInfo { get; set; }
-        public virtual DbSet<P_TypeCategory> P_TypeCategory { get; set; }
         public virtual DbSet<U_UserAccount> U_UserAccount { get; set; }
         public virtual DbSet<U_UserInfo> U_UserInfo { get; set; }
 
@@ -62,6 +62,18 @@ namespace LFTHW.DAL
 
             modelBuilder.Entity<P_ParamGroup>()
                 .Property(e => e.Remark)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<P_PdtInfo>()
+                .Property(e => e.BookNotice)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<P_PdtInfo>()
+                .Property(e => e.FriendlyPrompt)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<P_PdtInfo>()
+                .Property(e => e.RouteFeature)
                 .IsUnicode(false);
 
             modelBuilder.Entity<P_PdtParam>()
@@ -242,18 +254,6 @@ namespace LFTHW.DAL
 
             modelBuilder.Entity<UP_UserConsume>()
                 .Property(e => e.Remark)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<P_PdtInfo>()
-                .Property(e => e.BookNotice)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<P_PdtInfo>()
-                .Property(e => e.FriendlyPrompt)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<P_PdtInfo>()
-                .Property(e => e.RouteFeature)
                 .IsUnicode(false);
 
             modelBuilder.Entity<U_UserAccount>()

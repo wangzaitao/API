@@ -8,44 +8,44 @@ namespace LFTHW.WebApi.Controllers.SysManage
 {
     [RoutePrefix("api/pproduct")]
     public class PProductController : ApiController
+    {
+        readonly IP_ProductBLL _IP_ProductBLL;
+
+        public PProductController(IP_ProductBLL iP_ProductBLL)
         {
-            readonly IP_ProductBLL _IP_ProductBLL;
+            _IP_ProductBLL = iP_ProductBLL;
+        }
 
-            public PProductController(IP_ProductBLL iP_ProductBLL)
-            {
-                _IP_ProductBLL = iP_ProductBLL;
-            }
+        [Route("getall")]
+        public List<P_Product> GetAll()
+        {
+            return _IP_ProductBLL.GetAll();
+        }
 
-            [Route("getall")]
-            public List<P_Product> GetAll()
-            {
-                return _IP_ProductBLL.GetAll();
-            }
+        [Route("getbyid")]
+        public P_Product Get(int id)
+        {
+            return _IP_ProductBLL.GetById(id);
+        }
 
-            [Route("getbyid")]
-            public P_Product Get(int id)
-            {
-                return _IP_ProductBLL.GetById(id);
-            }
+        [Route("add")]
+        public P_Product PostAdd(P_Product pProduct)
+        {
+            return _IP_ProductBLL.Add(pProduct);
+        }
 
-            [Route("add")]
-            public void PostAdd(P_Product pProduct)
-            {
-                _IP_ProductBLL.Add(pProduct);
-            }
+        [Route("edit")]
+        public bool PostEdit(ProductBasicInfo product)
+        {
+            return _IP_ProductBLL.Edit(product);
+        }
 
-            [Route("edit")]
-            public void PostEdit(ProductBasicInfo product)
-            {
-                _IP_ProductBLL.Edit(product);
-            }
-
-            [Route("delete")]
-            public bool Delete(int id)
-            {
-                return _IP_ProductBLL.Delete(id);
-            }
+        [Route("delete")]
+        public bool Delete(int id)
+        {
+            return _IP_ProductBLL.Delete(id);
         }
     }
+}
 
 

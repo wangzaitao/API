@@ -29,15 +29,15 @@ namespace LFTHW.WebApi.Controllers.SysManage
         }
 
         [Route("add")]
-        public void PostAdd(P_Type pType)
+        public P_Type PostAdd(P_Type pType)
         {
-            _IP_TypeBLL.Add(pType);
+            return _IP_TypeBLL.Add(pType);
         }
 
         [Route("update")]
-        public void PostEdit(P_Type pType)
+        public bool PostEdit(P_Type pType)
         {
-            _IP_TypeBLL.Update(pType, null);
+            return _IP_TypeBLL.Update(pType, null);
         }
 
         [Route("delete")]

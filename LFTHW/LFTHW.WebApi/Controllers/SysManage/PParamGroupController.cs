@@ -8,44 +8,44 @@ namespace LFTHW.WebApi.Controllers.SysManage
 {
     [RoutePrefix("api/pparamgroup")]
     public class PParamGroupController : ApiController
+    {
+        readonly IP_ParamGroupBLL _IP_ParamGroupBLL;
+
+        public PParamGroupController(IP_ParamGroupBLL iP_ParamGroupBLL)
         {
-            readonly IP_ParamGroupBLL _IP_ParamGroupBLL;
+            _IP_ParamGroupBLL = iP_ParamGroupBLL;
+        }
 
-            public PParamGroupController(IP_ParamGroupBLL iP_ParamGroupBLL)
-            {
-                _IP_ParamGroupBLL = iP_ParamGroupBLL;
-            }
+        [Route("getall")]
+        public List<P_ParamGroup> GetAll()
+        {
+            return _IP_ParamGroupBLL.GetAll();
+        }
 
-            [Route("getall")]
-            public List<P_ParamGroup> GetAll()
-            {
-                return _IP_ParamGroupBLL.GetAll();
-            }
+        [Route("getbyid")]
+        public P_ParamGroup Get(int id)
+        {
+            return _IP_ParamGroupBLL.GetById(id);
+        }
 
-            [Route("getbyid")]
-            public P_ParamGroup Get(int id)
-            {
-                return _IP_ParamGroupBLL.GetById(id);
-            }
+        [Route("add")]
+        public P_ParamGroup PostAdd(P_ParamGroup pParamGroup)
+        {
+            return _IP_ParamGroupBLL.Add(pParamGroup);
+        }
 
-            [Route("add")]
-            public void PostAdd(P_ParamGroup pParamGroup)
-            {
-                _IP_ParamGroupBLL.Add(pParamGroup);
-            }
+        [Route("update")]
+        public bool PostEdit(P_ParamGroup pParamGroup)
+        {
+            return _IP_ParamGroupBLL.Update(pParamGroup, null);
+        }
 
-            [Route("update")]
-            public void PostEdit(P_ParamGroup pParamGroup)
-            {
-                _IP_ParamGroupBLL.Update(pParamGroup, null);
-            }
-
-            [Route("delete")]
-            public bool Delete(int id)
-            {
-                return _IP_ParamGroupBLL.Delete(id);
-            }
+        [Route("delete")]
+        public bool Delete(int id)
+        {
+            return _IP_ParamGroupBLL.Delete(id);
         }
     }
+}
 
 

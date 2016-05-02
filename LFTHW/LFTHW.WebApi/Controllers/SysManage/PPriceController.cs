@@ -29,15 +29,15 @@ namespace LFTHW.WebApi.Controllers.SysManage
             }
 
             [Route("add")]
-            public void PostAdd(P_Price pPrice)
+            public P_Price PostAdd(P_Price pPrice)
             {
-                _IP_PriceBLL.Add(pPrice);
+                return _IP_PriceBLL.Add(pPrice);
             }
 
             [Route("edit")]
-            public void PostEdit(List<P_Price> pPriceList)
+            public bool PostEdit(List<P_Price> pPriceList)
             {
-                _IP_PriceBLL.Edit(pPriceList);
+                return _IP_PriceBLL.Edit(pPriceList);
         }
 
             [Route("delete")]

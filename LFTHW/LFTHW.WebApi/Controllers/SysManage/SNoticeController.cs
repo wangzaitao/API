@@ -8,44 +8,44 @@ namespace LFTHW.WebApi.Controllers.SysManage
 {
     [RoutePrefix("api/snotice")]
     public class SNoticeController : ApiController
+    {
+        readonly IS_NoticeBLL _IS_NoticeBLL;
+
+        public SNoticeController(IS_NoticeBLL iS_NoticeBLL)
         {
-            readonly IS_NoticeBLL _IS_NoticeBLL;
+            _IS_NoticeBLL = iS_NoticeBLL;
+        }
 
-            public SNoticeController(IS_NoticeBLL iS_NoticeBLL)
-            {
-                _IS_NoticeBLL = iS_NoticeBLL;
-            }
+        [Route("getall")]
+        public List<S_Notice> GetAll()
+        {
+            return _IS_NoticeBLL.GetAll();
+        }
 
-            [Route("getall")]
-            public List<S_Notice> GetAll()
-            {
-                return _IS_NoticeBLL.GetAll();
-            }
+        [Route("getbyid")]
+        public S_Notice Get(int id)
+        {
+            return _IS_NoticeBLL.GetById(id);
+        }
 
-            [Route("getbyid")]
-            public S_Notice Get(int id)
-            {
-                return _IS_NoticeBLL.GetById(id);
-            }
+        [Route("add")]
+        public S_Notice PostAdd(S_Notice sNotice)
+        {
+            return _IS_NoticeBLL.Add(sNotice);
+        }
 
-            [Route("add")]
-            public void PostAdd(S_Notice sNotice)
-            {
-                _IS_NoticeBLL.Add(sNotice);
-            }
+        [Route("update")]
+        public bool PostEdit(S_Notice sNotice)
+        {
+            return _IS_NoticeBLL.Update(sNotice, null);
+        }
 
-            [Route("update")]
-            public void PostEdit(S_Notice sNotice)
-            {
-                _IS_NoticeBLL.Update(sNotice, null);
-            }
-
-            [Route("delete")]
-            public bool Delete(int id)
-            {
-                return _IS_NoticeBLL.Delete(id);
-            }
+        [Route("delete")]
+        public bool Delete(int id)
+        {
+            return _IS_NoticeBLL.Delete(id);
         }
     }
+}
 
 

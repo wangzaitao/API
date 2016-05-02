@@ -8,44 +8,44 @@ namespace LFTHW.WebApi.Controllers.SysManage
 {
     [RoutePrefix("api/uporder")]
     public class UPOrderController : ApiController
+    {
+        readonly IUP_OrderBLL _IUP_OrderBLL;
+
+        public UPOrderController(IUP_OrderBLL iUP_OrderBLL)
         {
-            readonly IUP_OrderBLL _IUP_OrderBLL;
+            _IUP_OrderBLL = iUP_OrderBLL;
+        }
 
-            public UPOrderController(IUP_OrderBLL iUP_OrderBLL)
-            {
-                _IUP_OrderBLL = iUP_OrderBLL;
-            }
+        [Route("getall")]
+        public List<UP_Order> GetAll()
+        {
+            return _IUP_OrderBLL.GetAll();
+        }
 
-            [Route("getall")]
-            public List<UP_Order> GetAll()
-            {
-                return _IUP_OrderBLL.GetAll();
-            }
+        [Route("getbyid")]
+        public UP_Order Get(int id)
+        {
+            return _IUP_OrderBLL.GetById(id);
+        }
 
-            [Route("getbyid")]
-            public UP_Order Get(int id)
-            {
-                return _IUP_OrderBLL.GetById(id);
-            }
+        [Route("add")]
+        public UP_Order PostAdd(UP_Order upOrder)
+        {
+            return _IUP_OrderBLL.Add(upOrder);
+        }
 
-            [Route("add")]
-            public void PostAdd(UP_Order upOrder)
-            {
-                _IUP_OrderBLL.Add(upOrder);
-            }
+        [Route("update")]
+        public bool PostEdit(UP_Order upOrder)
+        {
+            return _IUP_OrderBLL.Update(upOrder, null);
+        }
 
-            [Route("update")]
-            public void PostEdit(UP_Order upOrder)
-            {
-                _IUP_OrderBLL.Update(upOrder, null);
-            }
-
-            [Route("delete")]
-            public bool Delete(int id)
-            {
-                return _IUP_OrderBLL.Delete(id);
-            }
+        [Route("delete")]
+        public bool Delete(int id)
+        {
+            return _IUP_OrderBLL.Delete(id);
         }
     }
+}
 
 

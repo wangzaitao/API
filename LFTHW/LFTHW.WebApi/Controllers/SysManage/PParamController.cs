@@ -29,15 +29,15 @@ namespace LFTHW.WebApi.Controllers.SysManage
             }
 
             [Route("add")]
-            public void PostAdd(P_Param pParam)
+            public P_Param PostAdd(P_Param pParam)
             {
-                _IP_ParamBLL.Add(pParam);
+                return _IP_ParamBLL.Add(pParam);
             }
 
             [Route("update")]
-            public void PostEdit(P_Param pParam)
+            public bool PostEdit(P_Param pParam)
             {
-                _IP_ParamBLL.Update(pParam, null);
+                return _IP_ParamBLL.Update(pParam, null);
             }
 
             [Route("delete")]

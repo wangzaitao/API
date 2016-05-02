@@ -8,44 +8,44 @@ namespace LFTHW.WebApi.Controllers.SysManage
 {
     [RoutePrefix("api/semployee")]
     public class SEmployeeController : ApiController
+    {
+        readonly IS_EmployeeBLL _IS_EmployeeBLL;
+
+        public SEmployeeController(IS_EmployeeBLL iS_EmployeeBLL)
         {
-            readonly IS_EmployeeBLL _IS_EmployeeBLL;
+            _IS_EmployeeBLL = iS_EmployeeBLL;
+        }
 
-            public SEmployeeController(IS_EmployeeBLL iS_EmployeeBLL)
-            {
-                _IS_EmployeeBLL = iS_EmployeeBLL;
-            }
+        [Route("getall")]
+        public List<S_Employee> GetAll()
+        {
+            return _IS_EmployeeBLL.GetAll();
+        }
 
-            [Route("getall")]
-            public List<S_Employee> GetAll()
-            {
-                return _IS_EmployeeBLL.GetAll();
-            }
+        [Route("getbyid")]
+        public S_Employee Get(int id)
+        {
+            return _IS_EmployeeBLL.GetById(id);
+        }
 
-            [Route("getbyid")]
-            public S_Employee Get(int id)
-            {
-                return _IS_EmployeeBLL.GetById(id);
-            }
+        [Route("add")]
+        public S_Employee PostAdd(S_Employee sEmployee)
+        {
+            return _IS_EmployeeBLL.Add(sEmployee);
+        }
 
-            [Route("add")]
-            public void PostAdd(S_Employee sEmployee)
-            {
-                _IS_EmployeeBLL.Add(sEmployee);
-            }
+        [Route("update")]
+        public bool PostEdit(S_Employee sEmployee)
+        {
+            return _IS_EmployeeBLL.Update(sEmployee, null);
+        }
 
-            [Route("update")]
-            public void PostEdit(S_Employee sEmployee)
-            {
-                _IS_EmployeeBLL.Update(sEmployee, null);
-            }
-
-            [Route("delete")]
-            public bool Delete(int id)
-            {
-                return _IS_EmployeeBLL.Delete(id);
-            }
+        [Route("delete")]
+        public bool Delete(int id)
+        {
+            return _IS_EmployeeBLL.Delete(id);
         }
     }
+}
 
 

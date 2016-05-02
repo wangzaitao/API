@@ -1,13 +1,14 @@
 namespace LFTHW.Model
 {
     using System;
+
     using System.ComponentModel.DataAnnotations;
- 
+    using System.ComponentModel.DataAnnotations.Schema;
+
 
     public partial class U_UserReg
     {
-        [Key]
-        public long UserID { get; set; }
+        public long ID { get; set; }
 
         [Required]
         [StringLength(100)]

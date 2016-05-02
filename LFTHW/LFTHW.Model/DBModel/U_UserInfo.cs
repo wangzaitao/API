@@ -1,29 +1,34 @@
 namespace LFTHW.Model
 {
     using System;
+
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    
+
 
     public partial class U_UserInfo
     {
         [Key]
         [Column(Order = 0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public long UserID { get; set; }
+        public long ID { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public long ParentID { get; set; }
+        public long UserID { get; set; }
 
         [Key]
         [Column(Order = 2)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public long ParentID { get; set; }
+
+        [Key]
+        [Column(Order = 3)]
         [StringLength(100)]
         public string UserName { get; set; }
 
         [Key]
-        [Column(Order = 3)]
+        [Column(Order = 4)]
         [StringLength(100)]
         public string NickName { get; set; }
 

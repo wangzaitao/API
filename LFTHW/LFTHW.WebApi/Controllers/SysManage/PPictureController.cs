@@ -29,15 +29,15 @@ namespace LFTHW.WebApi.Controllers.SysManage
             }
 
             [Route("add")]
-            public void PostAdd(P_Picture pPicture)
+            public P_Picture PostAdd(P_Picture pPicture)
             {
-                _IP_PictureBLL.Add(pPicture);
+                return _IP_PictureBLL.Add(pPicture);
             }
 
             [Route("edit")]
-            public void PostEdit(List<P_Picture> pPictureList)
+            public bool PostEdit(List<P_Picture> pPictureList)
             {
-                _IP_PictureBLL.Edit(pPictureList);
+                return _IP_PictureBLL.Edit(pPictureList);
             }
 
             [Route("delete")]
