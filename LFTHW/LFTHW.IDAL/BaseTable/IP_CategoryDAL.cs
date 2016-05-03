@@ -12,6 +12,8 @@ namespace LFTHW.IDAL
 
         bool Update(P_Category pCategory);
 
+        bool Edit(CategoryType categoryType);
+
         IQueryable<P_Category> GetByTypeID(long typeid);
 
         IQueryable<P_Category> GetByPId(long pid);

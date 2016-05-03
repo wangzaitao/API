@@ -26,6 +26,10 @@ namespace LFTHW.BLL
         {
             return _IP_BrandDAL.Update(pBrand);
         }
+
+        public bool Edit(BrandCategory pBrandCategory) {
+            return _IP_BrandDAL.Edit(pBrandCategory);
+        }
     }
 }
 

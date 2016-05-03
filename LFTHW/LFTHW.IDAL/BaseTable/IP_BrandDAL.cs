@@ -8,5 +8,7 @@ namespace LFTHW.IDAL
         P_Brand GetById(int id);
 
         bool Update(P_Brand pBrand);
+
+        bool Edit(BrandCategory pBrandCategory);
     }
 }

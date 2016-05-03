@@ -52,10 +52,10 @@ namespace LFTHW.WebApi.Controllers.SysManage
             return _IP_CategoryBLL.Add(pCategory);
         }
 
-        [Route("update")]
-        public bool PostEdit(P_Category pCategory)
+        [Route("edit")]
+        public bool PostEdit(CategoryType categoryType)
         {
-            return _IP_CategoryBLL.Update(pCategory, null);
+            return _IP_CategoryBLL.Edit(categoryType);
         }
 
         [Route("delete")]

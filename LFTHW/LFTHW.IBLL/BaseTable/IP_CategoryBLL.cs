@@ -9,7 +9,7 @@ namespace LFTHW.IBLL
         P_Category GetById(int id);
         bool Update(P_Category pCategory);
         List<P_Category> GetByTypeID(long typeid);
-
+        bool Edit(CategoryType categoryType);
         List<P_Category> GetByPId(long pid);
         List<P_Category> GetTree(long pid);
     }

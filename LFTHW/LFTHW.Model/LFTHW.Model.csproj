@@ -78,7 +78,9 @@
     <Compile Include="DBModel\U_UserReg.cs" />
     <Compile Include="ParamModel\PdtQueryParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\BrandCategory.cs" />
     <Compile Include="ViewModel\CategoryProduct.cs" />
+    <Compile Include="ViewModel\CategoryType.cs" />
     <Compile Include="ViewModel\ProductBasicInfo.cs" />
     <Compile Include="ViewModel\TripInfoRoute.cs" />
   </ItemGroup>

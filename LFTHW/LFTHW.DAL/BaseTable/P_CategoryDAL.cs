@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using LFTHW.IDAL;
 using LFTHW.Model;
+using System;
 
 namespace LFTHW.DAL
 {
@@ -11,9 +12,30 @@ namespace LFTHW.DAL
         {
             using (var db = new LFTHWDBModel())
             {
-                var pCategory = db.P_Category.FirstOrDefault(s => s.ID == id);
-                db.P_Category.Remove(pCategory);
-                return db.SaveChanges() > 0 ? true : false;
+                int res = 0;
+                var tran = db.Database.BeginTransaction();
+                try
+                {
+                    var pCategory = db.P_Category.FirstOrDefault(s => s.ID == id);
+                    var pCategoryBrand = db.P_CategoryBrand.FirstOrDefault(s => s.CategoryID == pCategory.ID);
+                    var pTypeCategory = db.P_TypeCategory.FirstOrDefault(s => s.CategoryID == pCategory.ID);
+                    var pCategoryParamGroup = db.P_CategoryParamGroup.FirstOrDefault(s => s.CategoryID == pCategory.ID);
+
+                    db.P_Category.Remove(pCategory);
+                    db.P_CategoryBrand.Remove(pCategoryBrand);
+                    db.P_TypeCategory.Remove(pTypeCategory);
+                    db.P_CategoryParamGroup.Remove(pCategoryParamGroup);
+
+                    res = db.SaveChanges();
+
+                    tran.Commit();
+                }
+                catch (Exception ex)
+                {
+                    tran.Rollback();
+                    res = 0;
+                }
+                return res > 0 ? true : false;
             }
         }
 
@@ -34,6 +56,82 @@ namespace LFTHW.DAL
                 _pCategory.ID = pCategory.ID;
 
                 return db.SaveChanges() > 0 ? true : false;
+            }
+        }
+
+        public bool Edit(CategoryType categoryType)
+        {
+            using (var db = new LFTHWDBModel())
+            {
+                int res = 0;
+                var tran = db.Database.BeginTransaction();  //开启事务
+                try
+                {
+                    var categoryID = categoryType.ID;
+                    if (categoryID > 0)
+                    {
+                        var _pCategory = db.P_Category.FirstOrDefault(s => s.ID == categoryID);
+                        _pCategory.ShopID = categoryType.ShopID;
+                        _pCategory.IsDelete = categoryType.IsDelete;
+                        _pCategory.IsShow = categoryType.IsShow;
+                        _pCategory.Name = categoryType.Name;
+                        _pCategory.PID = categoryType.PID;
+                        _pCategory.Remark = categoryType.Remark;
+                        _pCategory.OrderBy = categoryType.OrderBy;
+                        _pCategory.Flag = categoryType.Flag;
+                        _pCategory.ModifyTime = DateTime.Now;
+                        _pCategory.ModifyUser = categoryType.ModifyUser;
+
+                        var _pTypeCategory = db.P_TypeCategory.FirstOrDefault(s => s.CategoryID == categoryID);
+                        _pTypeCategory.TypeID = categoryType.TypeID;
+                        _pTypeCategory.ModifyTime = DateTime.Now;
+
+                        res = db.SaveChanges();
+                    }
+                    else
+                    {
+                        var pC = new P_Category
+                        {
+                            ID = categoryType.ID,
+                            ShopID = categoryType.ShopID,
+                            Flag = categoryType.Flag,
+                            IsDelete = categoryType.IsDelete,
+                            IsShow = categoryType.IsShow,
+                            PID = categoryType.PID,
+                            Name = categoryType.Name,
+                            OrderBy = categoryType.OrderBy,
+                            Remark = categoryType.Remark,
+                            CreatTime = DateTime.Now,
+                            CreatUser = categoryType.CreatUser,
+                            ModifyTime = DateTime.Now,
+                            ModifyUser = categoryType.ModifyUser
+                        };
+                        db.P_Category.Add(pC);
+                        res = db.SaveChanges();
+
+                        var pTC = new P_TypeCategory
+                        {
+                            ID = 0,
+                            CategoryID = pC.ID,
+                            TypeID = categoryType.TypeID,
+                            CreatTime = DateTime.Now,
+                            ModifyTime = DateTime.Now,
+                            CreatUser = 1,
+                            ModifyUser = 1
+                        };
+                        db.P_TypeCategory.Add(pTC);
+                        res = db.SaveChanges();
+                    }
+
+                    tran.Commit();  //必须调用Commit()，不然数据不会保存
+                }
+                catch (Exception ex)
+                {
+                    tran.Rollback();    //出错就回滚
+                    res = 0;
+                }
+
+                return res > 0 ? true : false;
             }
         }
 

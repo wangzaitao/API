@@ -34,10 +34,10 @@ namespace LFTHW.WebApi.Controllers.SysManage
             return _IP_BrandBLL.Add(pBrand);
         }
 
-        [Route("update")]
-        public bool PostEdit(P_Brand pBrand)
+        [Route("edit")]
+        public bool PostEdit(BrandCategory pBrandCategory)
         {
-            return _IP_BrandBLL.Update(pBrand, null);
+            return _IP_BrandBLL.Edit(pBrandCategory);
         }
 
         [Route("delete")]

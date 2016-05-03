@@ -30,6 +30,10 @@ namespace LFTHW.BLL
             return _IP_CategoryDAL.Update(pCategory);
         }
 
+        public bool Edit(CategoryType categoryType) {
+            return _IP_CategoryDAL.Edit(categoryType);
+        }
+
         public List<P_Category> GetByTypeID(long typeid)
         {
             return _IP_CategoryDAL.GetByTypeID(typeid).ToList<P_Category>();
