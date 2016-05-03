@@ -1,4 +1,6 @@
-﻿using LFTHW.Model;
+﻿using System.Collections.Generic;
+using LFTHW.Model;
+
 namespace LFTHW.IBLL
 {
     public interface IP_CategoryBLL : IBaseBLL<P_Category>
@@ -6,5 +8,6 @@ namespace LFTHW.IBLL
         bool Delete(int id);
         P_Category GetById(int id);
         bool Update(P_Category pCategory);
+        List<P_Category> GetByTypeID(int typeid);
     }
 }

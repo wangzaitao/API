@@ -22,6 +22,12 @@ namespace LFTHW.WebApi.Controllers.SysManage
             return _IP_CategoryBLL.GetAll();
         }
 
+        [Route("getbytypeid")]
+        public List<P_Category> GetByTypeID(int typeid)
+        {
+            return _IP_CategoryBLL.GetByTypeID(typeid);
+        }
+
         [Route("getbyid")]
         public P_Category Get(int id)
         {

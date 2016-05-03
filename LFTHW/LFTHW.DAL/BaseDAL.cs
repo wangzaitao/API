@@ -13,9 +13,16 @@ namespace LFTHW.DAL
 
         public T Add(T entity)
         {
-            db.Entry<T>(entity).State = EntityState.Added;
-            db.SaveChanges();
-            return entity;
+            try
+            {
+                db.Entry<T>(entity).State = EntityState.Added;
+                db.SaveChanges();
+                return entity;
+            }
+            catch (Exception ex) {
+                var tt = ex.Message;
+                return null;
+            }
         }
         public bool Update(T entity, string[] property)
         {

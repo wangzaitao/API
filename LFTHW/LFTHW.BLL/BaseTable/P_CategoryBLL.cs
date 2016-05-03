@@ -1,4 +1,6 @@
-﻿using LFTHW.DAL;
+﻿using System.Linq;
+using System.Collections.Generic;
+using LFTHW.DAL;
 using LFTHW.IBLL;
 using LFTHW.IDAL;
 using LFTHW.Model;
@@ -25,6 +27,11 @@ namespace LFTHW.BLL
         public bool Update(P_Category pCategory)
         {
             return _IP_CategoryDAL.Update(pCategory);
+        }
+
+        public List<P_Category> GetByTypeID(int typeid)
+        {
+            return _IP_CategoryDAL.GetByTypeID(typeid).ToList<P_Category>();
         }
     }
 }
