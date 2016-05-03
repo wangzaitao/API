@@ -22,6 +22,12 @@ namespace LFTHW.WebApi.Controllers.SysManage
             return _IP_TypeCategoryBLL.GetAll();
         }
 
+        [Route("gettree")]
+        public List<TreeObject> GetTree()
+        {
+            return _IP_TypeCategoryBLL.GetTree();
+        }
+
         [Route("add")]
         public P_TypeCategory PostAdd(P_TypeCategory pTypeCategory)
         {

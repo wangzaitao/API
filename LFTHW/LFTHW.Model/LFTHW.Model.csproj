@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\TreeObject.cs" />
     <Compile Include="DBModel\P_Brand.cs" />
     <Compile Include="DBModel\P_Category.cs" />
     <Compile Include="DBModel\P_CategoryBrand.cs" />

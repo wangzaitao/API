@@ -1,5 +1,6 @@
-﻿using LFTHW.Model;
+﻿using System.Collections.Generic;
 using System.Linq;
+using LFTHW.Model;
 
 namespace LFTHW.IDAL
 {
@@ -11,6 +12,10 @@ namespace LFTHW.IDAL
 
         bool Update(P_Category pCategory);
 
-        IQueryable<P_Category> GetByTypeID(int typeid);
+        IQueryable<P_Category> GetByTypeID(long typeid);
+
+        IQueryable<P_Category> GetByPId(long pid);
+
+        IEnumerable<P_Category> GetTree(long pid);
     }
 }

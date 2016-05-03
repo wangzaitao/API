@@ -22,7 +22,8 @@ namespace LFTHW.DAL
             using (var db = new LFTHWDBModel())
             {
                 var pProduct = from a in db.P_Product
-                               join b in db.P_CategoryProduct on a.ID equals b.PdtID into btemp from bb in btemp.DefaultIfEmpty()
+                               join b in db.P_CategoryProduct on a.ID equals b.PdtID into btemp
+                               from bb in btemp.DefaultIfEmpty()
                                where a.ID == id
                                select new CategoryProduct
                                {
@@ -140,7 +141,7 @@ namespace LFTHW.DAL
                         _pProduct.Flag = product.PdtBasic.Flag;
                         _pProduct.IsEnable = product.PdtBasic.IsEnable;
                         _pProduct.IsDelete = product.PdtBasic.IsDelete;
-                        _pProduct.ModifyTime = product.PdtBasic.ModifyTime;
+                        _pProduct.ModifyTime = DateTime.Now;
                         _pProduct.ModifyUser = product.PdtBasic.ModifyUser;
 
                         var _pPdtInfo = db.P_PdtInfo.FirstOrDefault(s => s.PdtID == pdtId);
@@ -152,20 +153,83 @@ namespace LFTHW.DAL
                         _pPdtInfo.FriendlyPrompt = product.PdtInfo.FriendlyPrompt;
                         _pPdtInfo.RouteFeature = product.PdtInfo.RouteFeature;
                         _pPdtInfo.PdtID = pdtId;
+                        _pPdtInfo.ModifyTime = DateTime.Now;
 
                         var _pCategoryPdt = db.P_CategoryProduct.FirstOrDefault(s => s.PdtID == pdtId);
                         _pCategoryPdt.CategoryID = product.PdtBasic.CategoryID;
+                        _pCategoryPdt.ModifyTime = DateTime.Now;
 
                         res = db.SaveChanges();
                     }
                     else
                     {
-                        db.P_Product.Add(product.PdtBasic);
+                        var a = product.PdtBasic;
+                        var pP = new P_Product
+                        {
+                            ID = a.ID,
+                            BrandID = a.BrandID,
+                            BuyMax = a.BuyMax,
+                            BuyMin = a.BuyMin,
+                            CityID = a.CityID,
+                            CommentNum = a.CommentNum,
+                            CreatTime = a.CreatTime,
+                            CreatUser = a.CreatUser,
+                            DiscountCoefficient = a.DiscountCoefficient,
+                            DiscountDetail = a.DiscountDetail,
+                            DistrictID = a.DistrictID,
+                            EnfantPrice = a.EnfantPrice,
+                            Flag = a.Flag,
+                            IntegralCoefficient = a.IntegralCoefficient,
+                            IsCanOrder = a.IsCanOrder,
+                            IsCommend = a.IsCommend,
+                            IsDelete = a.IsDelete,
+                            IsEnable = a.IsEnable,
+                            IsPolicy = a.IsPolicy,
+                            IsShow = a.IsShow,
+                            IsTop = a.IsTop,
+                            IsTrip = a.IsTrip,
+                            LinkTel = a.LinkTel,
+                            ListingPrice = a.ListingPrice,
+                            MemberPrice = a.MemberPrice,
+                            Meta_Description = a.Meta_Description,
+                            Meta_Keywords = a.Meta_Keywords,
+                            ModifyTime = a.ModifyTime,
+                            ModifyUser = a.ModifyUser,
+                            Name = a.Name,
+                            PdtBrief = a.PdtBrief,
+                            PdtDetail = a.PdtDetail,
+                            PdtImgUrl = a.PdtImgUrl,
+                            PdtNo = a.PdtNo,
+                            PriceExplain = a.PriceExplain,
+                            PriceType = a.PriceType,
+                            ProvinceID = a.ProvinceID,
+                            RetailPrice = a.RetailPrice,
+                            SelledNum = a.SelledNum,
+                            ShopID = a.ShopID,
+                            Stock = a.Stock,
+                            Title = a.Title,
+                            TypeID = a.TypeID,
+                            VisitNum = a.VisitNum,
+                            YouHuiPrice = a.YouHuiPrice
+                        };
+                        db.P_Product.Add(pP);
                         res = db.SaveChanges();
 
-                        pdtId = product.PdtBasic.ID;
+                        pdtId = pP.ID;
                         product.PdtInfo.PdtID = pdtId;
                         db.P_PdtInfo.Add(product.PdtInfo);
+                        res = db.SaveChanges();
+
+                        var pCP = new P_CategoryProduct
+                        {
+                            CategoryID = product.PdtBasic.CategoryID,
+                            PdtID = pdtId,
+                            CreatTime = DateTime.Now,
+                            ModifyTime = DateTime.Now,
+                            CreatUser = 1,
+                            ModifyUser = 1
+                        };
+                        db.P_CategoryProduct.Add(pCP);
                         res = db.SaveChanges();
                     }
 
@@ -174,6 +238,7 @@ namespace LFTHW.DAL
                 catch (Exception ex)
                 {
                     tran.Rollback();    //出错就回滚
+                    res = 0;
                 }
 
 
@@ -240,11 +305,16 @@ namespace LFTHW.DAL
             #endregion
 
             var pProduct = from a in db.P_Product
-                           join b in db.P_CategoryProduct on a.ID equals b.PdtID into btemp from bb in btemp.DefaultIfEmpty()
-                           join d in db.P_Category on bb.CategoryID equals d.ID into dtemp from dd in dtemp.DefaultIfEmpty()
-                           join e in db.P_Brand on a.BrandID equals e.ID into etemp from ee in etemp.DefaultIfEmpty()
-                           join f in db.P_Type on a.TypeID equals f.ID into ftemp from ff in ftemp.DefaultIfEmpty()
-                           join c in db.P_PdtKeyword on a.ID equals c.PdtID into ctemp from cc in ctemp.DefaultIfEmpty()
+                           join b in db.P_CategoryProduct on a.ID equals b.PdtID into btemp
+                           from bb in btemp.DefaultIfEmpty()
+                           join d in db.P_Category on bb.CategoryID equals d.ID into dtemp
+                           from dd in dtemp.DefaultIfEmpty()
+                           join e in db.P_Brand on a.BrandID equals e.ID into etemp
+                           from ee in etemp.DefaultIfEmpty()
+                           join f in db.P_Type on a.TypeID equals f.ID into ftemp
+                           from ff in ftemp.DefaultIfEmpty()
+                           join c in db.P_PdtKeyword on a.ID equals c.PdtID into ctemp
+                           from cc in ctemp.DefaultIfEmpty()
                            where (pdtParam.Type == 0 || a.TypeID == pdtParam.Type) && (pdtParam.Category == 0 || bb.CategoryID == pdtParam.Category) && (pdtParam.Brand == 0 || a.BrandID == pdtParam.Brand)
                                && (pdtParam.IsShow == null || a.IsShow == pdtParam.IsShow) && (pdtParam.IsCanOrder == null || a.IsCanOrder == pdtParam.IsCanOrder)
                                && (string.IsNullOrEmpty(pdtParam.PdtName) || a.Name.Contains(pdtParam.PdtName)) && (string.IsNullOrEmpty(pdtParam.Keyword) || cc.Keyword.Contains(pdtParam.Keyword))

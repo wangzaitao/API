@@ -8,6 +8,9 @@ namespace LFTHW.IBLL
         bool Delete(int id);
         P_Category GetById(int id);
         bool Update(P_Category pCategory);
-        List<P_Category> GetByTypeID(int typeid);
+        List<P_Category> GetByTypeID(long typeid);
+
+        List<P_Category> GetByPId(long pid);
+        List<P_Category> GetTree(long pid);
     }
 }

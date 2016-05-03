@@ -16,7 +16,8 @@ namespace LFTHW.BLL
             _IP_CategoryDAL = new P_CategoryDAL();
         }
 
-        public bool Delete(int id) {
+        public bool Delete(int id)
+        {
             return _IP_CategoryDAL.Delete(id);
         }
 
@@ -29,9 +30,19 @@ namespace LFTHW.BLL
             return _IP_CategoryDAL.Update(pCategory);
         }
 
-        public List<P_Category> GetByTypeID(int typeid)
+        public List<P_Category> GetByTypeID(long typeid)
         {
             return _IP_CategoryDAL.GetByTypeID(typeid).ToList<P_Category>();
+        }
+
+        public List<P_Category> GetByPId(long pid)
+        {
+            return _IP_CategoryDAL.GetByPId(pid).ToList<P_Category>();
+        }
+
+        public List<P_Category> GetTree(long pid)
+        {
+            return _IP_CategoryDAL.GetTree(pid).ToList<P_Category>();
         }
     }
 }

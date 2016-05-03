@@ -23,7 +23,7 @@ namespace LFTHW.WebApi.Controllers.SysManage
         }
 
         [Route("getbytypeid")]
-        public List<P_Category> GetByTypeID(int typeid)
+        public List<P_Category> GetByTypeID(long typeid)
         {
             return _IP_CategoryBLL.GetByTypeID(typeid);
         }
@@ -32,6 +32,18 @@ namespace LFTHW.WebApi.Controllers.SysManage
         public P_Category Get(int id)
         {
             return _IP_CategoryBLL.GetById(id);
+        }
+
+        [Route("getbypid")]
+        public List<P_Category> GetByPId(long pid)
+        {
+            return _IP_CategoryBLL.GetByPId(pid);
+        }
+
+        [Route("gettree")]
+        public List<P_Category> GetTree(long pid)
+        {
+            return _IP_CategoryBLL.GetTree(pid);
         }
 
         [Route("add")]
