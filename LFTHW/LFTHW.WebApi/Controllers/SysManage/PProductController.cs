@@ -23,9 +23,15 @@ namespace LFTHW.WebApi.Controllers.SysManage
         }
 
         [Route("getbyid")]
-        public P_Product Get(int id)
+        public CategoryProduct Get(int id)
         {
             return _IP_ProductBLL.GetById(id);
+        }
+
+        [Route("postbywhere")]
+        public List<CategoryProduct> PostByWhere(PdtQueryParam pdtParam)
+        {
+            return _IP_ProductBLL.GetByWhere(pdtParam);
         }
 
         [Route("add")]

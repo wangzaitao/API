@@ -1,7 +1,9 @@
-﻿using LFTHW.DAL;
+﻿using System.Linq;
+using System.Collections.Generic;
 using LFTHW.IBLL;
 using LFTHW.IDAL;
 using LFTHW.Model;
+using LFTHW.DAL;
 
 namespace LFTHW.BLL
 {
@@ -18,7 +20,7 @@ namespace LFTHW.BLL
             return _IP_ProductDAL.Delete(id);
         }
 
-        public P_Product GetById(int id)
+        public CategoryProduct GetById(int id)
         {
             return _IP_ProductDAL.GetById(id);
         }
@@ -29,6 +31,10 @@ namespace LFTHW.BLL
 
         public bool Edit(ProductBasicInfo product) {
             return _IP_ProductDAL.Edit(product);
+        }
+
+        public List<CategoryProduct> GetByWhere(PdtQueryParam pdtParam) {
+            return _IP_ProductDAL.GetByWhere(pdtParam).ToList<CategoryProduct>();
         }
     }
 }

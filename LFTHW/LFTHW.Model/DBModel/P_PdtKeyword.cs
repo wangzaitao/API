@@ -12,7 +12,7 @@ namespace LFTHW.Model
 
         public long PdtID { get; set; }
 
-        public long Keyword { get; set; }
+        public string Keyword { get; set; }
 
         public byte? IsShow { get; set; }
 

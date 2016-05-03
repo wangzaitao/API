@@ -2,7 +2,7 @@
 {
     public class ProductBasicInfo
     {
-        public P_Product PdtBasic { get; set; }
+        public CategoryProduct PdtBasic { get; set; }
         public P_PdtInfo PdtInfo { get; set; }
     }
 }
