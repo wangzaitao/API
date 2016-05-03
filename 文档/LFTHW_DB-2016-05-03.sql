@@ -1,0 +1,560 @@
+CREATE TABLE S_Province(
+	ID		BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	Name	NVARCHAR(100) NOT NULL,
+	Alias	NVARCHAR(100),
+	Remark	TEXT
+)
+
+CREATE TABLE S_City(
+	ID			BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	Name		NVARCHAR(100) NOT NULL,
+	ProvinceID	BIGINT NOT NULL,
+	ZipCode		NVARCHAR(100),
+	IsSubSite	TINYINT,
+	Remark		TEXT
+)
+
+CREATE TABLE S_District(
+	ID		BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	Name	NVARCHAR(100) NOT NULL,
+	CityID	BIGINT NOT NULL,
+	Remark	TEXT
+)
+
+CREATE TABLE S_Notice(
+	ID			BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	ShopID		BIGINT,
+	Name		NVARCHAR(100) NOT NULL,
+	Content		TEXT,
+	[Type]		TINYINT,
+	IsTop		TINYINT,
+	IsShow		TINYINT,
+	OrderBy		INT,
+	CreatTime	DATETIME,
+	CreatUser	BIGINT,
+	ModifyTime	DATETIME,
+	ModifyUser	BIGINT
+)
+
+CREATE TABLE S_FriendLink(
+	ID			BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	ShopID		BIGINT,
+	Name		NVARCHAR(100) NOT NULL,
+	Website		NVARCHAR(100) NOT NULL,
+	Introduces	TEXT,
+	[Type]		TINYINT,
+	IsTop		TINYINT,
+	IsShow		TINYINT,
+	OrderBy		INT,
+	CreatTime	DATETIME,
+	CreatUser	BIGINT,
+	ModifyTime	DATETIME,
+	ModifyUser	BIGINT
+)
+
+CREATE TABLE S_Admin(
+	ID			BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	LoginName	NVARCHAR(100) NOT NULL,
+	[Password]	NVARCHAR(100) NOT NULL,
+	CreatTime	DATETIME,
+	CreatUser	BIGINT,
+	ModifyTime	DATETIME,
+	ModifyUser	BIGINT
+)
+
+CREATE TABLE S_Employee(
+	ID			BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	AdminID		BIGINT NOT NULL,
+	Code		NVARCHAR(20),
+	Name		NVARCHAR(100) NOT NULL,
+	Sex			TINYINT,
+	Birth		NVARCHAR(20),
+	Position	NVARCHAR(100),
+	Dept		NVARCHAR(100),
+	Telephone	NVARCHAR(20),
+	Mobile		NVARCHAR(20),
+	Email		NVARCHAR(100),
+	Fax			NVARCHAR(25),
+	QQ			NVARCHAR(20),
+	[Address]	NVARCHAR(100),
+	HeadImage	NVARCHAR(100),
+	Introduces	TEXT,
+	IsDelete	TINYINT,
+	CreatTime	DATETIME,
+	CreatUser	BIGINT,
+	ModifyTime	DATETIME,
+	ModifyUser	BIGINT
+)
+
+CREATE TABLE S_FXCommision(
+	ID			BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	[First]		DECIMAL(18,0) NOT NULL,
+	[Second]	DECIMAL(18,0) NOT NULL,
+	Third		DECIMAL(18,0) NOT NULL,
+	Remark		TEXT,
+	IsUsing		TINYINT,
+	IsInternat	TINYINT,
+	CreatTime	DATETIME,
+	CreatUser	BIGINT,
+	ModifyTime	DATETIME,
+	ModifyUser	BIGINT,
+)
+
+CREATE TABLE U_UserReg(
+	ID				BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	LoginName		NVARCHAR(100) NOT NULL,
+	[Password]		NVARCHAR(100) NOT NULL,
+	Mobile			NVARCHAR(20),
+	IsWXUser		TINYINT,
+	LastLoginTime	DATETIME,
+	LastLoginIP		NVARCHAR(20),
+	LastLoginDevice	NVARCHAR(50)
+)
+
+CREATE TABLE U_UserInfo(
+	ID				BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	UserID			BIGINT NOT NULL,
+	ParentID		BIGINT NOT NULL,
+	UserName		NVARCHAR(100) NOT NULL,
+	NickName		NVARCHAR(100) NOT NULL,
+	Sex				TINYINT,
+	Birth			NVARCHAR(20),
+	ProvinceID		BIGINT,
+	CityID			BIGINT,
+	DistrictID		BIGINT,
+	Telephone		NVARCHAR(20),
+	Mobile			NVARCHAR(20),
+	Email			NVARCHAR(100),
+	Fax				NVARCHAR(25),
+	QQ				NVARCHAR(20),
+	HeadImage		NVARCHAR(100),
+	UserType		INT,
+	UserLevel		INT,
+	Introduce		TEXT,
+	IsFX			TINYINT,
+	IsShowNickName	TINYINT,
+	IsEnable		TINYINT,
+	IsDelete		TINYINT,
+	CreatTime		DATETIME,
+	ModifyTime		DATETIME,
+	ModifyUser		BIGINT
+)
+
+CREATE TABLE U_UserAccount(
+	ID			BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	UserID		BIGINT	NOT NULL,
+	[Money]		DECIMAL(18,0)	NOT NULL,
+	WXAccount	NVARCHAR(100),
+	ZFBAccount	NVARCHAR(100),
+	Scores		BIGINT	NOT NULL
+)
+
+CREATE TABLE U_UserAddress(
+	ID			BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	UserID		BIGINT NOT NULL,
+	Name		NVARCHAR(20) NOT NULL,
+	Mobile		NVARCHAR(20),
+	ProvinceID	NVARCHAR(100),
+	CityID		NVARCHAR(100),
+	DistrictID	NVARCHAR(100),
+	[Address]	NVARCHAR(100),
+	IsDefault	TINYINT
+)
+
+CREATE TABLE UP_Order(
+	ID					BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	OrderNO				NVARCHAR(50) NOT NULL,
+	UserID				BIGINT NOT NULL,
+	ShopID				BIGINT,
+	AcceptName			NVARCHAR(20) NOT NULL,
+	AcceptAddress		NVARCHAR(200),
+	Mobile				NVARCHAR(20),
+	Amount				DECIMAL(18,0),
+	IsNoFreight			TINYINT,
+	Freight				DECIMAL(18,0),
+	PMoney				DECIMAL(18,0),
+	IsVirtual			TINYINT,
+	IsExpress			TINYINT,
+	ExpressCompanyNo	NVARCHAR(50),
+	ExpressCompany		NVARCHAR(50),
+	ExpressNo			NVARCHAR(50),
+	ConsumerRemark		TEXT,
+	ExpressTime			NVARCHAR(200),
+	[State]				INT NOT NULL,
+	CancelRemark		TEXT,
+	GetScores			BIGINT,
+	IsDelete			TINYINT,
+	CreateTime			DATETIME
+)
+
+CREATE TABLE UP_OrderDetail(
+	ID			BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	OrderID		BIGINT NOT NULL,
+	PdtID		BIGINT NOT NULL,
+	PdtName		NVARCHAR(200),
+	UnitPrice	DECIMAL(18,0),
+	ItemsCount	INT,
+	Amount		DECIMAL(18,0),
+	IsDiscount	TINYINT,
+	Discount	DECIMAL(18,0),
+	SaveMoney	DECIMAL(18,0),
+	GetScores	BIGINT,
+	IsComment	TINYINT,
+	IsDelete	INT,
+	CreateTime	DATETIME
+)
+
+CREATE TABLE UP_Cart(
+	ID			BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	UserID		BIGINT NOT NULL,
+	PdtID		BIGINT NOT NULL,
+	PdtName		NVARCHAR(200),
+	UnitPrice	DECIMAL(18,0),
+	ItemsCount	INT,
+	Amount		DECIMAL(18,0),
+	CreateTime	DATETIME
+)
+
+CREATE TABLE UP_UserConsume(
+	ID			BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	UserID		BIGINT NOT NULL,
+	ConsumeNo	NVARCHAR(50) NOT NULL,
+	[Time]		DATETIME NOT NULL,
+	[Money]		DECIMAL(18,0) NOT NULL,
+	InOrOut		TINYINT,
+	[Type]		INT,
+	Account		NVARCHAR(100),
+	PdtID		BIGINT,
+	OrderID		BIGINT,
+	GetScores	BIGINT,
+	Remark		TEXT,
+	[Status]	TINYINT,
+)
+
+CREATE TABLE UP_UserComment(
+	ID		BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	PID		BIGINT NOT NULL,
+	UserID	BIGINT NOT NULL,
+	PdtID	BIGINT NOT NULL,
+	PdtName	NVARCHAR(200),
+	[Time]	DATETIME NOT NULL,
+	Content	TEXT,
+	[Level]	INT,
+	IsImage	TINYINT,
+	Isshow	TINYINT,
+	IsReply	TINYINT
+)
+
+CREATE TABLE UP_CommentImage(
+	ID			BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	CommentID	BIGINT NOT NULL,
+	ImgUrl		NVARCHAR(200),
+	ImgType		NVARCHAR(20),
+	Isshow		TINYINT
+)
+
+CREATE TABLE UP_CommentReply(
+	ID			BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	PID			BIGINT NOT NULL,
+	CommentID	BIGINT NOT NULL,
+	ReplyUserID	BIGINT NOT NULL,
+	[Time]		DATETIME NOT NULL,
+	Content		TEXT,
+	Isshow		TINYINT,
+)
+
+CREATE TABLE P_Type(
+	ID			BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	PID			BIGINT NOT NULL,
+	Name		NVARCHAR(100) NOT NULL,
+	ShopID		BIGINT,
+	IsShow		TINYINT,
+	OrderBy		TINYINT,
+	Flag		TINYINT,
+	Remark		TEXT,
+	IsDelete	TINYINT,
+	CreatTime	DATETIME,
+	CreatUser	BIGINT,
+	ModifyTime	DATETIME,
+	ModifyUser	BIGINT
+)
+
+CREATE TABLE P_TypeCategory(
+	ID			BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	TypeID		BIGINT NOT NULL,
+	CategoryID	BIGINT NOT NULL,
+	CreatTime	DATETIME,
+	CreatUser	BIGINT,
+	ModifyTime	DATETIME,
+	ModifyUser	BIGINT
+)
+
+CREATE TABLE P_Category(
+	ID			BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	PID			BIGINT NOT NULL,
+	Name		NVARCHAR(100) NOT NULL,
+	ShopID		BIGINT,
+	IsShow		TINYINT,
+	OrderBy		TINYINT,
+	Flag		TINYINT,
+	Remark		TEXT,
+	IsDelete	TINYINT,
+	CreatTime	DATETIME,
+	CreatUser	BIGINT,
+	ModifyTime	DATETIME,
+	ModifyUser	BIGINT
+)
+
+CREATE TABLE P_CategoryBrand(
+	ID			BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	CategoryID	BIGINT NOT NULL,
+	BrandID		BIGINT NOT NULL,
+	CreatTime	DATETIME,
+	CreatUser	BIGINT,
+	ModifyTime	DATETIME,
+	ModifyUser	BIGINT
+)
+
+CREATE TABLE P_Brand(
+	ID			BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	PID			BIGINT NOT NULL,
+	Name		NVARCHAR(100) NOT NULL,
+	ShopID		BIGINT,
+	UrlLink		NVARCHAR(100),
+	Logo		NVARCHAR(200),
+	IsShow		TINYINT,
+	OrderBy		TINYINT,
+	Flag		TINYINT,
+	Remark		TEXT,
+	IsDelete	TINYINT,
+	CreatTime	DATETIME,
+	CreatUser	BIGINT,
+	ModifyTime	DATETIME,
+	ModifyUser	BIGINT
+)
+
+CREATE TABLE P_CategoryParamGroup(
+	ID				BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	CategoryID		BIGINT NOT NULL,
+	ParamGroupID	BIGINT NOT NULL,
+	CreatTime		DATETIME,
+	CreatUser		BIGINT,
+	ModifyTime		DATETIME,
+	ModifyUser		BIGINT
+)
+
+CREATE TABLE P_ParamGroup(
+	ID			BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	PID			BIGINT NOT NULL,
+	Name		NVARCHAR(100) NOT NULL,
+	ShopID		BIGINT,
+	IsShow		TINYINT,
+	OrderBy		TINYINT,
+	Flag		TINYINT,
+	Remark		TEXT,
+	IsDelete	TINYINT,
+	CreatTime	DATETIME,
+	CreatUser	BIGINT,
+	ModifyTime	DATETIME,
+	ModifyUser	BIGINT
+)
+
+CREATE TABLE P_Param(
+	ID				BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	PID				BIGINT NOT NULL,
+	Name			NVARCHAR(100) NOT NULL,
+	ShopID			BIGINT,
+	ParamGroupID	BIGINT,
+	AliasName		NVARCHAR(100),
+	IsShow			TINYINT,
+	OrderBy			TINYINT,
+	Flag			TINYINT,
+	Remark			TEXT,
+	IsDelete		TINYINT,
+	CreatTime		DATETIME,
+	CreatUser		BIGINT,
+	ModifyTime		DATETIME,
+	ModifyUser		BIGINT
+)
+
+CREATE TABLE P_CategoryProduct(
+	ID			BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	CategoryID	BIGINT NOT NULL,
+	PdtID		BIGINT NOT NULL,
+	CreatTime	DATETIME,
+	CreatUser	BIGINT,
+	ModifyTime	DATETIME,
+	ModifyUser	BIGINT
+)
+
+CREATE TABLE P_Product(
+	ID					BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	TypeID				BIGINT NOT NULL,
+	BrandID				BIGINT NOT NULL,
+	Name				NVARCHAR(200) NOT NULL,
+	ShopID				BIGINT,
+	PdtNo				NVARCHAR(100),
+	PriceExplain		NVARCHAR(1000),
+	PriceType			TINYINT,
+	EnfantPrice			DECIMAL(18,0),
+	ListingPrice		DECIMAL(18,0),
+	RetailPrice			DECIMAL(18,0),
+	MemberPrice			DECIMAL(18,0),
+	YouHuiPrice			DECIMAL(18,0),
+	DiscountDetail		NVARCHAR(1000),
+	IntegralCoefficient	DECIMAL,
+	DiscountCoefficient	DECIMAL,
+	Stock				INT,
+	BuyMax				INT,
+	BuyMin				INT,
+	IsCanOrder			INT,
+	LinkTel				NVARCHAR(20),
+	PdtBrief			NVARCHAR(1000),
+	PdtDetail			TEXT,
+	IsTrip				TINYINT,
+	ProvinceID			INT,
+	CityID				INT,
+	DistrictID			INT,
+	PdtImgUrl			NVARCHAR(100),
+	VisitNum			INT,
+	CommentNum			INT,
+	SelledNum			INT,
+	Title				NVARCHAR(100),
+	Meta_Keywords		NVARCHAR(1000),
+	Meta_Description	NVARCHAR(1000),
+	IsPolicy			TINYINT,
+	IsTop				TINYINT,
+	IsCommend			TINYINT,
+	IsShow				TINYINT,
+	Flag				TINYINT,
+	IsEnable			TINYINT,
+	IsDelete			TINYINT,
+	CreatTime			DATETIME,
+	CreatUser			BIGINT,
+	ModifyTime			DATETIME,
+	ModifyUser			BIGINT
+)
+
+CREATE TABLE P_PdtInfo(
+	ID						BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	PdtID					BIGINT NOT NULL,
+	PdtType					INT,
+	[Address]				NVARCHAR(100),
+	Phone					NVARCHAR(20),
+	TrafficeInfo			NVARCHAR(MAX),
+	BookNotice				TEXT,
+	FriendlyPrompt			TEXT,
+	RouteFeature			TEXT,
+	Trip_Type				BIGINT,
+	Trip_JoinType			BIGINT,
+	Trip_SignUpAheadDays	INT,
+	Trip_Days				INT,
+	Trip_RouteType			TINYINT,
+	Trip_StartCity			NVARCHAR(20),
+	Trip_StartDate			DATETIME,
+	Trip_StartType			TINYINT,
+	Trip_GoTrafficType		INT,
+	Trip_ReturnTrafficType	INT,
+	Trip_TrafficType		INT,
+	Trip_TrafficContent		NVARCHAR(200),
+	Hotel_Level				INT,
+	Hotel_Services			NVARCHAR(MAX),
+	Sight_Type				INT,
+	Cars_HiresType			INT,
+	Cars_Type				INT,
+	Cars_PersonNum			INT,
+	Cars_Config				NVARCHAR(100),
+	CreatTime				DATETIME,
+	CreatUser				BIGINT,
+	ModifyTime				DATETIME,
+	ModifyUser				BIGINT
+)
+
+CREATE TABLE P_Price(
+	ID				BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	PdtID			BIGINT NOT NULL,
+	PriceType		NVARCHAR(100) NOT NULL,
+	MenShiPrice		DECIMAL(18,0),
+	YouHuiPrice		DECIMAL(18,0),
+	ErTongPrice		DECIMAL(18,0),
+	HuiYuanPrice	DECIMAL(18,0),
+	TongHangPrice	DECIMAL(18,0),
+	PriceIntroduces	TEXT,
+	PriceDate		DATETIME,
+	OrderBy			TINYINT,
+	Flag			TINYINT,
+	IsShow			TINYINT,
+	IsDelete		TINYINT,
+	CreatTime		DATETIME,
+	CreatUser		BIGINT,
+	ModifyTime		DATETIME,
+	ModifyUser		BIGINT,
+)
+
+CREATE TABLE P_Picture(
+	ID			BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	PdtID		BIGINT NOT NULL,
+	ImageUrl	NVARCHAR(200) NOT NULL,
+	IsShow		TINYINT,
+	OrderBy		TINYINT,
+	Flag		TINYINT,
+	Remark		TEXT,
+	IsDelete	TINYINT,
+	CreatTime	DATETIME,
+	CreatUser	BIGINT,
+	ModifyTime	DATETIME,
+	ModifyUser	BIGINT
+)
+
+CREATE TABLE P_Route(
+	ID					BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	PdtID				BIGINT NOT NULL,
+	RouteType			TINYINT,
+	DayTitle			NVARCHAR(200),
+	DayContent			TEXT,
+	DayEat				NVARCHAR(100),
+	DayHotel			NVARCHAR(100),
+	DayOrderBy			TINYINT,
+	ShowDetailContent	TEXT,
+	IsShow				TINYINT,
+	OrderBy				TINYINT,
+	Flag				TINYINT,
+	Remark				TEXT,
+	IsDelete			TINYINT,
+	CreatTime			DATETIME,
+	CreatUser			BIGINT,
+	ModifyTime			DATETIME,
+	ModifyUser			BIGINT
+)
+
+CREATE TABLE P_PdtParam(
+	ID				BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	PdtID			BIGINT NOT NULL,
+	CategoryID		BIGINT NOT NULL,
+	ParamGroupID	BIGINT NOT NULL,
+	ParamID			BIGINT NOT NULL,
+	ParamName		NVARCHAR(100),
+	ParamValue		NVARCHAR(200),
+	IsShow			TINYINT,
+	OrderBy			TINYINT,
+	Flag			TINYINT,
+	Remark			TEXT,
+	IsDelete		TINYINT,
+	CreatTime		DATETIME,
+	CreatUser		BIGINT,
+	ModifyTime		DATETIME,
+	ModifyUser		BIGINT
+)
+
+CREATE TABLE P_PdtKeyword(
+	ID				BIGINT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	PdtID			BIGINT NOT NULL,
+	Keyword			BIGINT NOT NULL,
+	IsShow			TINYINT,
+	OrderBy			TINYINT,
+	IsDelete		TINYINT,
+	CreatTime		DATETIME,
+	CreatUser		BIGINT,
+	ModifyTime		DATETIME,
+	ModifyUser		BIGINT
+)
