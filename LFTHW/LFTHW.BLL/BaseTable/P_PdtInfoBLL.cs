@@ -18,9 +18,9 @@ namespace LFTHW.BLL
             return _IP_PdtInfoDAL.Delete(id);
         }
 
-        public P_PdtInfo GetById(int id)
+        public P_PdtInfo GetByPdtID(long pdtID)
         {
-            return _IP_PdtInfoDAL.GetById(id);
+            return _IP_PdtInfoDAL.GetByPdtID(pdtID);
         }
         public bool Update(P_PdtInfo pPdtInfo)
         {

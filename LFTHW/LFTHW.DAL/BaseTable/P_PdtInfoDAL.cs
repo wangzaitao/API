@@ -18,11 +18,11 @@ namespace LFTHW.DAL
             }
         }
 
-        public P_PdtInfo GetById(int id)
+        public P_PdtInfo GetByPdtID(long pdtID)
         {
             using (var db = new LFTHWDBModel())
             {
-                var pPdtInfo = db.P_PdtInfo.FirstOrDefault(s => s.PdtID == id);
+                var pPdtInfo = db.P_PdtInfo.FirstOrDefault(s => s.PdtID == pdtID);
                 return pPdtInfo;
             }
         }

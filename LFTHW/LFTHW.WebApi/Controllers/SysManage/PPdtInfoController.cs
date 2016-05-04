@@ -22,10 +22,10 @@ namespace LFTHW.WebApi.Controllers.SysManage
             return _IP_PdtInfoBLL.GetAll();
         }
 
-        [Route("getbyid")]
-        public P_PdtInfo Get(int id)
+        [Route("getbypdtid")]
+        public P_PdtInfo Get(int pdtID)
         {
-            return _IP_PdtInfoBLL.GetById(id);
+            return _IP_PdtInfoBLL.GetByPdtID(pdtID);
         }
 
         [Route("add")]

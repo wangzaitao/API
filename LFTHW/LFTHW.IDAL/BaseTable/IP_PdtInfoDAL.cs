@@ -5,7 +5,7 @@ namespace LFTHW.IDAL
     {
         bool Delete(int id);
 
-        P_PdtInfo GetById(int id);
+        P_PdtInfo GetByPdtID(long pdtID);
 
         bool Update(P_PdtInfo pPdtInfo);
 
