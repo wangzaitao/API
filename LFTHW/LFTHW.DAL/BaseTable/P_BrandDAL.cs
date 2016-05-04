@@ -131,5 +131,47 @@ namespace LFTHW.DAL
                 return res > 0 ? true : false;
             }
         }
+
+        public IQueryable<BrandCategory> GetPage(CategoryQueryParam pageParam)
+        {
+            var db = new LFTHWDBModel();
+            var pBrand = from a in db.P_Brand
+                         join b in db.P_CategoryBrand on a.ID equals b.BrandID into btemp
+                         from bb in btemp.DefaultIfEmpty()
+                         join c in db.P_Category on bb.CategoryID equals c.ID into ctemp
+                         from cc in ctemp.DefaultIfEmpty()
+                         select new BrandCategory
+                         {
+                             ID = a.ID,
+                             PID = a.PID,
+                             CategoryID = cc == null ? 0 : cc.ID,
+                             CategoryName = cc == null ? string.Empty : cc.Name,
+                             Name = a.Name,
+                             ShopID = a.ShopID,
+                             CreatTime = a.CreatTime,
+                             CreatUser = a.CreatUser,
+                             Flag = a.Flag,
+                             IsDelete = a.IsDelete,
+                             IsShow = a.IsShow,
+                             ModifyTime = a.ModifyTime,
+                             ModifyUser = a.ModifyUser,
+                             OrderBy = a.OrderBy,
+                             Remark = a.Remark,
+                             Logo = a.Logo,
+                             UrlLink = a.UrlLink
+                         };
+
+            if (pageParam.CategoryID > 0)
+            {
+                pBrand = pBrand.Where(c => c.CategoryID == pageParam.CategoryID);
+            }
+
+            pageParam.total = pBrand.Count();
+            if (pageParam.isDesc)
+                pBrand = pBrand.OrderByDescending(c => c.CreatTime).Skip(pageParam.size * (pageParam.page - 1)).Take(pageParam.size);
+            else
+                pBrand = pBrand.OrderBy(c => c.CreatTime).Skip(pageParam.size * (pageParam.page - 1)).Take(pageParam.size);
+            return pBrand;
+        }
     }
 }

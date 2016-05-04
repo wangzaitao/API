@@ -1,4 +1,5 @@
-﻿using LFTHW.Model;
+﻿using System.Linq;
+using LFTHW.Model;
 namespace LFTHW.IDAL
 {
     public interface IP_BrandDAL: IBaseDAL<P_Brand>
@@ -10,5 +11,7 @@ namespace LFTHW.IDAL
         bool Update(P_Brand pBrand);
 
         bool Edit(BrandCategory pBrandCategory);
+
+        IQueryable<BrandCategory> GetPage(CategoryQueryParam pageParam);
     }
 }

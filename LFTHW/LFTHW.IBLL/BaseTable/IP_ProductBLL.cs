@@ -12,5 +12,7 @@ namespace LFTHW.IBLL
         bool Edit(ProductBasicInfo product);
 
         List<CategoryProduct> GetByWhere(PdtQueryParam pdtParam);
+
+        List<CategoryProduct> GetPage(PdtQueryParam pageParam);
     }
 }

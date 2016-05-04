@@ -28,6 +28,13 @@ namespace LFTHW.WebApi.Controllers.SysManage
             return _IP_ProductBLL.GetById(id);
         }
 
+        [Route("getpage")]
+        public dynamic GetPage([FromUri]PdtQueryParam pageParam)
+        {
+            var list = _IP_ProductBLL.GetPage(pageParam);
+            return new { data = list, total = pageParam.total };
+        }
+
         [Route("postbywhere")]
         public List<CategoryProduct> PostByWhere(PdtQueryParam pdtParam)
         {

@@ -48,6 +48,10 @@ namespace LFTHW.BLL
         {
             return _IP_CategoryDAL.GetTree(pid).ToList<P_Category>();
         }
+
+        public List<CategoryType> GetPage(TypeQueryParam pageParam) {
+            return _IP_CategoryDAL.GetPage(pageParam).ToList<CategoryType>();
+        }
     }
 }
 

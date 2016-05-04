@@ -28,6 +28,13 @@ namespace LFTHW.WebApi.Controllers.SysManage
             return _IP_CategoryBLL.GetByTypeID(typeid);
         }
 
+        [Route("getpage")]
+        public dynamic GetPage([FromUri]TypeQueryParam pageParam)
+        {
+            var list = _IP_CategoryBLL.GetPage(pageParam);
+            return new { data = list, total = pageParam.total };
+        }
+
         [Route("getbyid")]
         public P_Category Get(int id)
         {

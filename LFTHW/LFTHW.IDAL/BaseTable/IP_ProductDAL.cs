@@ -14,5 +14,7 @@ namespace LFTHW.IDAL
         bool Edit(ProductBasicInfo product);
 
         IQueryable<CategoryProduct> GetByWhere(PdtQueryParam pdtParam);
+
+        IQueryable<CategoryProduct> GetPage(PdtQueryParam pageParam);
     }
 }

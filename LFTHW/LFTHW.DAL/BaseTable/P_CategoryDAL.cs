@@ -162,5 +162,45 @@ namespace LFTHW.DAL
 
             return pCategory;
         }
+
+        public IQueryable<CategoryType> GetPage(TypeQueryParam pageParam)
+        {
+            var db = new LFTHWDBModel();
+            var pCategory = from a in db.P_Category
+                            join b in db.P_TypeCategory on a.ID equals b.CategoryID into btemp
+                            from bb in btemp.DefaultIfEmpty()
+                            join c in db.P_Type on bb.TypeID equals c.ID into ctemp
+                            from cc in ctemp.DefaultIfEmpty()
+                            select new CategoryType
+                            {
+                                ID = a.ID,
+                                PID = a.PID,
+                                TypeID = cc == null ? 0 : cc.ID,
+                                TypeName = cc == null ? string.Empty : cc.Name,
+                                Name = a.Name,
+                                ShopID = a.ShopID,
+                                CreatTime = a.CreatTime,
+                                CreatUser = a.CreatUser,
+                                Flag = a.Flag,
+                                IsDelete = a.IsDelete,
+                                IsShow = a.IsShow,
+                                ModifyTime = a.ModifyTime,
+                                ModifyUser = a.ModifyUser,
+                                OrderBy = a.OrderBy,
+                                Remark = a.Remark
+                            };
+
+            if (pageParam.TypeID > 0)
+            {
+                pCategory = pCategory.Where(c => c.TypeID == pageParam.TypeID);
+            }
+
+            pageParam.total = pCategory.Count();
+            if (pageParam.isDesc)
+                pCategory = pCategory.OrderByDescending(c => c.CreatTime).Skip(pageParam.size * (pageParam.page - 1)).Take(pageParam.size);
+            else
+                pCategory = pCategory.OrderBy(c => c.CreatTime).Skip(pageParam.size * (pageParam.page - 1)).Take(pageParam.size);
+            return pCategory;
+        }
     }
 }

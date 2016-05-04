@@ -76,7 +76,10 @@
     <Compile Include="DBModel\U_UserAddress.cs" />
     <Compile Include="DBModel\U_UserInfo.cs" />
     <Compile Include="DBModel\U_UserReg.cs" />
+    <Compile Include="ParamModel\CategoryQueryParam.cs" />
+    <Compile Include="ParamModel\PageQueryParam.cs" />
     <Compile Include="ParamModel\PdtQueryParam.cs" />
+    <Compile Include="ParamModel\TypeQueryParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\BrandCategory.cs" />
     <Compile Include="ViewModel\CategoryProduct.cs" />

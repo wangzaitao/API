@@ -1,4 +1,6 @@
-﻿using LFTHW.DAL;
+﻿using System.Collections.Generic;
+using System.Linq;
+using LFTHW.DAL;
 using LFTHW.IBLL;
 using LFTHW.IDAL;
 using LFTHW.Model;
@@ -29,6 +31,11 @@ namespace LFTHW.BLL
 
         public bool Edit(BrandCategory pBrandCategory) {
             return _IP_BrandDAL.Edit(pBrandCategory);
+        }
+
+        public List<BrandCategory> GetPage(CategoryQueryParam pageParam)
+        {
+            return _IP_BrandDAL.GetPage(pageParam).ToList<BrandCategory>();
         }
     }
 }

@@ -19,5 +19,7 @@ namespace LFTHW.IDAL
         IQueryable<P_Category> GetByPId(long pid);
 
         IEnumerable<P_Category> GetTree(long pid);
+
+        IQueryable<CategoryType> GetPage(TypeQueryParam pageParam);
     }
 }

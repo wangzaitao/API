@@ -6,5 +6,6 @@ namespace LFTHW.Model
     public class BrandCategory : P_Brand
     {
         public long CategoryID { get; set; }
+        public string CategoryName { get; set; }
     }
 }

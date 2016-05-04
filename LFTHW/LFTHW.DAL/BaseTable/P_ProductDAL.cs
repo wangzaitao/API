@@ -315,18 +315,18 @@ namespace LFTHW.DAL
                            from ff in ftemp.DefaultIfEmpty()
                            join c in db.P_PdtKeyword on a.ID equals c.PdtID into ctemp
                            from cc in ctemp.DefaultIfEmpty()
-                           where (pdtParam.Type == 0 || a.TypeID == pdtParam.Type) && (pdtParam.Category == 0 || bb.CategoryID == pdtParam.Category) && (pdtParam.Brand == 0 || a.BrandID == pdtParam.Brand)
+                           where (pdtParam.TypeID == 0 || a.TypeID == pdtParam.TypeID) && (pdtParam.CategoryID == 0 || bb.CategoryID == pdtParam.CategoryID) && (pdtParam.BrandID == 0 || a.BrandID == pdtParam.BrandID)
                                && (pdtParam.IsShow == null || a.IsShow == pdtParam.IsShow) && (pdtParam.IsCanOrder == null || a.IsCanOrder == pdtParam.IsCanOrder)
                                && (string.IsNullOrEmpty(pdtParam.PdtName) || a.Name.Contains(pdtParam.PdtName)) && (string.IsNullOrEmpty(pdtParam.Keyword) || cc.Keyword.Contains(pdtParam.Keyword))
                            select new CategoryProduct
                            {
                                ID = a.ID,
-                               CategoryID = bb.CategoryID,
-                               CategoryName = dd.Name,
+                               CategoryID = dd == null?0: dd.ID,
+                               CategoryName = dd == null ? string.Empty : dd.Name,
                                BrandID = a.BrandID,
-                               BrandName = ee.Name,
-                               TypeName = ff.Name,
-                               KeywordName = cc.Keyword,
+                               BrandName = ee == null ? string.Empty : ee.Name,
+                               TypeName = ff == null ? string.Empty : ff.Name,
+                               KeywordName = cc == null ? string.Empty : cc.Keyword,
                                BuyMax = a.BuyMax,
                                BuyMin = a.BuyMin,
                                CityID = a.CityID,
@@ -371,6 +371,117 @@ namespace LFTHW.DAL
                                VisitNum = a.VisitNum,
                                YouHuiPrice = a.YouHuiPrice
                            };
+            return pProduct;
+        }
+
+        public IQueryable<CategoryProduct> GetPage(PdtQueryParam pageParam)
+        {
+            var db = new LFTHWDBModel();
+            var pProduct = from a in db.P_Product
+                           join b in db.P_CategoryProduct on a.ID equals b.PdtID into btemp
+                           from bb in btemp.DefaultIfEmpty()
+                           join d in db.P_Category on bb.CategoryID equals d.ID into dtemp
+                           from dd in dtemp.DefaultIfEmpty()
+                           join e in db.P_Brand on a.BrandID equals e.ID into etemp
+                           from ee in etemp.DefaultIfEmpty()
+                           join f in db.P_Type on a.TypeID equals f.ID into ftemp
+                           from ff in ftemp.DefaultIfEmpty()
+                           join c in db.P_PdtKeyword on a.ID equals c.PdtID into ctemp
+                           from cc in ctemp.DefaultIfEmpty()
+                           select new CategoryProduct
+                           {
+                               ID = a.ID,
+                               CategoryID = dd == null ? 0 : dd.ID,
+                               CategoryName = dd == null ? string.Empty : dd.Name,
+                               BrandID = a.BrandID,
+                               BrandName = ee == null ? string.Empty : ee.Name,
+                               TypeName = ff == null ? string.Empty : ff.Name,
+                               KeywordName = cc == null ? string.Empty : cc.Keyword,
+                               BuyMax = a.BuyMax,
+                               BuyMin = a.BuyMin,
+                               CityID = a.CityID,
+                               CommentNum = a.CommentNum,
+                               CreatTime = a.CreatTime,
+                               CreatUser = a.CreatUser,
+                               DiscountCoefficient = a.DiscountCoefficient,
+                               DiscountDetail = a.DiscountDetail,
+                               DistrictID = a.DistrictID,
+                               EnfantPrice = a.EnfantPrice,
+                               Flag = a.Flag,
+                               IntegralCoefficient = a.IntegralCoefficient,
+                               IsCanOrder = a.IsCanOrder,
+                               IsCommend = a.IsCommend,
+                               IsDelete = a.IsDelete,
+                               IsEnable = a.IsEnable,
+                               IsPolicy = a.IsPolicy,
+                               IsShow = a.IsShow,
+                               IsTop = a.IsTop,
+                               IsTrip = a.IsTrip,
+                               LinkTel = a.LinkTel,
+                               ListingPrice = a.ListingPrice,
+                               MemberPrice = a.MemberPrice,
+                               Meta_Description = a.Meta_Description,
+                               Meta_Keywords = a.Meta_Keywords,
+                               ModifyTime = a.ModifyTime,
+                               ModifyUser = a.ModifyUser,
+                               Name = a.Name,
+                               PdtBrief = a.PdtBrief,
+                               PdtDetail = a.PdtDetail,
+                               PdtImgUrl = a.PdtImgUrl,
+                               PdtNo = a.PdtNo,
+                               PriceExplain = a.PriceExplain,
+                               PriceType = a.PriceType,
+                               ProvinceID = a.ProvinceID,
+                               RetailPrice = a.RetailPrice,
+                               SelledNum = a.SelledNum,
+                               ShopID = a.ShopID,
+                               Stock = a.Stock,
+                               Title = a.Title,
+                               TypeID = a.TypeID,
+                               VisitNum = a.VisitNum,
+                               YouHuiPrice = a.YouHuiPrice
+                           };
+
+            if (pageParam.TypeID > 0)
+            {
+                pProduct = pProduct.Where(p => p.TypeID == pageParam.TypeID);
+            }
+
+            if (pageParam.CategoryID > 0)
+            {
+                pProduct = pProduct.Where(p => p.CategoryID == pageParam.CategoryID);
+            }
+
+            if (pageParam.BrandID > 0)
+            {
+                pProduct = pProduct.Where(p => p.BrandID == pageParam.BrandID);
+            }
+
+            if (pageParam.IsCanOrder > 0)
+            {
+                pProduct = pProduct.Where(p => p.IsCanOrder == pageParam.IsCanOrder);
+            }
+
+            if (pageParam.IsShow > 0)
+            {
+                pProduct = pProduct.Where(p => p.IsShow == pageParam.IsShow);
+            }
+
+            if (!string.IsNullOrEmpty(pageParam.PdtName))
+            {
+                pProduct = pProduct.Where(p => p.Name.Contains(pageParam.PdtName));
+            }
+
+            if (!string.IsNullOrEmpty(pageParam.Keyword))
+            {
+                pProduct = pProduct.Where(p => p.KeywordName.Contains(pageParam.Keyword));
+            }
+
+            pageParam.total = pProduct.Count();
+            if (pageParam.isDesc)
+                pProduct = pProduct.OrderByDescending(c => c.CreatTime).Skip(pageParam.size * (pageParam.page - 1)).Take(pageParam.size);
+            else
+                pProduct = pProduct.OrderBy(c => c.CreatTime).Skip(pageParam.size * (pageParam.page - 1)).Take(pageParam.size);
             return pProduct;
         }
     }

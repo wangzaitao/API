@@ -12,5 +12,6 @@ namespace LFTHW.IBLL
         bool Edit(CategoryType categoryType);
         List<P_Category> GetByPId(long pid);
         List<P_Category> GetTree(long pid);
+        List<CategoryType> GetPage(TypeQueryParam pageParam);
     }
 }

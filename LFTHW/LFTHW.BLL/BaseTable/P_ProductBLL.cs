@@ -36,6 +36,11 @@ namespace LFTHW.BLL
         public List<CategoryProduct> GetByWhere(PdtQueryParam pdtParam) {
             return _IP_ProductDAL.GetByWhere(pdtParam).ToList<CategoryProduct>();
         }
+
+        public List<CategoryProduct> GetPage(PdtQueryParam pageParam)
+        {
+            return _IP_ProductDAL.GetPage(pageParam).ToList<CategoryProduct>();
+        }
     }
 }
 

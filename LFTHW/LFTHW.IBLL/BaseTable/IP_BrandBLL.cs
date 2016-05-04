@@ -1,4 +1,5 @@
-﻿using LFTHW.Model;
+﻿using System.Collections.Generic;
+using LFTHW.Model;
 namespace LFTHW.IBLL
 {
     public interface IP_BrandBLL : IBaseBLL<P_Brand>
@@ -8,5 +9,6 @@ namespace LFTHW.IBLL
         bool Update(P_Brand pBrand);
 
         bool Edit(BrandCategory pBrandCategory);
+        List<BrandCategory> GetPage(CategoryQueryParam pageParam);
     }
 }

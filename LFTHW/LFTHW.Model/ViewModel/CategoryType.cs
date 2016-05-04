@@ -6,5 +6,6 @@ namespace LFTHW.Model
     public class CategoryType : P_Category
     {
         public long TypeID { get; set; }
+        public string TypeName { get; set; }
     }
 }

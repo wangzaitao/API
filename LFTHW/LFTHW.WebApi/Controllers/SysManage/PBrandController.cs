@@ -22,6 +22,13 @@ namespace LFTHW.WebApi.Controllers.SysManage
             return _IP_BrandBLL.GetAll();
         }
 
+        [Route("getpage")]
+        public dynamic GetPage([FromUri]CategoryQueryParam pageParam)
+        {
+            var list = _IP_BrandBLL.GetPage(pageParam);
+            return new { data = list, total = pageParam.total };
+        }
+
         [Route("getbyid")]
         public P_Brand Get(int id)
         {
