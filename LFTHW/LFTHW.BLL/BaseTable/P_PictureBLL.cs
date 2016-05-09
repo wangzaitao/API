@@ -1,8 +1,9 @@
-﻿using LFTHW.DAL;
+﻿using System.Collections.Generic;
+using System.Linq;
+using LFTHW.DAL;
 using LFTHW.IBLL;
 using LFTHW.IDAL;
 using LFTHW.Model;
-using System.Collections.Generic;
 
 namespace LFTHW.BLL
 {
@@ -19,9 +20,9 @@ namespace LFTHW.BLL
             return _IP_PictureDAL.Delete(id);
         }
 
-        public P_Picture GetById(int id)
+        public List<P_Picture> GetByPdtID(long pdtID)
         {
-            return _IP_PictureDAL.GetById(id);
+            return _IP_PictureDAL.GetByPdtID(pdtID).ToList<P_Picture>();
         }
         public bool Update(P_Picture pPicture)
         {
@@ -31,7 +32,7 @@ namespace LFTHW.BLL
         public bool Edit(List<P_Picture> pPictureList)
         {
             if (pPictureList != null && pPictureList.Count > 0) {
-                return _IP_PictureDAL.Edit(pPictureList, pPictureList[0].PID);
+                return _IP_PictureDAL.Edit(pPictureList, pPictureList[0].PdtID);
             }
             return true;
         }

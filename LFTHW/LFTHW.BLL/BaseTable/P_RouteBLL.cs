@@ -1,4 +1,6 @@
-﻿using LFTHW.DAL;
+﻿using System.Collections.Generic;
+using System.Linq;
+using LFTHW.DAL;
 using LFTHW.IBLL;
 using LFTHW.IDAL;
 using LFTHW.Model;
@@ -18,9 +20,9 @@ namespace LFTHW.BLL
             return _IP_RouteDAL.Delete(id);
         }
 
-        public P_Route GetById(int id)
+        public List<P_Route> GetByPdtID(long pdtID)
         {
-            return _IP_RouteDAL.GetById(id);
+            return _IP_RouteDAL.GetByPdtID(pdtID).ToList<P_Route>();
         }
         public bool Update(P_Route pRoute)
         {

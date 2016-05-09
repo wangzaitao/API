@@ -10,7 +10,7 @@ namespace LFTHW.Model
     {
         public long ID { get; set; }
 
-        public long PID { get; set; }
+        public long PdtID { get; set; }
 
         [Required]
         [StringLength(200)]

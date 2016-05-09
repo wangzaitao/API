@@ -1,5 +1,6 @@
-﻿using LFTHW.Model;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
+using LFTHW.Model;
 
 namespace LFTHW.IDAL
 {
@@ -7,7 +8,7 @@ namespace LFTHW.IDAL
     {
         bool Delete(int id);
 
-        P_Price GetById(int id);
+        IQueryable<P_Price> GetByPdtID(long pdtID);
 
         bool Update(P_Price pPrice);
 

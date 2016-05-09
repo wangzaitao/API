@@ -1,8 +1,9 @@
-﻿using LFTHW.DAL;
+﻿using System.Collections.Generic;
+using System.Linq;
+using LFTHW.DAL;
 using LFTHW.IBLL;
 using LFTHW.IDAL;
 using LFTHW.Model;
-using System.Collections.Generic;
 
 namespace LFTHW.BLL
 {
@@ -20,9 +21,9 @@ namespace LFTHW.BLL
             return _IP_PriceDAL.Delete(id);
         }
 
-        public P_Price GetById(int id)
+        public List<P_Price> GetByPdtID(long pdtID)
         {
-            return _IP_PriceDAL.GetById(id);
+            return _IP_PriceDAL.GetByPdtID(pdtID).ToList<P_Price>();
         }
         public bool Update(P_Price pPrice)
         {
