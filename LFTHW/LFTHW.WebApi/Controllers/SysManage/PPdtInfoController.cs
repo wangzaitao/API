@@ -56,21 +56,21 @@ namespace LFTHW.WebApi.Controllers.SysManage
         [Route("hotel/update")]
         public bool PostUpdateHotel(P_PdtInfo pPdtInfo)
         {
-            var properties = new string[] { "Hotel_Level", "Hotel_Services" };
+            var properties = new string[] { "PdtType", "Hotel_Level", "Hotel_Services" };
             return _IP_PdtInfoBLL.Update(pPdtInfo, properties);
         }
 
         [Route("sight/update")]
         public bool PostUpdateSight(P_PdtInfo pPdtInfo)
         {
-            var properties = new string[] { "Sight_Type" };
+            var properties = new string[] { "PdtType", "Sight_Type" };
             return _IP_PdtInfoBLL.Update(pPdtInfo, properties);
         }
 
         [Route("car/update")]
         public bool PostUpdateCar(P_PdtInfo pPdtInfo)
         {
-            var properties = new string[] { "Cars_HiresType", "Cars_Type", "Cars_PersonNum", "Cars_Config" };
+            var properties = new string[] { "PdtType", "Cars_HiresType", "Cars_Type", "Cars_PersonNum", "Cars_Config" };
             return _IP_PdtInfoBLL.Update(pPdtInfo, properties);
         }
     }
