@@ -144,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\SysManage\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -182,41 +183,6 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\Common\FileUploadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\SysManage\PBrandController.cs" />
-    <Compile Include="Controllers\SysManage\PCategoryBrandController.cs" />
-    <Compile Include="Controllers\SysManage\PCategoryController.cs" />
-    <Compile Include="Controllers\SysManage\PCategoryParamGroupController.cs" />
-    <Compile Include="Controllers\SysManage\PCategoryProductController.cs" />
-    <Compile Include="Controllers\SysManage\PParamController.cs" />
-    <Compile Include="Controllers\SysManage\PParamGroupController.cs" />
-    <Compile Include="Controllers\SysManage\PPdtInfoController.cs" />
-    <Compile Include="Controllers\SysManage\PPdtKeywordController.cs" />
-    <Compile Include="Controllers\SysManage\PPdtParamController.cs" />
-    <Compile Include="Controllers\SysManage\PPictureController.cs" />
-    <Compile Include="Controllers\SysManage\PPriceController.cs" />
-    <Compile Include="Controllers\SysManage\PProductController.cs" />
-    <Compile Include="Controllers\SysManage\PRouteController.cs" />
-    <Compile Include="Controllers\SysManage\PTypeCategoryController.cs" />
-    <Compile Include="Controllers\SysManage\SAdminController.cs" />
-    <Compile Include="Controllers\SysManage\SCityController.cs" />
-    <Compile Include="Controllers\SysManage\SDistrictController.cs" />
-    <Compile Include="Controllers\SysManage\SEmployeeController.cs" />
-    <Compile Include="Controllers\SysManage\SFriendLinkController.cs" />
-    <Compile Include="Controllers\SysManage\PTypeController.cs" />
-    <Compile Include="Controllers\SysManage\SFXCommisionController.cs" />
-    <Compile Include="Controllers\SysManage\SNoticeController.cs" />
-    <Compile Include="Controllers\SysManage\SProvinceController.cs" />
-    <Compile Include="Controllers\SysManage\UPCartController.cs" />
-    <Compile Include="Controllers\SysManage\UPCommentImageController.cs" />
-    <Compile Include="Controllers\SysManage\UPCommentReplyController.cs" />
-    <Compile Include="Controllers\SysManage\UPOrderController.cs" />
-    <Compile Include="Controllers\SysManage\UPOrderDetailController.cs" />
-    <Compile Include="Controllers\SysManage\UPUserCommentController.cs" />
-    <Compile Include="Controllers\SysManage\UPUserConsumeController.cs" />
-    <Compile Include="Controllers\SysManage\UUserAccountController.cs" />
-    <Compile Include="Controllers\SysManage\UUserAddressController.cs" />
-    <Compile Include="Controllers\SysManage\UUserInfoController.cs" />
-    <Compile Include="Controllers\SysManage\UUserRegController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

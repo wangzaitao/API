@@ -53,43 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDAL.cs" />
-    <Compile Include="BaseTable\P_BrandDAL.cs" />
-    <Compile Include="BaseTable\P_CategoryBrandDAL.cs" />
-    <Compile Include="BaseTable\P_CategoryDAL.cs" />
-    <Compile Include="BaseTable\P_CategoryParamGroupDAL.cs" />
-    <Compile Include="BaseTable\P_CategoryProductDAL.cs" />
-    <Compile Include="BaseTable\P_ParamDAL.cs" />
-    <Compile Include="BaseTable\P_ParamGroupDAL.cs" />
-    <Compile Include="BaseTable\P_PdtInfoDAL.cs" />
-    <Compile Include="BaseTable\P_PdtKeywordDAL.cs" />
-    <Compile Include="BaseTable\P_PdtParamDAL.cs" />
-    <Compile Include="BaseTable\P_PictureDAL.cs" />
-    <Compile Include="BaseTable\P_PriceDAL.cs" />
-    <Compile Include="BaseTable\P_ProductDAL.cs" />
-    <Compile Include="BaseTable\P_RouteDAL.cs" />
-    <Compile Include="BaseTable\P_TypeCategoryDAL.cs" />
-    <Compile Include="BaseTable\P_TypeDAL.cs" />
-    <Compile Include="BaseTable\S_AdminDAL.cs" />
-    <Compile Include="BaseTable\S_CityDAL.cs" />
-    <Compile Include="BaseTable\S_DistrictDAL.cs" />
-    <Compile Include="BaseTable\S_EmployeeDAL.cs" />
-    <Compile Include="BaseTable\S_FriendLinkDAL.cs" />
-    <Compile Include="BaseTable\S_FXCommisionDAL.cs" />
-    <Compile Include="BaseTable\S_NoticeDAL.cs" />
-    <Compile Include="BaseTable\S_ProvinceDAL.cs" />
-    <Compile Include="BaseTable\UP_CartDAL.cs" />
-    <Compile Include="BaseTable\UP_CommentImageDAL.cs" />
-    <Compile Include="BaseTable\UP_CommentReplyDAL.cs" />
-    <Compile Include="BaseTable\UP_OrderDAL.cs" />
-    <Compile Include="BaseTable\UP_OrderDetailDAL.cs" />
-    <Compile Include="BaseTable\UP_UserCommentDAL.cs" />
-    <Compile Include="BaseTable\UP_UserConsumeDAL.cs" />
-    <Compile Include="BaseTable\U_UserAccountDAL.cs" />
-    <Compile Include="BaseTable\U_UserAddressDAL.cs" />
-    <Compile Include="BaseTable\U_UserInfoDAL.cs" />
-    <Compile Include="BaseTable\U_UserRegDAL.cs" />
     <Compile Include="DbContextFactory.cs" />
-    <Compile Include="LFTHWDBModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -106,7 +70,9 @@
       <Name>LFTHW.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="BaseTable\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

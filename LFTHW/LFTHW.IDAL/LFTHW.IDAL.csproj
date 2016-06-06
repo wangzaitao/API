@@ -40,45 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseTable\IP_BrandDAL.cs" />
-    <Compile Include="BaseTable\IP_CategoryBrandDAL.cs" />
-    <Compile Include="BaseTable\IP_CategoryDAL.cs" />
-    <Compile Include="BaseTable\IP_CategoryParamGroupDAL.cs" />
-    <Compile Include="BaseTable\IP_CategoryProductDAL.cs" />
-    <Compile Include="BaseTable\IP_ParamDAL.cs" />
-    <Compile Include="BaseTable\IP_ParamGroupDAL.cs" />
-    <Compile Include="BaseTable\IP_PdtInfoDAL.cs" />
-    <Compile Include="BaseTable\IP_PdtKeywordDAL.cs" />
-    <Compile Include="BaseTable\IP_PdtParamDAL.cs" />
-    <Compile Include="BaseTable\IP_PictureDAL.cs" />
-    <Compile Include="BaseTable\IP_PriceDAL.cs" />
-    <Compile Include="BaseTable\IP_ProductDAL.cs" />
-    <Compile Include="BaseTable\IP_RouteDAL.cs" />
-    <Compile Include="BaseTable\IP_TypeCategoryDAL.cs" />
-    <Compile Include="BaseTable\IP_TypeDAL.cs" />
-    <Compile Include="BaseTable\IS_AdminDAL.cs" />
-    <Compile Include="BaseTable\IS_CityDAL.cs" />
-    <Compile Include="BaseTable\IS_DistrictDAL.cs" />
-    <Compile Include="BaseTable\IS_EmployeeDAL.cs" />
-    <Compile Include="BaseTable\IS_FriendLinkDAL.cs" />
-    <Compile Include="BaseTable\IS_FXCommisionDAL.cs" />
-    <Compile Include="BaseTable\IS_NoticeDAL.cs" />
-    <Compile Include="BaseTable\IS_ProvinceDAL.cs" />
-    <Compile Include="BaseTable\IUP_CartDAL.cs" />
-    <Compile Include="BaseTable\IUP_CommentImageDAL.cs" />
-    <Compile Include="BaseTable\IUP_CommentReplyDAL.cs" />
-    <Compile Include="BaseTable\IUP_OrderDAL.cs" />
-    <Compile Include="BaseTable\IUP_OrderDetailDAL.cs" />
-    <Compile Include="BaseTable\IUP_UserCommentDAL.cs" />
-    <Compile Include="BaseTable\IUP_UserConsumeDAL.cs" />
-    <Compile Include="BaseTable\IU_UserAccountDAL.cs" />
-    <Compile Include="BaseTable\IU_UserAddressDAL.cs" />
-    <Compile Include="BaseTable\IU_UserInfoDAL.cs" />
-    <Compile Include="BaseTable\IU_UserRegDAL.cs" />
     <Compile Include="IBaseDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="BaseTable\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LFTHW.Model\LFTHW.Model.csproj">
       <Project>{b4a1f7f3-07bd-4efc-8269-9da7216efdd8}</Project>

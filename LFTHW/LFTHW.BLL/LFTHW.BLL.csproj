@@ -41,41 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseBLL.cs" />
-    <Compile Include="BaseTable\P_BrandBLL.cs" />
-    <Compile Include="BaseTable\P_CategoryBLL.cs" />
-    <Compile Include="BaseTable\P_CategoryBrandBLL.cs" />
-    <Compile Include="BaseTable\P_CategoryParamGroupBLL.cs" />
-    <Compile Include="BaseTable\P_CategoryProductBLL.cs" />
-    <Compile Include="BaseTable\P_ParamBLL.cs" />
-    <Compile Include="BaseTable\P_ParamGroupBLL.cs" />
-    <Compile Include="BaseTable\P_PdtInfoBLL.cs" />
-    <Compile Include="BaseTable\P_PdtKeywordBLL.cs" />
-    <Compile Include="BaseTable\P_PdtParamBLL.cs" />
-    <Compile Include="BaseTable\P_PictureBLL.cs" />
-    <Compile Include="BaseTable\P_PriceBLL.cs" />
-    <Compile Include="BaseTable\P_ProductBLL.cs" />
-    <Compile Include="BaseTable\P_RouteBLL.cs" />
-    <Compile Include="BaseTable\P_TypeBLL.cs" />
-    <Compile Include="BaseTable\P_TypeCategoryBLL.cs" />
-    <Compile Include="BaseTable\S_AdminBLL.cs" />
-    <Compile Include="BaseTable\S_CityBLL.cs" />
-    <Compile Include="BaseTable\S_DistrictBLL.cs" />
-    <Compile Include="BaseTable\S_EmployeeBLL.cs" />
-    <Compile Include="BaseTable\S_FriendLinkBLL.cs" />
-    <Compile Include="BaseTable\S_FXCommisionBLL.cs" />
-    <Compile Include="BaseTable\S_NoticeBLL.cs" />
-    <Compile Include="BaseTable\S_ProvinceBLL.cs" />
-    <Compile Include="BaseTable\UP_CartBLL.cs" />
-    <Compile Include="BaseTable\UP_CommentImageBLL.cs" />
-    <Compile Include="BaseTable\UP_CommentReplyBLL.cs" />
-    <Compile Include="BaseTable\UP_OrderBLL.cs" />
-    <Compile Include="BaseTable\UP_OrderDetailBLL.cs" />
-    <Compile Include="BaseTable\UP_UserCommentBLL.cs" />
-    <Compile Include="BaseTable\UP_UserConsumeBLL.cs" />
-    <Compile Include="BaseTable\U_UserAccountBLL.cs" />
-    <Compile Include="BaseTable\U_UserAddressBLL.cs" />
-    <Compile Include="BaseTable\U_UserInfoBLL.cs" />
-    <Compile Include="BaseTable\U_UserRegBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -96,7 +61,9 @@
       <Name>LFTHW.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="BaseTable\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

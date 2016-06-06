@@ -40,52 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\TreeObject.cs" />
-    <Compile Include="DBModel\P_Brand.cs" />
-    <Compile Include="DBModel\P_Category.cs" />
-    <Compile Include="DBModel\P_CategoryBrand.cs" />
-    <Compile Include="DBModel\P_CategoryParamGroup.cs" />
-    <Compile Include="DBModel\P_CategoryProduct.cs" />
-    <Compile Include="DBModel\P_Param.cs" />
-    <Compile Include="DBModel\P_ParamGroup.cs" />
-    <Compile Include="DBModel\P_PdtInfo.cs" />
-    <Compile Include="DBModel\P_PdtKeyword.cs" />
-    <Compile Include="DBModel\P_PdtParam.cs" />
-    <Compile Include="DBModel\P_Picture.cs" />
-    <Compile Include="DBModel\P_Price.cs" />
-    <Compile Include="DBModel\P_Product.cs" />
-    <Compile Include="DBModel\P_Route.cs" />
-    <Compile Include="DBModel\P_Type.cs" />
-    <Compile Include="DBModel\P_TypeCategory.cs" />
-    <Compile Include="DBModel\S_Admin.cs" />
-    <Compile Include="DBModel\S_City.cs" />
-    <Compile Include="DBModel\S_District.cs" />
-    <Compile Include="DBModel\S_Employee.cs" />
-    <Compile Include="DBModel\S_FriendLink.cs" />
-    <Compile Include="DBModel\S_FXCommision.cs" />
-    <Compile Include="DBModel\S_Notice.cs" />
-    <Compile Include="DBModel\S_Province.cs" />
-    <Compile Include="DBModel\UP_Cart.cs" />
-    <Compile Include="DBModel\UP_CommentImage.cs" />
-    <Compile Include="DBModel\UP_CommentReply.cs" />
-    <Compile Include="DBModel\UP_Order.cs" />
-    <Compile Include="DBModel\UP_OrderDetail.cs" />
-    <Compile Include="DBModel\UP_UserComment.cs" />
-    <Compile Include="DBModel\UP_UserConsume.cs" />
-    <Compile Include="DBModel\U_UserAccount.cs" />
-    <Compile Include="DBModel\U_UserAddress.cs" />
-    <Compile Include="DBModel\U_UserInfo.cs" />
-    <Compile Include="DBModel\U_UserReg.cs" />
-    <Compile Include="ParamModel\CategoryQueryParam.cs" />
-    <Compile Include="ParamModel\PageQueryParam.cs" />
-    <Compile Include="ParamModel\PdtQueryParam.cs" />
-    <Compile Include="ParamModel\TypeQueryParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\BrandCategory.cs" />
-    <Compile Include="ViewModel\CategoryProduct.cs" />
-    <Compile Include="ViewModel\CategoryType.cs" />
-    <Compile Include="ViewModel\ProductBasicInfo.cs" />
-    <Compile Include="ViewModel\TripInfoRoute.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Common\" />
+    <Folder Include="DBModel\" />
+    <Folder Include="ParamModel\" />
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

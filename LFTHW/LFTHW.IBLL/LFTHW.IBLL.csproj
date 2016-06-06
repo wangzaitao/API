@@ -40,41 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseTable\IP_BrandBLL.cs" />
-    <Compile Include="BaseTable\IP_CategoryBLL.cs" />
-    <Compile Include="BaseTable\IP_CategoryBrandBLL.cs" />
-    <Compile Include="BaseTable\IP_CategoryParamGroupBLL.cs" />
-    <Compile Include="BaseTable\IP_CategoryProductBLL.cs" />
-    <Compile Include="BaseTable\IP_ParamBLL.cs" />
-    <Compile Include="BaseTable\IP_ParamGroupBLL.cs" />
-    <Compile Include="BaseTable\IP_PdtInfoBLL.cs" />
-    <Compile Include="BaseTable\IP_PdtKeywordBLL.cs" />
-    <Compile Include="BaseTable\IP_PdtParamBLL.cs" />
-    <Compile Include="BaseTable\IP_PictureBLL.cs" />
-    <Compile Include="BaseTable\IP_PriceBLL.cs" />
-    <Compile Include="BaseTable\IP_ProductBLL.cs" />
-    <Compile Include="BaseTable\IP_RouteBLL.cs" />
-    <Compile Include="BaseTable\IP_TypeBLL.cs" />
-    <Compile Include="BaseTable\IP_TypeCategoryBLL.cs" />
-    <Compile Include="BaseTable\IS_AdminBLL.cs" />
-    <Compile Include="BaseTable\IS_CityBLL.cs" />
-    <Compile Include="BaseTable\IS_DistrictBLL.cs" />
-    <Compile Include="BaseTable\IS_EmployeeBLL.cs" />
-    <Compile Include="BaseTable\IS_FriendLinkBLL.cs" />
-    <Compile Include="BaseTable\IS_FXCommisionBLL.cs" />
-    <Compile Include="BaseTable\IS_NoticeBLL.cs" />
-    <Compile Include="BaseTable\IS_ProvinceBLL.cs" />
-    <Compile Include="BaseTable\IUP_CartBLL.cs" />
-    <Compile Include="BaseTable\IUP_CommentImageBLL.cs" />
-    <Compile Include="BaseTable\IUP_CommentReplyBLL.cs" />
-    <Compile Include="BaseTable\IUP_OrderBLL.cs" />
-    <Compile Include="BaseTable\IUP_OrderDetailBLL.cs" />
-    <Compile Include="BaseTable\IUP_UserCommentBLL.cs" />
-    <Compile Include="BaseTable\IUP_UserConsumeBLL.cs" />
-    <Compile Include="BaseTable\IU_UserAccountBLL.cs" />
-    <Compile Include="BaseTable\IU_UserAddressBLL.cs" />
-    <Compile Include="BaseTable\IU_UserInfoBLL.cs" />
-    <Compile Include="BaseTable\IU_UserRegBLL.cs" />
     <Compile Include="IBaseBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -83,6 +48,9 @@
       <Project>{b4a1f7f3-07bd-4efc-8269-9da7216efdd8}</Project>
       <Name>LFTHW.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BaseTable\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
