@@ -11,7 +11,7 @@ namespace LTHW.WebApi.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-
+            Response.Redirect("Help");
             return View();
         }
     }
