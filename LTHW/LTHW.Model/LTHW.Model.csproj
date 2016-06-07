@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\LTHW.Model.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -41,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonModel\ResponseBody.cs" />
     <Compile Include="MysqlModel\sline_admin.cs" />
     <Compile Include="MysqlModel\sline_advertise.cs" />
     <Compile Include="MysqlModel\sline_advertise_5x.cs" />
@@ -220,7 +222,10 @@
     <Compile Include="MysqlModel\sline_visa_kind.cs" />
     <Compile Include="MysqlModel\sline_weblist.cs" />
     <Compile Include="MysqlModel\sline_yqlj.cs" />
+    <Compile Include="ParamModel\Common\PageQueryParam.cs" />
+    <Compile Include="ParamModel\TripQueryParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\TripListEntity.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

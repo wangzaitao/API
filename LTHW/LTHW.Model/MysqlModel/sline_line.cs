@@ -64,7 +64,7 @@ namespace LTHW.Model
         public long? lineday { get; set; }
 
         public int? linenight { get; set; }
-
+        
         public int? linephone { get; set; }
 
         [StringLength(1073741823)]
