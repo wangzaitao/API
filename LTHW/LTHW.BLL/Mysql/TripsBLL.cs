@@ -22,5 +22,9 @@ namespace LTHW.BLL.Mysql
         public List<TripListEntity> GetPage(TripQueryParam pageParam) {
             return _ITripsDAL.GetPage(pageParam).ToList<TripListEntity>();
         }
+
+        public TripInfoEntity getById(int id) {
+            return _ITripsDAL.getById(id);
+        }
     }
 }

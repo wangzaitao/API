@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace LTHW.IBLL.Mysql
 {
-    public interface ITripsBLL : IBaseBLL<sline_line>
+    public interface IMuDiDiBLL : IBaseBLL<sline_destinations>
     {
-        List<TripListEntity> GetPage(TripQueryParam pageParam);
-
-        TripInfoEntity getById(int id);
+        List<TreeObject> GetTree(long pid);
     }
 }

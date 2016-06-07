@@ -22,6 +22,6 @@ namespace LTHW.Model
         /// <summary>
         /// 返回数据
         /// </summary>
-        public dynamic Data { get; set; }
+        public dynamic Result { get; set; }
     }
 }

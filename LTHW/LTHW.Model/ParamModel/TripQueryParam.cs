@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace LTHW.Model
 {
+    /// <summary>
+    /// 线路分页查询条件
+    /// </summary>
     public class TripQueryParam : PageQueryParam
     {
+        /// <summary>
+        /// 主题关键字
+        /// </summary>       
+        public string title { get; set; }
         /// <summary>
         /// 是否推荐
         /// </summary>

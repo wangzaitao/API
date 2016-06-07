@@ -21,6 +21,7 @@ namespace LTHW.WebApi
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly()).InstancePerDependency();
 
             builder.Register(c => new TripsBLL()).As<ITripsBLL>().InstancePerLifetimeScope();
+            builder.Register(c => new MuDiDiBLL()).As<IMuDiDiBLL>().InstancePerLifetimeScope();
 
             var container = builder.Build();
             configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);

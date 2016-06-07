@@ -9,11 +9,18 @@ using System.Web.Http;
 
 namespace LTHW.WebApi.Controllers.WebSite
 {
+    /// <summary>
+    /// 线路
+    /// </summary>
     [RoutePrefix("api/trips")]
     public class TripsController : ApiController
     {
         readonly ITripsBLL _ITripsBLL;
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="iTripsBLL"></param>
         public TripsController(ITripsBLL iTripsBLL)
         {
             _ITripsBLL = iTripsBLL;
@@ -22,7 +29,6 @@ namespace LTHW.WebApi.Controllers.WebSite
         /// <summary>
         /// 获取所有线路信息
         /// </summary>
-        /// <param name="istop">是否置顶</param>
         /// <returns></returns>
         [Route("getall")]
         public List<sline_line> GetAll()
@@ -34,12 +40,22 @@ namespace LTHW.WebApi.Controllers.WebSite
         /// 获取线路分页信息
         /// </summary>
         /// <returns>列表基本数据</returns>
-        [Route("getpage")]
-        public ResponseBody getPage([FromUri]TripQueryParam pageParam)
+        [Route("postpage")]
+        public ResponseBody postPage([FromBody]TripQueryParam pageParam)
         {
             var list = _ITripsBLL.GetPage(pageParam);
-            //return list;
-            return new ResponseBody { Data = new { data = list, total = pageParam.total }, Code="",Message="" };
+            return new ResponseBody { Result = new { data = list, total = pageParam.total }, Code="",Message="" };
+        }
+
+        /// <summary>
+        /// 获取线路详细信息
+        /// </summary>
+        /// <returns>线路详细信息</returns>
+        [Route("getbyid")]
+        public ResponseBody getById(int id)
+        {
+            var list = _ITripsBLL.getById(id);
+            return new ResponseBody { Result = list, Code = "", Message = "" };
         }
     }
 }

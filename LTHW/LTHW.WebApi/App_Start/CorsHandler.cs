@@ -1,6 +1,4 @@
-﻿using Huitu.Common;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -8,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace Huitu.WebApi.App_Start
+namespace LTHW.WebApi
 {
     public class CorsHandler : DelegatingHandler
     {
@@ -57,8 +55,8 @@ namespace Huitu.WebApi.App_Start
                         DateTime LogTimeT = Convert.ToDateTime(resp.RequestMessage.Properties["LogTime"]);
                         DateTime LogTimeE = DateTime.Now;
                         TimeSpan ts = LogTimeT.Subtract(LogTimeE);
-                        LogHelper.Logger(log4net.LogManager.GetLogger(typeof(CorsHandler)), "请求路径:" + resp.RequestMessage.RequestUri.ToString());
-                        LogHelper.Logger(log4net.LogManager.GetLogger(typeof(CorsHandler)), "请求耗时:" + ts.TotalSeconds);
+                        //LogHelper.Logger(log4net.LogManager.GetLogger(typeof(CorsHandler)), "请求路径:" + resp.RequestMessage.RequestUri.ToString());
+                        //LogHelper.Logger(log4net.LogManager.GetLogger(typeof(CorsHandler)), "请求耗时:" + ts.TotalSeconds);
 
 
                         //resp.Headers.Add(AccessControlAllowOrigin, request.Headers.GetValues(Origin).First()); 

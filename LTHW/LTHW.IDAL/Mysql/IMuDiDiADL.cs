@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace LTHW.IDAL.Mysql
 {
-    public interface ITripsDAL : IBaseDAL<sline_line>
+    public interface IMuDiDiADL : IBaseDAL<sline_destinations>
     {
-        IQueryable<TripListEntity> GetPage(TripQueryParam pageParam);
-
-        TripInfoEntity getById(int id);
+        List<sline_destinations> GetTree(long pid);
     }
 }

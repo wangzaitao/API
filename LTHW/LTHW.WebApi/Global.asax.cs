@@ -19,6 +19,9 @@ namespace LTHW.WebApi
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            //注册Cors跨域请求
+            //GlobalConfiguration.Configuration.MessageHandlers.Add(new CorsHandler());
+
             //Ioc
             AutofacConfig.RegisterAutofac();
         }

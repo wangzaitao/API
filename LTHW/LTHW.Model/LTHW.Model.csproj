@@ -225,6 +225,8 @@
     <Compile Include="ParamModel\Common\PageQueryParam.cs" />
     <Compile Include="ParamModel\TripQueryParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\TreeObject.cs" />
+    <Compile Include="ViewModel\TripInfoEntity.cs" />
     <Compile Include="ViewModel\TripListEntity.cs" />
   </ItemGroup>
   <ItemGroup />
