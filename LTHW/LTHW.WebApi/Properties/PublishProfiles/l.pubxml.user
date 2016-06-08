@@ -9,6 +9,12 @@
     <_PublishTargetUrl>D:\MyProjects\Publish</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
+    <File Include="App_Data/LTHW.Model.xml">
+      <publishTime>06/07/2016 17:44:21</publishTime>
+    </File>
+    <File Include="App_Data/LTHW.WebApi.XML">
+      <publishTime>06/07/2016 17:45:11</publishTime>
+    </File>
     <File Include="Areas/HelpPage/HelpPage.css">
       <publishTime>06/06/2016 13:27:44</publishTime>
     </File>
@@ -75,6 +81,12 @@
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>06/06/2016 13:27:44</publishTime>
     </File>
+    <File Include="bin/App_Data/LTHW.Model.xml">
+      <publishTime>06/07/2016 17:44:21</publishTime>
+    </File>
+    <File Include="bin/App_Data/LTHW.WebApi.xml">
+      <publishTime>06/07/2016 17:45:11</publishTime>
+    </File>
     <File Include="bin/Autofac.dll">
       <publishTime>06/06/2016 14:11:26</publishTime>
     </File>
@@ -88,22 +100,22 @@
       <publishTime>06/06/2016 13:37:08</publishTime>
     </File>
     <File Include="bin/LTHW.BLL.dll">
-      <publishTime>06/06/2016 15:55:06</publishTime>
+      <publishTime>06/07/2016 17:42:38</publishTime>
     </File>
     <File Include="bin/LTHW.DAL.dll">
-      <publishTime>06/06/2016 15:55:05</publishTime>
+      <publishTime>06/07/2016 17:42:38</publishTime>
     </File>
     <File Include="bin/LTHW.IBLL.dll">
-      <publishTime>06/06/2016 15:55:06</publishTime>
+      <publishTime>06/07/2016 17:42:38</publishTime>
     </File>
     <File Include="bin/LTHW.IDAL.dll">
-      <publishTime>06/06/2016 15:55:04</publishTime>
+      <publishTime>06/07/2016 17:42:37</publishTime>
     </File>
     <File Include="bin/LTHW.Model.dll">
-      <publishTime>06/06/2016 15:55:04</publishTime>
+      <publishTime>06/07/2016 17:42:36</publishTime>
     </File>
     <File Include="bin/LTHW.WebApi.dll">
-      <publishTime>06/06/2016 15:55:10</publishTime>
+      <publishTime>06/07/2016 17:45:52</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>06/06/2016 13:27:46</publishTime>
@@ -286,7 +298,7 @@
       <publishTime>06/06/2016 13:27:32</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/06/2016 15:56:15</publishTime>
+      <publishTime>06/07/2016 17:28:19</publishTime>
     </File>
   </ItemGroup>
 </Project>
