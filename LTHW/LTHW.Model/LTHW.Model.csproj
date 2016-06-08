@@ -223,6 +223,8 @@
     <Compile Include="MysqlModel\sline_weblist.cs" />
     <Compile Include="MysqlModel\sline_yqlj.cs" />
     <Compile Include="ParamModel\Common\PageQueryParam.cs" />
+    <Compile Include="ParamModel\HotelQueryParam.cs" />
+    <Compile Include="ParamModel\SightQueryParam.cs" />
     <Compile Include="ParamModel\TripQueryParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\TreeObject.cs" />

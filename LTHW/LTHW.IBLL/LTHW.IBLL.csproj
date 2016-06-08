@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IBaseBLL.cs" />
+    <Compile Include="Mysql\IHotelBLL.cs" />
     <Compile Include="Mysql\IMuDiDiBLL.cs" />
+    <Compile Include="Mysql\ISightBLL.cs" />
     <Compile Include="Mysql\ITripsBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
