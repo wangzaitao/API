@@ -31,7 +31,7 @@ namespace LTHW.WebApi.Controllers.WebSite
         /// </summary>
         /// <param name="pid">父id</param>
         /// <returns></returns>
-        [Route("gettree")]
+        [Route("gettree/{pid}")]
         public ResponseBody GetTree(long pid)
         {
             var list = _IMuDiDiBLL.GetTree(pid);

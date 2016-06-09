@@ -51,7 +51,7 @@ namespace LTHW.WebApi.Controllers.WebSite
         /// 获取酒店详细信息
         /// </summary>
         /// <returns>酒店详细信息</returns>
-        [Route("getbyid")]
+        [Route("getbyid/{id}")]
         public ResponseBody getById(int id)
         {
             var list = _IHotelBLL.getById(id);
@@ -63,7 +63,7 @@ namespace LTHW.WebApi.Controllers.WebSite
         /// </summary>
         /// <param name="pid">父id</param>
         /// <returns></returns>
-        [Route("gethotelattrtree")]
+        [Route("gethotelattrtree/{pid}")]
         public ResponseBody GetHotelAttrTree(long pid)
         {
             var list = _IHotelBLL.GetHotelAttrTree(pid);

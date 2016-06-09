@@ -51,7 +51,7 @@ namespace LTHW.WebApi.Controllers.WebSite
         /// 获取线路详细信息
         /// </summary>
         /// <returns>线路详细信息</returns>
-        [Route("getbyid")]
+        [Route("getbyid/{id}")]
         public ResponseBody getById(int id)
         {
             var list = _ITripsBLL.getById(id);

@@ -51,7 +51,7 @@ namespace LTHW.WebApi.Controllers.WebSite
         /// 获取景点详细信息
         /// </summary>
         /// <returns>景点详细信息</returns>
-        [Route("getbyid")]
+        [Route("getbyid/{id}")]
         public ResponseBody getById(int id)
         {
             var list = _ISightBLL.getById(id);
@@ -63,7 +63,7 @@ namespace LTHW.WebApi.Controllers.WebSite
         /// </summary>
         /// <param name="pid">父id</param>
         /// <returns></returns>
-        [Route("getspotattrtree")]
+        [Route("getspotattrtree/{pid}")]
         public ResponseBody GetSpotAttrTree(long pid)
         {
             var list = _ISightBLL.GetSpotAttrTree(pid);

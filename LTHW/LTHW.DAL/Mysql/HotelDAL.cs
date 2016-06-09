@@ -48,41 +48,41 @@ namespace LTHW.DAL.Mysql
                                  notice = a.notice,
                                  opentime = a.opentime,
                                  telephone = a.telephone,
-                                 traffic = a.traffic,
-                                 AttrList = new List<sline_hotel_attr>(),
-                                 MudidiList = new List<sline_destinations>(),
-                                 RoomList = new List<sline_hotel_room>()
+                                 traffic = a.traffic
                              };
                 var hotel = hotels.FirstOrDefault();
 
-                var roomList = from b in db.sline_hotel_room
-                                  where b.hotelid == id
-                                  select b;
-                hotel.RoomList = roomList.ToList();
-
-                var kinds = hotel.kindlist.Split(',');
-                var kindlist = new List<int>();
-                foreach (var k in kinds)
+                if (hotel != null)
                 {
-                    kindlist.Add(int.Parse(k));
-                }
-                var mudidiList = from b in db.sline_destinations
-                                 from c in kindlist
-                                 where b.id == c
-                                 select b;
-                hotel.MudidiList = mudidiList.ToList();
+                    var roomList = from b in db.sline_hotel_room
+                                   where b.hotelid == id
+                                   select b;
+                    hotel.RoomList = roomList.ToList();
 
-                var attrs = hotel.attrid.Split(',');
-                var alist = new List<int>();
-                foreach (var a in attrs)
-                {
-                    alist.Add(int.Parse(a));
+                    var kinds = hotel.kindlist.Split(',');
+                    var kindlist = new List<int>();
+                    foreach (var k in kinds)
+                    {
+                        kindlist.Add(int.Parse(k));
+                    }
+                    var mudidiList = from b in db.sline_destinations
+                                     from c in kindlist
+                                     where b.id == c
+                                     select b;
+                    hotel.MudidiList = mudidiList.ToList();
+
+                    var attrs = hotel.attrid.Split(',');
+                    var alist = new List<int>();
+                    foreach (var a in attrs)
+                    {
+                        alist.Add(int.Parse(a));
+                    }
+                    var attrList = from b in db.sline_hotel_attr
+                                   from c in alist
+                                   where b.id == c
+                                   select b;
+                    hotel.AttrList = attrList.ToList();
                 }
-                var attrList = from b in db.sline_hotel_attr
-                               from c in alist
-                               where b.id == c
-                               select b;
-                hotel.AttrList = attrList.ToList();
 
                 return hotel;
             }

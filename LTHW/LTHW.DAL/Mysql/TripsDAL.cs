@@ -23,28 +23,32 @@ namespace LTHW.DAL.Mysql
                                   select b;
                 tripInfo.ContentList = contentList.ToList();
 
-                var kinds = tripInfo.Info.kindlist.Split(',');
-                var kindlist = new List<int>();
-                foreach (var k in kinds) {
-                    kindlist.Add(int.Parse(k));
-                }
-                var mudidiList = from b in db.sline_destinations
-                                 from c in kindlist
-                                 where b.id == c
-                                 select b;
-                tripInfo.MudidiList = mudidiList.ToList();
-
-                var attrs = tripInfo.Info.attrid.Split(',');
-                var alist = new List<int>();
-                foreach (var a in attrs)
+                if (tripInfo.Info != null)
                 {
-                    alist.Add(int.Parse(a));
+                    var kinds = tripInfo.Info.kindlist.Split(',');
+                    var kindlist = new List<int>();
+                    foreach (var k in kinds)
+                    {
+                        kindlist.Add(int.Parse(k));
+                    }
+                    var mudidiList = from b in db.sline_destinations
+                                     from c in kindlist
+                                     where b.id == c
+                                     select b;
+                    tripInfo.MudidiList = mudidiList.ToList();
+
+                    var attrs = tripInfo.Info.attrid.Split(',');
+                    var alist = new List<int>();
+                    foreach (var a in attrs)
+                    {
+                        alist.Add(int.Parse(a));
+                    }
+                    var attrList = from b in db.sline_line_attr
+                                   from c in alist
+                                   where b.id == c
+                                   select b;
+                    tripInfo.AttrList = attrList.ToList();
                 }
-                var attrList = from b in db.sline_line_attr
-                               from c in alist
-                               where b.id == c
-                               select b;
-                tripInfo.AttrList = attrList.ToList();
 
                 return tripInfo;
             }
