@@ -27,7 +27,7 @@ namespace LTHW.WebApi.Controllers.WebSite
         }
 
         /// <summary>
-        /// 获取所有目的地信息
+        /// 获取所有目的地信息-树形
         /// </summary>
         /// <param name="pid">父id</param>
         /// <returns></returns>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LTHW.DAL.Mysql
 {
-    public class MuDiDiADL : BaseDAL<sline_destinations>, IMuDiDiADL
+    public class MuDiDiADL : BaseDAL<sline_destinations>, IMuDiDiDAL
     {
         public List<sline_destinations> GetTree(long pid) {
             var db = new LTHWMysqlModel();

@@ -12,7 +12,7 @@ namespace LTHW.BLL.Mysql
 {
     public class MuDiDiBLL : BaseBLL<sline_destinations>, IMuDiDiBLL
     {
-        private readonly IMuDiDiADL _IMuDiDiDAL;
+        private readonly IMuDiDiDAL _IMuDiDiDAL;
         public MuDiDiBLL()
             : base()
         {
@@ -37,34 +37,13 @@ namespace LTHW.BLL.Mysql
                 }
                 else
                 {
-                    treeList = get(treeList, des);
+                    treeList = CommonTreeBLL.GenerateTree(treeList, des.id, des.pid, des.kindname);
                 }
             }
 
             return treeList;
         }
 
-        private List<TreeObject> get(List<TreeObject> treeList, sline_destinations des)
-        {
-            if (treeList != null && treeList.Count > 0)
-            {
-                foreach (var tree in treeList)
-                {
-                    if (des.pid == tree.id)
-                    {
-                        if (tree.nodes == null)
-                        {
-                            tree.nodes = new List<TreeObject>();
-                        }
-                        tree.nodes.Add(new TreeObject { id = des.id, text = des.kindname, pid = des.pid });
-                    }
-                    else
-                    {
-                        get(tree.nodes, des);
-                    }
-                }
-            }
-            return treeList;
-        }
+
     }
 }

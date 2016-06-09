@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IBaseDAL.cs" />
-    <Compile Include="Mysql\IMuDiDiADL.cs" />
+    <Compile Include="Mysql\IHotelDAL.cs" />
+    <Compile Include="Mysql\IMuDiDiDAL.cs" />
+    <Compile Include="Mysql\ISightDAL.cs" />
     <Compile Include="Mysql\ITripsDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
