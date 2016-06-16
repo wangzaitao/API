@@ -134,12 +134,12 @@ namespace LTHW.DAL.Mysql
 
             if (!string.IsNullOrEmpty(pageParam.kindlist))
             {
-                hotels = hotels.Where(p => p.kindlist.Split(',').Contains(pageParam.kindlist));
+                hotels = hotels.Where(p => ("," + p.kindlist + ",").Contains(("," + pageParam.kindlist + ",")));
             }
 
             if (!string.IsNullOrEmpty(pageParam.attrid))
             {
-                hotels = hotels.Where(p => p.attrid.Split(',').Contains(pageParam.attrid));
+                hotels = hotels.Where(p => ("," + p.attrid + ",").Contains(("," + pageParam.attrid + ",")));
             }
 
 

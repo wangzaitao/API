@@ -102,12 +102,12 @@ namespace LTHW.DAL.Mysql
 
             if (!string.IsNullOrEmpty(pageParam.kindlist))
             {
-                sights = sights.Where(p => p.kindlist.Split(',').Contains(pageParam.kindlist));
+                sights = sights.Where(p => ("," + p.kindlist + ",").Contains(("," + pageParam.kindlist + ",")));
             }
 
             if (!string.IsNullOrEmpty(pageParam.attrid))
             {
-                sights = sights.Where(p => p.attrid.Split(',').Contains(pageParam.attrid));
+                sights = sights.Where(p => ("," + p.attrid + ",").Contains(("," + pageParam.attrid + ",")));
             }
 
             pageParam.total = sights.Count();

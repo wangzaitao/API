@@ -89,12 +89,12 @@ namespace LTHW.DAL.Mysql
 
             if (!string.IsNullOrEmpty(pageParam.kindlist))
             {
-                trips = trips.Where(p => p.kindlist.Split(',').Contains(pageParam.kindlist));
+                trips = trips.Where(p => ("," + p.kindlist + ",").Contains(("," + pageParam.kindlist + ",")));
             }
 
             if (!string.IsNullOrEmpty(pageParam.attrid))
             {
-                trips = trips.Where(p => p.attrid.Split(',').Contains(pageParam.attrid));
+                trips = trips.Where(p => ("," + p.attrid + ",").Contains(("," + pageParam.attrid + ",")));
             }
 
             pageParam.total = trips.Count();
