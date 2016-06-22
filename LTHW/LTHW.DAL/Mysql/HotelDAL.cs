@@ -114,7 +114,7 @@ namespace LTHW.DAL.Mysql
                              hotelrankid = a.hotelrankid,
                              id = a.id,
                              opentime = a.opentime,
-                             telephone = a.telephone,
+                             telephone = a.telephone
                          };
 
             if (!string.IsNullOrEmpty(pageParam.title))

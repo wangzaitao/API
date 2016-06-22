@@ -638,5 +638,16 @@
             </summary>
             <returns>线路详细信息</returns>
         </member>
+        <member name="T:LTHW.WebApi.Controllers.Weixin.WeixinController">
+            <summary>
+            微信接口
+            </summary>
+        </member>
+        <member name="M:LTHW.WebApi.Controllers.Weixin.WeixinController.get(System.String,System.String,System.String,System.String)">
+            <summary>
+            接入
+            </summary>
+            <returns></returns>
+        </member>
     </members>
 </doc>

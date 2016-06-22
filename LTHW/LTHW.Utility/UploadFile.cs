@@ -5,7 +5,7 @@ using System.Drawing.Imaging;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace LFTHW.Utility
+namespace LTHW.Utility
 {
     #region 上传状态枚举
     /// <summary>

@@ -61,6 +61,9 @@
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -197,6 +200,7 @@
     <Compile Include="Controllers\WebSite\MuDiDiController.cs" />
     <Compile Include="Controllers\WebSite\SightController.cs" />
     <Compile Include="Controllers\WebSite\TripsController.cs" />
+    <Compile Include="Controllers\Weixin\WeixinController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -231,6 +235,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Config\Log4Net.config" />
     <None Include="Properties\PublishProfiles\l.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -266,6 +271,10 @@
     <ProjectReference Include="..\LTHW.Model\LTHW.Model.csproj">
       <Project>{59201fe3-26a7-4625-bd3e-d7639b55cb03}</Project>
       <Name>LTHW.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LTHW.Utility\LTHW.Utility.csproj">
+      <Project>{504b2bb1-9637-49fa-a8a3-d2a74eb4bca9}</Project>
+      <Name>LTHW.Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

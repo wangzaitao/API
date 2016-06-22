@@ -1,4 +1,4 @@
-﻿namespace LFTHW.Utility
+﻿namespace LTHW.Utility
 {
     /// <summary>
     /// 字符串扩展类
