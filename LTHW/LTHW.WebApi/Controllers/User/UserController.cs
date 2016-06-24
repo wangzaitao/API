@@ -76,7 +76,7 @@ namespace LTHW.WebApi.Controllers.User
         }
 
         /// <summary>
-        /// 根据pid查询
+        /// 根据pid查询下一级
         /// </summary>
         /// <param name="mid_pid">一级id+","+二级id+","+三级id+........，只有一个时不要逗号</param>
         /// <param name="thirdfrom">第三方来源，微信wx，可空</param>
