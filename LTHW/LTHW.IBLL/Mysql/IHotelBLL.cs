@@ -11,7 +11,7 @@ namespace LTHW.IBLL.Mysql
     {
         List<HotelListEntity> GetPage(HotelQueryParam pageParam);
 
-        HotelInfoEntity getById(int id);
+        HotelInfoEntity GetById(int id);
 
         List<TreeObject> GetHotelAttrTree(long pid);
     }

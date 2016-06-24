@@ -9,7 +9,7 @@ namespace LTHW.DAL.Mysql
 {
     public class TripsDAL : BaseDAL<sline_line>, ITripsDAL
     {
-        public TripInfoEntity getById(int id)
+        public TripInfoEntity GetById(int id)
         {
             using (var db = new LTHWMysqlModel())
             {

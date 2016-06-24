@@ -10,7 +10,7 @@ namespace LTHW.DAL.Mysql
 {
     public class SightDAL : BaseDAL<sline_spot>, ISightDAL
     {
-        public SightInfoEntity getById(int id)
+        public SightInfoEntity GetById(int id)
         {
             using (var db = new LTHWMysqlModel())
             {

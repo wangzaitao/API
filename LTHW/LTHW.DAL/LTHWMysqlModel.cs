@@ -190,6 +190,12 @@ namespace LTHW.DAL
         public virtual DbSet<sline_model_suit_price> sline_model_suit_price { get; set; }
         public virtual DbSet<sline_role_module> sline_role_module { get; set; }
 
+        public virtual DbSet<sline_fenxiao_yongjin> sline_fenxiao_yongjin { get; set; }
+        public virtual DbSet<sline_member_address> sline_member_adress { get; set; }
+        public virtual DbSet<sline_region_city> sline_region_city { get; set; }
+        public virtual DbSet<sline_region_county> sline_region_county { get; set; }
+        public virtual DbSet<sline_region_province> sline_region_province { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<sline_admin>()
@@ -4434,6 +4440,70 @@ namespace LTHW.DAL
 
             modelBuilder.Entity<sline_role_module>()
                 .Property(e => e.moduleid)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<sline_fenxiao_yongjin>()
+    .Property(e => e.remark)
+    .IsUnicode(false);
+
+            modelBuilder.Entity<sline_member_address>()
+                .Property(e => e.name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<sline_member_address>()
+                .Property(e => e.mobile)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<sline_member_address>()
+                .Property(e => e.province)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<sline_member_address>()
+                .Property(e => e.city)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<sline_member_address>()
+                .Property(e => e.county)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<sline_member_address>()
+                .Property(e => e.addresshome)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<sline_member_address>()
+                .Property(e => e.zip)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<sline_region_city>()
+                .Property(e => e.name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<sline_region_city>()
+                .Property(e => e.zip)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<sline_region_city>()
+                .Property(e => e.remark)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<sline_region_county>()
+                .Property(e => e.name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<sline_region_county>()
+                .Property(e => e.remark)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<sline_region_province>()
+                .Property(e => e.name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<sline_region_province>()
+                .Property(e => e.alias)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<sline_region_province>()
+                .Property(e => e.remark)
                 .IsUnicode(false);
         }
     }

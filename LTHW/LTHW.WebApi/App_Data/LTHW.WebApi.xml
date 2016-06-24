@@ -519,6 +519,91 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:LTHW.WebApi.Controllers.Common.RegionController">
+            <summary>
+            行政区
+            </summary>
+        </member>
+        <member name="M:LTHW.WebApi.Controllers.Common.RegionController.#ctor(LTHW.IBLL.Mysql.IRegionBLL)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="iRegionBLL"></param>
+        </member>
+        <member name="M:LTHW.WebApi.Controllers.Common.RegionController.GetProvince">
+            <summary>
+            省
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LTHW.WebApi.Controllers.Common.RegionController.GetCityByProvince(System.Int32)">
+            <summary>
+            市
+            </summary>
+            <param name="provid">省份id</param>
+            <returns></returns>
+        </member>
+        <member name="M:LTHW.WebApi.Controllers.Common.RegionController.GetCountyByCity(System.Int32)">
+            <summary>
+            区
+            </summary>
+            <param name="cityid">城市id</param>
+            <returns></returns>
+        </member>
+        <member name="T:LTHW.WebApi.Controllers.User.UserAddressController">
+            <summary>
+            会员地址维护
+            </summary>
+        </member>
+        <member name="M:LTHW.WebApi.Controllers.User.UserAddressController.#ctor(LTHW.IBLL.Mysql.IUserAddressBLL)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="iUserAddressBLL"></param>
+        </member>
+        <member name="M:LTHW.WebApi.Controllers.User.UserAddressController.Get">
+            <summary>
+            查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LTHW.WebApi.Controllers.User.UserAddressController.Delete(System.Int32)">
+            <summary>
+            删除
+            </summary>
+            <param name="id">地址id</param>
+            <returns></returns>
+        </member>
+        <member name="M:LTHW.WebApi.Controllers.User.UserAddressController.Post(LTHW.Model.sline_member_address)">
+            <summary>
+            编辑
+            </summary>
+            <param name="address">地址实体</param>
+            <returns></returns>
+        </member>
+        <member name="T:LTHW.WebApi.Controllers.User.UserController">
+            <summary>
+            会员
+            </summary>
+        </member>
+        <member name="M:LTHW.WebApi.Controllers.User.UserController.#ctor(LTHW.IBLL.Mysql.IUserBLL)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="iUserBLL"></param>
+        </member>
+        <member name="M:LTHW.WebApi.Controllers.User.UserController.PostWXUser(LTHW.Model.WXUserInfoEntity)">
+            <summary>
+            微信信息-保存
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LTHW.WebApi.Controllers.User.UserController.GetAllUser">
+            <summary>
+            查询所有会员
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:LTHW.WebApi.Controllers.WebSite.HotelController">
             <summary>
             酒店
@@ -536,16 +621,17 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:LTHW.WebApi.Controllers.WebSite.HotelController.postPage(LTHW.Model.HotelQueryParam)">
+        <member name="M:LTHW.WebApi.Controllers.WebSite.HotelController.PostPage(LTHW.Model.HotelQueryParam)">
             <summary>
             获取酒店分页信息
             </summary>
             <returns>列表基本数据</returns>
         </member>
-        <member name="M:LTHW.WebApi.Controllers.WebSite.HotelController.getById(System.Int32)">
+        <member name="M:LTHW.WebApi.Controllers.WebSite.HotelController.GetById(System.Int32)">
             <summary>
             获取酒店详细信息
             </summary>
+            <param name="id">酒店id</param>
             <returns>酒店详细信息</returns>
         </member>
         <member name="M:LTHW.WebApi.Controllers.WebSite.HotelController.GetHotelAttrTree(System.Int64)">
@@ -590,16 +676,17 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:LTHW.WebApi.Controllers.WebSite.SightController.postPage(LTHW.Model.SightQueryParam)">
+        <member name="M:LTHW.WebApi.Controllers.WebSite.SightController.PostPage(LTHW.Model.SightQueryParam)">
             <summary>
             获取景点分页信息
             </summary>
             <returns>列表基本数据</returns>
         </member>
-        <member name="M:LTHW.WebApi.Controllers.WebSite.SightController.getById(System.Int32)">
+        <member name="M:LTHW.WebApi.Controllers.WebSite.SightController.GetById(System.Int32)">
             <summary>
             获取景点详细信息
             </summary>
+            <param name="id">景点id</param>
             <returns>景点详细信息</returns>
         </member>
         <member name="M:LTHW.WebApi.Controllers.WebSite.SightController.GetSpotAttrTree(System.Int64)">
@@ -626,16 +713,17 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:LTHW.WebApi.Controllers.WebSite.TripsController.postPage(LTHW.Model.TripQueryParam)">
+        <member name="M:LTHW.WebApi.Controllers.WebSite.TripsController.PostPage(LTHW.Model.TripQueryParam)">
             <summary>
             获取线路分页信息
             </summary>
             <returns>列表基本数据</returns>
         </member>
-        <member name="M:LTHW.WebApi.Controllers.WebSite.TripsController.getById(System.Int32)">
+        <member name="M:LTHW.WebApi.Controllers.WebSite.TripsController.GetById(System.Int32)">
             <summary>
             获取线路详细信息
             </summary>
+            <param name="id">线路id</param>
             <returns>线路详细信息</returns>
         </member>
         <member name="T:LTHW.WebApi.Controllers.Weixin.WeixinController">
@@ -643,10 +731,26 @@
             微信接口
             </summary>
         </member>
+        <member name="F:LTHW.WebApi.Controllers.Weixin.WeixinController.token">
+            声明Token
+        </member>
         <member name="M:LTHW.WebApi.Controllers.Weixin.WeixinController.get(System.String,System.String,System.String,System.String)">
             <summary>
             接入
             </summary>
+            <param name="signature"></param>
+            <param name="timestamp"></param>
+            <param name="nonce"></param>
+            <param name="echostr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LTHW.WebApi.Controllers.Weixin.WeixinController.CheckSignature(System.String,System.String,System.String)">
+            <summary>
+            验证微信签名
+            </summary>
+            * 将token、timestamp、nonce三个参数进行字典序排序
+            * 将三个参数字符串拼接成一个字符串进行sha1加密
+            * 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信。
             <returns></returns>
         </member>
     </members>

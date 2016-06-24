@@ -43,8 +43,10 @@
     <Compile Include="IBaseDAL.cs" />
     <Compile Include="Mysql\IHotelDAL.cs" />
     <Compile Include="Mysql\IMuDiDiDAL.cs" />
+    <Compile Include="Mysql\IRegionDAL.cs" />
     <Compile Include="Mysql\ISightDAL.cs" />
     <Compile Include="Mysql\ITripsDAL.cs" />
+    <Compile Include="Mysql\IUserDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

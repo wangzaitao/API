@@ -89,6 +89,7 @@
     <Compile Include="MysqlModel\sline_farm_suit.cs" />
     <Compile Include="MysqlModel\sline_farm_suit_price.cs" />
     <Compile Include="MysqlModel\sline_feedback.cs" />
+    <Compile Include="MysqlModel\sline_fenxiao_yongjin.cs" />
     <Compile Include="MysqlModel\sline_help.cs" />
     <Compile Include="MysqlModel\sline_help_kind.cs" />
     <Compile Include="MysqlModel\sline_hotel.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="MysqlModel\sline_line_suit.cs" />
     <Compile Include="MysqlModel\sline_line_suit_price.cs" />
     <Compile Include="MysqlModel\sline_member.cs" />
+    <Compile Include="MysqlModel\sline_member_address.cs" />
     <Compile Include="MysqlModel\sline_member_grade.cs" />
     <Compile Include="MysqlModel\sline_member_jifen_log.cs" />
     <Compile Include="MysqlModel\sline_member_linkman.cs" />
@@ -170,6 +172,9 @@
     <Compile Include="MysqlModel\sline_qq_kefu.cs" />
     <Compile Include="MysqlModel\sline_question.cs" />
     <Compile Include="MysqlModel\sline_question_kindlist.cs" />
+    <Compile Include="MysqlModel\sline_region_city.cs" />
+    <Compile Include="MysqlModel\sline_region_county.cs" />
+    <Compile Include="MysqlModel\sline_region_province.cs" />
     <Compile Include="MysqlModel\sline_relationship.cs" />
     <Compile Include="MysqlModel\sline_right.cs" />
     <Compile Include="MysqlModel\sline_right_module.cs" />
@@ -227,15 +232,19 @@
     <Compile Include="ParamModel\SightQueryParam.cs" />
     <Compile Include="ParamModel\TripQueryParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\Common\PageEntity.cs" />
     <Compile Include="ViewModel\HotelInfoEntity.cs" />
     <Compile Include="ViewModel\HotelListEntity.cs" />
     <Compile Include="ViewModel\SightInfoEntity.cs" />
     <Compile Include="ViewModel\SightListEntity.cs" />
-    <Compile Include="ViewModel\TreeObject.cs" />
+    <Compile Include="ViewModel\Common\TreeObject.cs" />
     <Compile Include="ViewModel\TripInfoEntity.cs" />
     <Compile Include="ViewModel\TripListEntity.cs" />
+    <Compile Include="ViewModel\Weixin\WXUserInfoEntity.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ParamModel\Weixin\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

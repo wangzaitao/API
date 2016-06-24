@@ -11,6 +11,6 @@ namespace LTHW.IBLL.Mysql
     {
         List<TripListEntity> GetPage(TripQueryParam pageParam);
 
-        TripInfoEntity getById(int id);
+        TripInfoEntity GetById(int id);
     }
 }

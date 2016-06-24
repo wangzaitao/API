@@ -11,7 +11,7 @@ namespace LTHW.IBLL.Mysql
     {
         List<SightListEntity> GetPage(SightQueryParam pageParam);
 
-        SightInfoEntity getById(int id);
+        SightInfoEntity GetById(int id);
 
         List<TreeObject> GetSpotAttrTree(long pid);
     }

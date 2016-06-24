@@ -16,7 +16,7 @@ namespace LTHW.BLL
             _IBaseDAL = new BaseDAL<T>();
         }
 
-        public T Add(T entity)
+        public bool Add(T entity)
         {
             return _IBaseDAL.Add(entity);
         }

@@ -6,7 +6,7 @@ namespace LTHW.IDAL
 {
     public interface IBaseDAL<T> where T : class
     {
-        T Add(T entity);
+        bool Add(T entity);
         bool Update(T entity, string[] property);
         bool Delete(T entity);
         IQueryable<T> QueryAll();

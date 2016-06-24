@@ -4,22 +4,22 @@
         <name>LTHW.Model</name>
     </assembly>
     <members>
-        <member name="T:LTHW.Model.ResponseBody">
+        <member name="T:LTHW.Model.ResponseBody`1">
             <summary>
             返回实体
             </summary>
         </member>
-        <member name="P:LTHW.Model.ResponseBody.Code">
+        <member name="P:LTHW.Model.ResponseBody`1.Code">
             <summary>
             返回状态码
             </summary>
         </member>
-        <member name="P:LTHW.Model.ResponseBody.Message">
+        <member name="P:LTHW.Model.ResponseBody`1.Message">
             <summary>
             返回信息
             </summary>
         </member>
-        <member name="P:LTHW.Model.ResponseBody.Result">
+        <member name="P:LTHW.Model.ResponseBody`1.Result">
             <summary>
             返回数据
             </summary>
@@ -147,6 +147,16 @@
         <member name="P:LTHW.Model.TripQueryParam.orderprice">
             <summary>
             价格排序
+            </summary>
+        </member>
+        <member name="P:LTHW.Model.PageEntity`1.data">
+            <summary>
+            数据列表
+            </summary>
+        </member>
+        <member name="P:LTHW.Model.PageEntity`1.total">
+            <summary>
+            总记录数
             </summary>
         </member>
         <member name="T:LTHW.Model.HotelInfoEntity">
@@ -587,6 +597,11 @@
         <member name="P:LTHW.Model.TripListEntity.modtime">
             <summary>
             修改时间
+            </summary>
+        </member>
+        <member name="P:LTHW.Model.WXUserInfoEntity.recommendopenid">
+            <summary>
+            推荐人微信openid
             </summary>
         </member>
     </members>

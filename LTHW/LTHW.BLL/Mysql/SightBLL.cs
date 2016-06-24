@@ -24,9 +24,9 @@ namespace LTHW.BLL.Mysql
             return _ISightDAL.GetPage(pageParam).ToList<SightListEntity>();
         }
 
-        public SightInfoEntity getById(int id)
+        public SightInfoEntity GetById(int id)
         {
-            return _ISightDAL.getById(id);
+            return _ISightDAL.GetById(id);
         }
 
         public List<TreeObject> GetSpotAttrTree(long pid) {

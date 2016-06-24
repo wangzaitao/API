@@ -7,7 +7,7 @@ namespace LTHW.IBLL
 {
     public interface IBaseBLL<T> where T : class
     {
-        T Add(T entity);
+        bool Add(T entity);
         bool Update(T entity, string[] property);
         bool Delete(T entity);
         List<T> GetAll();

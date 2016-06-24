@@ -24,6 +24,9 @@ namespace LTHW.WebApi
             builder.Register(c => new MuDiDiBLL()).As<IMuDiDiBLL>().InstancePerLifetimeScope();
             builder.Register(c => new HotelBLL()).As<IHotelBLL>().InstancePerLifetimeScope();
             builder.Register(c => new SightBLL()).As<ISightBLL>().InstancePerLifetimeScope();
+            builder.Register(c => new UserBLL()).As<IUserBLL>().InstancePerLifetimeScope();
+            builder.Register(c => new RegionBLL()).As<IRegionBLL>().InstancePerLifetimeScope();
+            builder.Register(c => new UserAddressBLL()).As<IUserAddressBLL>().InstancePerLifetimeScope();
 
             var container = builder.Build();
             configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);

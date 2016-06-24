@@ -13,6 +13,9 @@ namespace LTHW.Model
         [Column(TypeName = "umediumint")]
         public int mid { get; set; }
 
+        [StringLength(255)]
+        public string pid { get; set; }
+
         [StringLength(20)]
         public string mtype { get; set; }
 

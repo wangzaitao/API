@@ -31,9 +31,10 @@ namespace LTHW.WebApi.Controllers.WebSite
         /// </summary>
         /// <returns></returns>
         [Route("getall")]
-        public List<sline_line> GetAll()
+        public ResponseBody<List<sline_line>> GetAll()
         {
-            return _ITripsBLL.GetAll();
+            var list = _ITripsBLL.GetAll();
+            return new ResponseBody<List<sline_line>> { Result = list, Code = "", Message = "" };
         }
 
         /// <summary>
@@ -41,21 +42,22 @@ namespace LTHW.WebApi.Controllers.WebSite
         /// </summary>
         /// <returns>列表基本数据</returns>
         [Route("postpage")]
-        public ResponseBody postPage([FromBody]TripQueryParam pageParam)
+        public ResponseBody<PageEntity<List<TripListEntity>>> PostPage([FromBody]TripQueryParam pageParam)
         {
             var list = _ITripsBLL.GetPage(pageParam);
-            return new ResponseBody { Result = new { data = list, total = pageParam.total }, Code="",Message="" };
+            return new ResponseBody<PageEntity<List<TripListEntity>>> { Result = new PageEntity<List<TripListEntity>> { data = list, total = pageParam.total }, Code = "", Message = "" };
         }
 
         /// <summary>
         /// 获取线路详细信息
         /// </summary>
+        /// <param name="id">线路id</param>
         /// <returns>线路详细信息</returns>
         [Route("getbyid/{id}")]
-        public ResponseBody getById(int id)
+        public ResponseBody<TripInfoEntity> GetById(int id)
         {
-            var list = _ITripsBLL.getById(id);
-            return new ResponseBody { Result = list, Code = "", Message = "" };
+            var tripInfo = _ITripsBLL.GetById(id);
+            return new ResponseBody<TripInfoEntity> { Result = tripInfo, Code = "", Message = "" };
         }
     }
 }

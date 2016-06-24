@@ -64,8 +64,10 @@
     <Compile Include="LTHWMysqlModel.cs" />
     <Compile Include="Mysql\HotelDAL.cs" />
     <Compile Include="Mysql\MuDiDiADL.cs" />
+    <Compile Include="Mysql\RegionDAL.cs" />
     <Compile Include="Mysql\SightDAL.cs" />
     <Compile Include="Mysql\TripsDAL.cs" />
+    <Compile Include="Mysql\UserDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

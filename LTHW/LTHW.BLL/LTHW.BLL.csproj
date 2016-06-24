@@ -44,8 +44,11 @@
     <Compile Include="CommonTreeBLL.cs" />
     <Compile Include="Mysql\HotelBLL.cs" />
     <Compile Include="Mysql\MuDiDiBLL.cs" />
+    <Compile Include="Mysql\RegionBLL.cs" />
     <Compile Include="Mysql\SightBLL.cs" />
     <Compile Include="Mysql\TripsBLL.cs" />
+    <Compile Include="Mysql\UserAddressBLL.cs" />
+    <Compile Include="Mysql\UserBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

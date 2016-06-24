@@ -11,6 +11,6 @@ namespace LTHW.IDAL.Mysql
     {
         IQueryable<TripListEntity> GetPage(TripQueryParam pageParam);
 
-        TripInfoEntity getById(int id);
+        TripInfoEntity GetById(int id);
     }
 }

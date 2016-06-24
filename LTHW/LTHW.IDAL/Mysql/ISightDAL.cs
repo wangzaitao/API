@@ -11,7 +11,7 @@ namespace LTHW.IDAL.Mysql
     {
         IQueryable<SightListEntity> GetPage(SightQueryParam pageParam);
 
-        SightInfoEntity getById(int id);
+        SightInfoEntity GetById(int id);
 
         List<sline_spot_attr> GetSpotAttrTree(long pid);
     }

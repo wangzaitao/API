@@ -11,7 +11,7 @@ namespace LTHW.IDAL.Mysql
     {
         IQueryable<HotelListEntity> GetPage(HotelQueryParam pageParam);
 
-        HotelInfoEntity getById(int id);
+        HotelInfoEntity GetById(int id);
 
         List<sline_hotel_attr> GetHotelAttrTree(long pid);
     }

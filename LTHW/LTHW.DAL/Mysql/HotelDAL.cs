@@ -10,7 +10,7 @@ namespace LTHW.DAL.Mysql
 {
     public class HotelDAL : BaseDAL<sline_hotel>, IHotelDAL
     {
-        public HotelInfoEntity getById(int id)
+        public HotelInfoEntity GetById(int id)
         {
             using (var db = new LTHWMysqlModel())
             {

@@ -23,8 +23,8 @@ namespace LTHW.BLL.Mysql
             return _ITripsDAL.GetPage(pageParam).ToList<TripListEntity>();
         }
 
-        public TripInfoEntity getById(int id) {
-            return _ITripsDAL.getById(id);
+        public TripInfoEntity GetById(int id) {
+            return _ITripsDAL.GetById(id);
         }
     }
 }

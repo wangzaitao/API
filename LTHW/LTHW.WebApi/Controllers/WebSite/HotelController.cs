@@ -31,9 +31,10 @@ namespace LTHW.WebApi.Controllers.WebSite
         /// </summary>
         /// <returns></returns>
         [Route("getall")]
-        public List<sline_hotel> GetAll()
+        public ResponseBody<List<sline_hotel>> GetAll()
         {
-            return _IHotelBLL.GetAll();
+            var list = _IHotelBLL.GetAll();
+            return new ResponseBody<List<sline_hotel>> { Result = list, Code = "", Message = "" };
         }
 
         /// <summary>
@@ -41,21 +42,22 @@ namespace LTHW.WebApi.Controllers.WebSite
         /// </summary>
         /// <returns>列表基本数据</returns>
         [Route("postpage")]
-        public ResponseBody postPage([FromBody]HotelQueryParam pageParam)
+        public ResponseBody<PageEntity<List<HotelListEntity>>> PostPage([FromBody]HotelQueryParam pageParam)
         {
             var list = _IHotelBLL.GetPage(pageParam);
-            return new ResponseBody { Result = new { data = list, total = pageParam.total }, Code = "", Message = "" };
+            return new ResponseBody<PageEntity<List<HotelListEntity>>> { Result = new PageEntity < List < HotelListEntity >> { data = list, total = pageParam.total }, Code = "", Message = "" };
         }
 
         /// <summary>
         /// 获取酒店详细信息
         /// </summary>
+        /// <param name="id">酒店id</param>
         /// <returns>酒店详细信息</returns>
         [Route("getbyid/{id}")]
-        public ResponseBody getById(int id)
+        public ResponseBody<HotelInfoEntity> GetById(int id)
         {
-            var list = _IHotelBLL.getById(id);
-            return new ResponseBody { Result = list, Code = "", Message = "" };
+            var hotelInfo = _IHotelBLL.GetById(id);
+            return new ResponseBody<HotelInfoEntity> { Result = hotelInfo, Code = "", Message = "" };
         }
 
         /// <summary>
@@ -64,10 +66,10 @@ namespace LTHW.WebApi.Controllers.WebSite
         /// <param name="pid">父id</param>
         /// <returns></returns>
         [Route("gethotelattrtree/{pid}")]
-        public ResponseBody GetHotelAttrTree(long pid)
+        public ResponseBody<List<TreeObject>> GetHotelAttrTree(long pid)
         {
             var list = _IHotelBLL.GetHotelAttrTree(pid);
-            return new ResponseBody { Result = list, Code = "", Message = "" };
+            return new ResponseBody<List<TreeObject>> { Result = list, Code = "", Message = "" };
         }
     }
 }

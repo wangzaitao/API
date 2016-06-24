@@ -24,9 +24,9 @@ namespace LTHW.BLL.Mysql
             return _IHotelDAL.GetPage(pageParam).ToList<HotelListEntity>();
         }
 
-        public HotelInfoEntity getById(int id)
+        public HotelInfoEntity GetById(int id)
         {
-            return _IHotelDAL.getById(id);
+            return _IHotelDAL.GetById(id);
         }
 
         public List<TreeObject> GetHotelAttrTree(long pid) {

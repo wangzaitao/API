@@ -31,9 +31,10 @@ namespace LTHW.WebApi.Controllers.WebSite
         /// </summary>
         /// <returns></returns>
         [Route("getall")]
-        public List<sline_spot> GetAll()
+        public ResponseBody<List<sline_spot>> GetAll()
         {
-            return _ISightBLL.GetAll();
+            var list = _ISightBLL.GetAll();
+            return new ResponseBody<List<sline_spot>> { Result = list, Code = "", Message = "" };
         }
 
         /// <summary>
@@ -41,21 +42,22 @@ namespace LTHW.WebApi.Controllers.WebSite
         /// </summary>
         /// <returns>列表基本数据</returns>
         [Route("postpage")]
-        public ResponseBody postPage([FromBody]SightQueryParam pageParam)
+        public ResponseBody<PageEntity<List<SightListEntity>>> PostPage([FromBody]SightQueryParam pageParam)
         {
             var list = _ISightBLL.GetPage(pageParam);
-            return new ResponseBody { Result = new { data = list, total = pageParam.total }, Code = "", Message = "" };
+            return new ResponseBody<PageEntity<List<SightListEntity>>> { Result = new PageEntity<List<SightListEntity>> { data = list, total = pageParam.total }, Code = "", Message = "" };
         }
 
         /// <summary>
         /// 获取景点详细信息
         /// </summary>
+        /// <param name="id">景点id</param>
         /// <returns>景点详细信息</returns>
         [Route("getbyid/{id}")]
-        public ResponseBody getById(int id)
+        public ResponseBody<SightInfoEntity> GetById(int id)
         {
-            var list = _ISightBLL.getById(id);
-            return new ResponseBody { Result = list, Code = "", Message = "" };
+            var list = _ISightBLL.GetById(id);
+            return new ResponseBody<SightInfoEntity> { Result = list, Code = "", Message = "" };
         }
 
         /// <summary>
@@ -64,10 +66,10 @@ namespace LTHW.WebApi.Controllers.WebSite
         /// <param name="pid">父id</param>
         /// <returns></returns>
         [Route("getspotattrtree/{pid}")]
-        public ResponseBody GetSpotAttrTree(long pid)
+        public ResponseBody<List<TreeObject>> GetSpotAttrTree(long pid)
         {
             var list = _ISightBLL.GetSpotAttrTree(pid);
-            return new ResponseBody { Result = list, Code = "", Message = "" };
+            return new ResponseBody<List<TreeObject>> { Result = list, Code = "", Message = "" };
         }
     }
 }

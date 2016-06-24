@@ -9,7 +9,7 @@ namespace LTHW.Model
     /// <summary>
     /// 返回实体
     /// </summary>
-    public class ResponseBody
+    public class ResponseBody<T>
     {
         /// <summary>
         /// 返回状态码
@@ -22,6 +22,6 @@ namespace LTHW.Model
         /// <summary>
         /// 返回数据
         /// </summary>
-        public dynamic Result { get; set; }
+        public T Result { get; set; }
     }
 }
