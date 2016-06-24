@@ -52,12 +52,13 @@ namespace LTHW.WebApi.Controllers.User
         /// 根据会员id或者微信openid获取会员信息
         /// </summary>
         /// <param name="mid">会员id-可选</param>
+        /// <param name="thirdfrom">第三方来源，微信wx，可空</param>
         /// <param name="openid">微信openid-可选</param>
         /// <returns></returns>
         [Route("getuserinfo")]
-        public ResponseBody<UserInfoEntity> GetUserInfo(int mid, string openid)
+        public ResponseBody<UserInfoEntity> GetUserInfo(int mid,string thirdfrom, string openid)
         {
-            var userInfo = _IUserBLL.GetUserInfo(mid, openid);
+            var userInfo = _IUserBLL.GetUserInfo(mid, thirdfrom, openid);
             return new ResponseBody<UserInfoEntity> { Result = userInfo, Code = "", Message = "" };
         }
 
@@ -65,12 +66,26 @@ namespace LTHW.WebApi.Controllers.User
         /// 根据会员id获取分销关联上下级
         /// </summary>
         /// <param name="mid">会员id-可选</param>
+        /// <param name="thirdfrom">第三方来源，微信wx，可空</param>
         /// <returns></returns>
         [Route("getfenxiaousers")]
-        public ResponseBody<FenxiaoGuanlianUsersEntity> GetFenxiaoGuanlianUsers(int mid)
+        public ResponseBody<FenxiaoGuanlianUsersEntity> GetFenxiaoGuanlianUsers(int mid, string thirdfrom)
         {
-            var userInfo = _IUserBLL.GetFenxiaoGuanlianUsers(mid);
+            var userInfo = _IUserBLL.GetFenxiaoGuanlianUsers(mid,thirdfrom);
             return new ResponseBody<FenxiaoGuanlianUsersEntity> { Result = userInfo, Code = "", Message = "" };
+        }
+
+        /// <summary>
+        /// 根据pid查询
+        /// </summary>
+        /// <param name="mid_pid">一级id+","+二级id+","+三级id+........，只有一个时不要逗号</param>
+        /// <param name="thirdfrom">第三方来源，微信wx，可空</param>
+        /// <returns></returns>
+        [Route("getfenxiaousers")]
+        public ResponseBody<List<UserInfoEntity>> GetUserInfoListByPid(string mid_pid, string thirdfrom)
+        {
+            var userInfoList = _IUserBLL.GetUserInfoListByPid(mid_pid, thirdfrom);
+            return new ResponseBody<List<UserInfoEntity>> { Result = userInfoList, Code = "", Message = "" };
         }
     }
 }

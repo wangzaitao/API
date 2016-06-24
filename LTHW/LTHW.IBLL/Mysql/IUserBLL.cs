@@ -11,7 +11,9 @@ namespace LTHW.IBLL.Mysql
     {
         int AddWeixinUser(WXUserInfoEntity wxUserInfoEntity);
 
-        UserInfoEntity GetUserInfo(int mid, string openid);
-        FenxiaoGuanlianUsersEntity GetFenxiaoGuanlianUsers(int mid);
+        UserInfoEntity GetUserInfo(int mid, string thirdfrom, string openid);
+        FenxiaoGuanlianUsersEntity GetFenxiaoGuanlianUsers(int mid, string thirdfrom);
+
+        List<UserInfoEntity> GetUserInfoListByPid(string mid_pid, string thirdfrom);
     }
 }

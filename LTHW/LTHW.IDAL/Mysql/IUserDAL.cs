@@ -11,8 +11,10 @@ namespace LTHW.IDAL.Mysql
     {
         int AddWeixinUser(WXUserInfoEntity wxUserInfoEntity);
 
-        UserInfoEntity GetUserInfo(int mid, string openid);
+        UserInfoEntity GetUserInfo(int mid, string thirdfrom, string openid);
 
-        FenxiaoGuanlianUsersEntity GetFenxiaoGuanlianUsers(int mid);
+        FenxiaoGuanlianUsersEntity GetFenxiaoGuanlianUsers(int mid, string thirdfrom);
+
+        List<UserInfoEntity> GetUserInfoListByPid(string mid_pid, string thirdfrom);
     }
 }

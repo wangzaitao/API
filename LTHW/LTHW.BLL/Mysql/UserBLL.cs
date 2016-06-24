@@ -24,13 +24,19 @@ namespace LTHW.BLL.Mysql
             return _IUserDAL.AddWeixinUser(wxUserInfoEntity);
         }
 
-        public UserInfoEntity GetUserInfo(int mid, string openid)
+        public UserInfoEntity GetUserInfo(int mid, string thirdfrom, string openid)
         {
-            return _IUserDAL.GetUserInfo(mid, openid);
+            return _IUserDAL.GetUserInfo(mid, thirdfrom, openid);
         }
 
-        public FenxiaoGuanlianUsersEntity GetFenxiaoGuanlianUsers(int mid) {
-            return _IUserDAL.GetFenxiaoGuanlianUsers(mid);
+        public FenxiaoGuanlianUsersEntity GetFenxiaoGuanlianUsers(int mid, string thirdfrom)
+        {
+            return _IUserDAL.GetFenxiaoGuanlianUsers(mid, thirdfrom);
+        }
+
+        public List<UserInfoEntity> GetUserInfoListByPid(string mid_pid, string thirdfrom)
+        {
+            return _IUserDAL.GetUserInfoListByPid(mid_pid, thirdfrom);
         }
     }
 }

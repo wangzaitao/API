@@ -27,7 +27,7 @@ namespace LTHW.DAL.Mysql
                     var member = new sline_member
                     {
                         nickname = wxUserInfoEntity.nickname,
-                        pwd = wxUserInfoEntity.nickname
+                        pwd = wxUserInfoEntity.nickname,
                     };
                     if (!string.IsNullOrEmpty(wxUserInfoEntity.recommendopenid))
                     {//有推荐人时，添加推荐人
@@ -72,33 +72,105 @@ namespace LTHW.DAL.Mysql
         /// 根据会员id或者微信openid获取会员信息
         /// </summary>
         /// <param name="mid"></param>
+        /// <param name="thirdfrom">第三方来源，微信wx，可空</param>
         /// <param name="openid"></param>
         /// <returns></returns>
-        public UserInfoEntity GetUserInfo(int mid, string openid)
+        public UserInfoEntity GetUserInfo(int mid, string thirdfrom, string openid)
         {
             using (var db = new LTHWMysqlModel())
             {
                 var userInfo = new UserInfoEntity();
 
-
                 if (mid > 0)
                 {
-                    var users = from u in db.sline_member where u.mid == mid select u;
-                    userInfo.UserInfo = users.FirstOrDefault();
-
-                    var opens = from t in db.sline_member_third
-                                where t.mid == mid && t.@from == "wx"
-                                select t;
-                    userInfo.OpenUserInfo = opens.FirstOrDefault();
+                    var users = from u in db.sline_member
+                                join t in db.sline_member_third on u.mid equals t.mid into temp
+                                from tt in temp.DefaultIfEmpty()
+                                where u.mid == mid
+                                select new UserInfoEntity
+                                {
+                                    mid = u.mid,
+                                    checkmail = u.checkmail,
+                                    checkphone = u.checkphone,
+                                    province = u.province,
+                                    city = u.city,
+                                    cardid = u.cardid,
+                                    address = u.address,
+                                    postcode = u.postcode,
+                                    connectid = u.connectid,
+                                    email = u.email,
+                                    @from = u.@from,
+                                    jifen = u.jifen,
+                                    joinip = u.joinip,
+                                    jointime = u.jointime,
+                                    litpic = u.litpic,
+                                    loginip = u.loginip,
+                                    logintime = u.logintime,
+                                    mobile = u.mobile,
+                                    money = u.money,
+                                    mtype = u.mtype,
+                                    nickname = u.nickname,
+                                    openid = tt == null ? "" : tt.openid,
+                                    wxfrom = tt == null ? "" : tt.@from,
+                                    wxnickname = tt == null ? "" : tt.nickname,
+                                    pid = u.pid,
+                                    pwd = u.pwd,
+                                    rank = u.rank,
+                                    regtype = u.regtype,
+                                    remarks = u.remarks,
+                                    safeanswer = u.safeanswer,
+                                    safequestion = u.safequestion,
+                                    sex = u.sex,
+                                    truename = u.truename
+                                };
+                    if (!string.IsNullOrEmpty(thirdfrom))
+                    {
+                        users = users.Where(u => u.wxfrom == thirdfrom);
+                    }
+                    userInfo = users.FirstOrDefault();
                 }
-                else
+                if (mid == 0 && !string.IsNullOrEmpty(openid))
                 {
-                    var opens = from t in db.sline_member_third
-                                where t.openid == openid
-                                select t;
-                    userInfo.OpenUserInfo = opens.FirstOrDefault();
-                    var users = from u in db.sline_member where u.mid == userInfo.OpenUserInfo.mid select u;
-                    userInfo.UserInfo = users.FirstOrDefault();
+                    var opens = from u in db.sline_member
+                                from t in db.sline_member_third
+                                where u.mid == t.mid && t.openid == openid
+                                select new UserInfoEntity
+                                {
+                                    mid = u.mid,
+                                    checkmail = u.checkmail,
+                                    checkphone = u.checkphone,
+                                    province = u.province,
+                                    city = u.city,
+                                    cardid = u.cardid,
+                                    address = u.address,
+                                    postcode = u.postcode,
+                                    connectid = u.connectid,
+                                    email = u.email,
+                                    @from = u.@from,
+                                    jifen = u.jifen,
+                                    joinip = u.joinip,
+                                    jointime = u.jointime,
+                                    litpic = u.litpic,
+                                    loginip = u.loginip,
+                                    logintime = u.logintime,
+                                    mobile = u.mobile,
+                                    money = u.money,
+                                    mtype = u.mtype,
+                                    nickname = u.nickname,
+                                    openid = t.openid,
+                                    wxfrom = t.@from,
+                                    wxnickname = t.nickname,
+                                    pid = u.pid,
+                                    pwd = u.pwd,
+                                    rank = u.rank,
+                                    regtype = u.regtype,
+                                    remarks = u.remarks,
+                                    safeanswer = u.safeanswer,
+                                    safequestion = u.safequestion,
+                                    sex = u.sex,
+                                    truename = u.truename
+                                };
+                    userInfo = opens.FirstOrDefault();
                 }
 
                 return userInfo;
@@ -109,8 +181,9 @@ namespace LTHW.DAL.Mysql
         /// 根据会员id获取分销关联上下级
         /// </summary>
         /// <param name="mid"></param>
+        /// <param name="thirdfrom">第三方来源，微信wx，可空</param>
         /// <returns></returns>
-        public FenxiaoGuanlianUsersEntity GetFenxiaoGuanlianUsers(int mid)
+        public FenxiaoGuanlianUsersEntity GetFenxiaoGuanlianUsers(int mid, string thirdfrom)
         {
             using (var db = new LTHWMysqlModel())
             {
@@ -121,22 +194,122 @@ namespace LTHW.DAL.Mysql
 
                 if (user != null && !string.IsNullOrEmpty(user.pid))
                 {
+                    //取前五名
                     var arrPid = user.pid.Split(',');
+                    int firstpid = arrPid.Length > 0 ? int.Parse(arrPid[0]) : 0,
+                        secondpid = arrPid.Length > 1 ? int.Parse(arrPid[1]) : 0,
+                        thirdpid = arrPid.Length > 2 ? int.Parse(arrPid[2]) : 0,
+                        forthpid = arrPid.Length > 3 ? int.Parse(arrPid[3]) : 0,
+                        fifthpid = arrPid.Length > 4 ? int.Parse(arrPid[4]) : 0;
                     var s_users = from u in db.sline_member
-                                  where (arrPid.Length > 0 && u.mid == int.Parse(arrPid[0]))|| (arrPid.Length > 1 && u.mid == int.Parse(arrPid[1]))
-                                  || (arrPid.Length > 2 && u.mid == int.Parse(arrPid[2]))|| (arrPid.Length > 3 && u.mid == int.Parse(arrPid[3]))
-                                  || (arrPid.Length > 4 && u.mid == int.Parse(arrPid[4]))
-                                  select u;
-
-                    //fxglUserInfo.SuperiorUsers = s_users.ToList<sline_member>();
+                                  join t in db.sline_member_third on u.mid equals t.mid into temp
+                                  from tt in temp.DefaultIfEmpty()
+                                  where (u.mid == firstpid || u.mid == secondpid || u.mid == thirdpid || u.mid == forthpid || u.mid == fifthpid)
+                                  select new UserInfoEntity
+                                  {
+                                      mid = u.mid,
+                                      checkmail = u.checkmail,
+                                      checkphone = u.checkphone,
+                                      province = u.province,
+                                      city = u.city,
+                                      cardid = u.cardid,
+                                      address = u.address,
+                                      postcode = u.postcode,
+                                      connectid = u.connectid,
+                                      email = u.email,
+                                      @from = u.@from,
+                                      jifen = u.jifen,
+                                      joinip = u.joinip,
+                                      jointime = u.jointime,
+                                      litpic = u.litpic,
+                                      loginip = u.loginip,
+                                      logintime = u.logintime,
+                                      mobile = u.mobile,
+                                      money = u.money,
+                                      mtype = u.mtype,
+                                      nickname = u.nickname,
+                                      openid = tt == null ? "" : tt.openid,
+                                      wxfrom = tt == null ? "" : tt.@from,
+                                      wxnickname = tt == null ? "" : tt.nickname,
+                                      pid = u.pid,
+                                      pwd = u.pwd,
+                                      rank = u.rank,
+                                      regtype = u.regtype,
+                                      remarks = u.remarks,
+                                      safeanswer = u.safeanswer,
+                                      safequestion = u.safequestion,
+                                      sex = u.sex,
+                                      truename = u.truename
+                                  };
+                    if (!string.IsNullOrEmpty(thirdfrom))
+                    {
+                        s_users = s_users.Where(u => u.wxfrom == thirdfrom);
+                    }
+                    fxglUserInfo.SuperiorUsers = s_users.ToList<UserInfoEntity>();
                 }
 
-                //var opens = from t in db.sline_member_third
-                //            where t.mid == mid && t.@from == "wx"
-                //            select t;
-                //userInfo.OpenUserInfo = opens.FirstOrDefault();
+                fxglUserInfo.JuniorUsers = GetUserInfoListByPid(mid.ToString(), thirdfrom);
 
                 return fxglUserInfo;
+            }
+        }
+
+        /// <summary>
+        /// 根据传入的mid，用pid条件查询
+        /// </summary>
+        /// <param name="mid_pid">!string.isNullOrEmtpy(pid)?(mid+","+pid):mid</param>
+        /// <param name="thirdfrom">第三方来源，微信wx，可空</param>
+        /// <returns></returns>
+        public List<UserInfoEntity> GetUserInfoListByPid(string mid_pid, string thirdfrom)
+        {
+            using (var db = new LTHWMysqlModel())
+            {
+                var users = from u in db.sline_member
+                            join t in db.sline_member_third on u.mid equals t.mid into temp
+                            from tt in temp.DefaultIfEmpty()
+                            where ("-" + u.pid).Contains("-" + mid_pid)
+                            select new UserInfoEntity
+                            {
+                                mid = u.mid,
+                                checkmail = u.checkmail,
+                                checkphone = u.checkphone,
+                                province = u.province,
+                                city = u.city,
+                                cardid = u.cardid,
+                                address = u.address,
+                                postcode = u.postcode,
+                                connectid = u.connectid,
+                                email = u.email,
+                                @from = u.@from,
+                                jifen = u.jifen,
+                                joinip = u.joinip,
+                                jointime = u.jointime,
+                                litpic = u.litpic,
+                                loginip = u.loginip,
+                                logintime = u.logintime,
+                                mobile = u.mobile,
+                                money = u.money,
+                                mtype = u.mtype,
+                                nickname = u.nickname,
+                                openid = tt == null ? "" : tt.openid,
+                                wxfrom = tt == null ? "" : tt.@from,
+                                wxnickname = tt == null ? "" : tt.nickname,
+                                pid = u.pid,
+                                pwd = u.pwd,
+                                rank = u.rank,
+                                regtype = u.regtype,
+                                remarks = u.remarks,
+                                safeanswer = u.safeanswer,
+                                safequestion = u.safequestion,
+                                sex = u.sex,
+                                truename = u.truename
+                            };
+
+                if (!string.IsNullOrEmpty(thirdfrom))
+                {
+                    users = users.Where(u => u.wxfrom == thirdfrom);
+                }
+                return users.ToList<UserInfoEntity>();
             }
         }
     }

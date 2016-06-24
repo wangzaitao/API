@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace LTHW.Model
 {
+
     /// <summary>
     /// 微信用户
     /// </summary>
+    [NotMapped]
     public class WXUserInfoEntity:sline_member_third
     {   
         /// <summary>

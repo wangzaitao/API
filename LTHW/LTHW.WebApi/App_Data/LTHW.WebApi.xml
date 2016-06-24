@@ -604,19 +604,29 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:LTHW.WebApi.Controllers.User.UserController.GetUserInfo(System.Int32,System.String)">
+        <member name="M:LTHW.WebApi.Controllers.User.UserController.GetUserInfo(System.Int32,System.String,System.String)">
             <summary>
             根据会员id或者微信openid获取会员信息
             </summary>
             <param name="mid">会员id-可选</param>
+            <param name="thirdfrom">第三方来源，微信wx，可空</param>
             <param name="openid">微信openid-可选</param>
             <returns></returns>
         </member>
-        <member name="M:LTHW.WebApi.Controllers.User.UserController.GetFenxiaoGuanlianUsers(System.Int32)">
+        <member name="M:LTHW.WebApi.Controllers.User.UserController.GetFenxiaoGuanlianUsers(System.Int32,System.String)">
             <summary>
             根据会员id获取分销关联上下级
             </summary>
             <param name="mid">会员id-可选</param>
+            <param name="thirdfrom">第三方来源，微信wx，可空</param>
+            <returns></returns>
+        </member>
+        <member name="M:LTHW.WebApi.Controllers.User.UserController.GetUserInfoListByPid(System.String,System.String)">
+            <summary>
+            根据pid查询
+            </summary>
+            <param name="mid_pid">一级id+","+二级id+","+三级id+........，只有一个时不要逗号</param>
+            <param name="thirdfrom">第三方来源，微信wx，可空</param>
             <returns></returns>
         </member>
         <member name="T:LTHW.WebApi.Controllers.WebSite.HotelController">

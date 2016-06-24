@@ -619,14 +619,19 @@
             用户信息
             </summary>
         </member>
-        <member name="P:LTHW.Model.UserInfoEntity.UserInfo">
+        <member name="P:LTHW.Model.UserInfoEntity.openid">
             <summary>
-            会员基本信息
+            微信openid
             </summary>
         </member>
-        <member name="P:LTHW.Model.UserInfoEntity.OpenUserInfo">
+        <member name="P:LTHW.Model.UserInfoEntity.wxfrom">
             <summary>
-            第三方用户-微信信息
+            来源
+            </summary>
+        </member>
+        <member name="P:LTHW.Model.UserInfoEntity.wxnickname">
+            <summary>
+            微信昵称
             </summary>
         </member>
         <member name="T:LTHW.Model.WXUserInfoEntity">
