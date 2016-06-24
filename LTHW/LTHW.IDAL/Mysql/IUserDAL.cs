@@ -10,5 +10,9 @@ namespace LTHW.IDAL.Mysql
     public interface IUserDAL : IBaseDAL<sline_member>
     {
         int AddWeixinUser(WXUserInfoEntity wxUserInfoEntity);
+
+        UserInfoEntity GetUserInfo(int mid, string openid);
+
+        FenxiaoGuanlianUsersEntity GetFenxiaoGuanlianUsers(int mid);
     }
 }

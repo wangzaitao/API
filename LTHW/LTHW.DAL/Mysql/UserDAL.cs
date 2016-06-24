@@ -48,7 +48,7 @@ namespace LTHW.DAL.Mysql
                     var member_third = new sline_member_third
                     {
                         mid = res,
-                        from = wxUserInfoEntity.from,
+                        from = string.IsNullOrEmpty(wxUserInfoEntity.from) ? "wx" : wxUserInfoEntity.from,//wx
                         nickname = wxUserInfoEntity.nickname,
                         openid = wxUserInfoEntity.openid
                     };
@@ -65,6 +65,78 @@ namespace LTHW.DAL.Mysql
                     LogHelper.Error(this, ex.Message);
                 }
                 return res;
+            }
+        }
+
+        /// <summary>
+        /// 根据会员id或者微信openid获取会员信息
+        /// </summary>
+        /// <param name="mid"></param>
+        /// <param name="openid"></param>
+        /// <returns></returns>
+        public UserInfoEntity GetUserInfo(int mid, string openid)
+        {
+            using (var db = new LTHWMysqlModel())
+            {
+                var userInfo = new UserInfoEntity();
+
+
+                if (mid > 0)
+                {
+                    var users = from u in db.sline_member where u.mid == mid select u;
+                    userInfo.UserInfo = users.FirstOrDefault();
+
+                    var opens = from t in db.sline_member_third
+                                where t.mid == mid && t.@from == "wx"
+                                select t;
+                    userInfo.OpenUserInfo = opens.FirstOrDefault();
+                }
+                else
+                {
+                    var opens = from t in db.sline_member_third
+                                where t.openid == openid
+                                select t;
+                    userInfo.OpenUserInfo = opens.FirstOrDefault();
+                    var users = from u in db.sline_member where u.mid == userInfo.OpenUserInfo.mid select u;
+                    userInfo.UserInfo = users.FirstOrDefault();
+                }
+
+                return userInfo;
+            }
+        }
+
+        /// <summary>
+        /// 根据会员id获取分销关联上下级
+        /// </summary>
+        /// <param name="mid"></param>
+        /// <returns></returns>
+        public FenxiaoGuanlianUsersEntity GetFenxiaoGuanlianUsers(int mid)
+        {
+            using (var db = new LTHWMysqlModel())
+            {
+                var fxglUserInfo = new FenxiaoGuanlianUsersEntity();
+
+                var users = from u in db.sline_member where u.mid == mid select u;
+                var user = users.FirstOrDefault();
+
+                if (user != null && !string.IsNullOrEmpty(user.pid))
+                {
+                    var arrPid = user.pid.Split(',');
+                    var s_users = from u in db.sline_member
+                                  where (arrPid.Length > 0 && u.mid == int.Parse(arrPid[0]))|| (arrPid.Length > 1 && u.mid == int.Parse(arrPid[1]))
+                                  || (arrPid.Length > 2 && u.mid == int.Parse(arrPid[2]))|| (arrPid.Length > 3 && u.mid == int.Parse(arrPid[3]))
+                                  || (arrPid.Length > 4 && u.mid == int.Parse(arrPid[4]))
+                                  select u;
+
+                    //fxglUserInfo.SuperiorUsers = s_users.ToList<sline_member>();
+                }
+
+                //var opens = from t in db.sline_member_third
+                //            where t.mid == mid && t.@from == "wx"
+                //            select t;
+                //userInfo.OpenUserInfo = opens.FirstOrDefault();
+
+                return fxglUserInfo;
             }
         }
     }

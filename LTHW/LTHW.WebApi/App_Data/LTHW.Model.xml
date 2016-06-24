@@ -599,9 +599,49 @@
             修改时间
             </summary>
         </member>
+        <member name="T:LTHW.Model.FenxiaoGuanlianUsersEntity">
+            <summary>
+            分销关联用户
+            </summary>
+        </member>
+        <member name="P:LTHW.Model.FenxiaoGuanlianUsersEntity.JuniorUsers">
+            <summary>
+            上级
+            </summary>
+        </member>
+        <member name="P:LTHW.Model.FenxiaoGuanlianUsersEntity.SuperiorUsers">
+            <summary>
+            下级
+            </summary>
+        </member>
+        <member name="T:LTHW.Model.UserInfoEntity">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:LTHW.Model.UserInfoEntity.UserInfo">
+            <summary>
+            会员基本信息
+            </summary>
+        </member>
+        <member name="P:LTHW.Model.UserInfoEntity.OpenUserInfo">
+            <summary>
+            第三方用户-微信信息
+            </summary>
+        </member>
+        <member name="T:LTHW.Model.WXUserInfoEntity">
+            <summary>
+            微信用户
+            </summary>
+        </member>
         <member name="P:LTHW.Model.WXUserInfoEntity.recommendopenid">
             <summary>
             推荐人微信openid
+            </summary>
+        </member>
+        <member name="P:LTHW.Model.WXUserInfoEntity.pwd">
+            <summary>
+            密码
             </summary>
         </member>
     </members>

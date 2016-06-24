@@ -47,5 +47,30 @@ namespace LTHW.WebApi.Controllers.User
             var list = _IUserBLL.GetAll();
             return new ResponseBody<List<sline_member>> { Result = list, Code = "", Message = "" };
         }
+
+        /// <summary>
+        /// 根据会员id或者微信openid获取会员信息
+        /// </summary>
+        /// <param name="mid">会员id-可选</param>
+        /// <param name="openid">微信openid-可选</param>
+        /// <returns></returns>
+        [Route("getuserinfo")]
+        public ResponseBody<UserInfoEntity> GetUserInfo(int mid, string openid)
+        {
+            var userInfo = _IUserBLL.GetUserInfo(mid, openid);
+            return new ResponseBody<UserInfoEntity> { Result = userInfo, Code = "", Message = "" };
+        }
+
+        /// <summary>
+        /// 根据会员id获取分销关联上下级
+        /// </summary>
+        /// <param name="mid">会员id-可选</param>
+        /// <returns></returns>
+        [Route("getfenxiaousers")]
+        public ResponseBody<FenxiaoGuanlianUsersEntity> GetFenxiaoGuanlianUsers(int mid)
+        {
+            var userInfo = _IUserBLL.GetFenxiaoGuanlianUsers(mid);
+            return new ResponseBody<FenxiaoGuanlianUsersEntity> { Result = userInfo, Code = "", Message = "" };
+        }
     }
 }

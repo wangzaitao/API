@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 namespace LTHW.Model
 {
     /// <summary>
-    /// 微信用户
+    /// 用户信息
     /// </summary>
-    public class WXUserInfoEntity:sline_member_third
-    {   
+    public class UserInfoEntity
+    {
         /// <summary>
-        /// 推荐人微信openid
+        /// 会员基本信息
         /// </summary>
-        public string recommendopenid { get; set; }
+        public sline_member UserInfo { get; set; }
 
         /// <summary>
-        /// 密码
+        /// 第三方用户-微信信息
         /// </summary>
-        public string pwd { get; set; }
+        public sline_member_third OpenUserInfo { get; set; }
     }
 }

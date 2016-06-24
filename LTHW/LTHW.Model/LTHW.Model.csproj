@@ -240,6 +240,8 @@
     <Compile Include="ViewModel\Common\TreeObject.cs" />
     <Compile Include="ViewModel\TripInfoEntity.cs" />
     <Compile Include="ViewModel\TripListEntity.cs" />
+    <Compile Include="ViewModel\User\FenxiaoGuanlianUsersEntity.cs" />
+    <Compile Include="ViewModel\User\UserInfoEntity.cs" />
     <Compile Include="ViewModel\Weixin\WXUserInfoEntity.cs" />
   </ItemGroup>
   <ItemGroup>
