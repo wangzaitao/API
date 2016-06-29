@@ -33,7 +33,7 @@ namespace LTHW.WebApi.Controllers.User
         [Route("postwxuser")]
         public ResponseBody<int> PostWXUser(WXUserInfoEntity wxUserInfoEntity)
         {
-            var id = _IUserBLL.AddWeixinUser(wxUserInfoEntity);
+            var id = _IUserBLL.EditWeixinUser(wxUserInfoEntity);
             return new ResponseBody<int> { Result = id, Code = "", Message = "" };
         }
 

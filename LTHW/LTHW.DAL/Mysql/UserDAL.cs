@@ -16,7 +16,7 @@ namespace LTHW.DAL.Mysql
         /// </summary>
         /// <param name="wxUserInfoEntity"></param>
         /// <returns>返回会员id</returns>
-        public int AddWeixinUser(WXUserInfoEntity wxUserInfoEntity)
+        public int EditWeixinUser(WXUserInfoEntity wxUserInfoEntity)
         {
             using (var db = new LTHWMysqlModel())
             {
@@ -24,36 +24,68 @@ namespace LTHW.DAL.Mysql
                 var tran = db.Database.BeginTransaction();  //开启事务
                 try
                 {
-                    var member = new sline_member
+                    var t_member = db.sline_member_third.FirstOrDefault(m => m.openid == wxUserInfoEntity.openid);
+                    if (t_member != null && t_member.openid == wxUserInfoEntity.openid)
                     {
-                        nickname = wxUserInfoEntity.nickname,
-                        pwd = wxUserInfoEntity.nickname,
-                    };
-                    if (!string.IsNullOrEmpty(wxUserInfoEntity.recommendopenid))
-                    {//有推荐人时，添加推荐人
-                        var pusers = from u in db.sline_member
-                                     from t in db.sline_member_third
-                                     where u.mid == t.mid && t.openid == wxUserInfoEntity.recommendopenid
-                                     select u;
-                        var puser = pusers.FirstOrDefault();
-                        if (puser != null)
+                        t_member.headimgurl = wxUserInfoEntity.headimgurl;
+                        t_member.status = wxUserInfoEntity.status;
+                        if (t_member.status == 1)
                         {
-                            member.pid = puser.mid.ToString() + (string.IsNullOrEmpty(puser.pid) ? "" : "," + puser.pid);
+                            t_member.subscribetime = wxUserInfoEntity.subscribetime;
                         }
+                        else
+                        {
+                            t_member.unsubscribetime = wxUserInfoEntity.unsubscribetime;
+                        }
+
+                        db.SaveChanges();
                     }
-
-                    db.sline_member.Add(member);
-                    res = db.SaveChanges();
-
-                    var member_third = new sline_member_third
+                    else
                     {
-                        mid = res,
-                        from = string.IsNullOrEmpty(wxUserInfoEntity.from) ? "wx" : wxUserInfoEntity.from,//wx
-                        nickname = wxUserInfoEntity.nickname,
-                        openid = wxUserInfoEntity.openid
-                    };
-                    db.sline_member.Add(member);
-                    db.SaveChanges();
+                        var member = new sline_member
+                        {
+                            nickname = wxUserInfoEntity.nickname,
+                            pwd = wxUserInfoEntity.nickname,
+                            connectid = wxUserInfoEntity.openid,
+                            from = string.IsNullOrEmpty(wxUserInfoEntity.from) ? "wx" : wxUserInfoEntity.from,//wx
+                        };
+                        if (!string.IsNullOrEmpty(wxUserInfoEntity.recommendopenid))
+                        {//有推荐人时，添加推荐人
+                            var pusers = from u in db.sline_member
+                                         from t in db.sline_member_third
+                                         where u.mid == t.mid && t.openid == wxUserInfoEntity.recommendopenid
+                                         select u;
+                            var puser = pusers.FirstOrDefault();
+                            if (puser != null)
+                            {
+                                member.pid = puser.mid.ToString() + (string.IsNullOrEmpty(puser.pid) ? "" : "," + puser.pid);
+                            }
+                        }
+
+                        db.sline_member.Add(member);
+                        res = db.SaveChanges();
+
+                        var member_third = new sline_member_third
+                        {
+                            mid = res,
+                            from = string.IsNullOrEmpty(wxUserInfoEntity.from) ? "wx" : wxUserInfoEntity.from,//wx
+                            nickname = wxUserInfoEntity.nickname,
+                            openid = wxUserInfoEntity.openid,
+                            headimgurl = wxUserInfoEntity.headimgurl,
+                            status = wxUserInfoEntity.status
+                        };
+                        if (member_third.status == 1)
+                        {
+                            member_third.subscribetime = wxUserInfoEntity.subscribetime;
+                        }
+                        else
+                        {
+                            member_third.unsubscribetime = wxUserInfoEntity.unsubscribetime;
+                        }
+
+                        db.sline_member_third.Add(member_third);
+                        db.SaveChanges();
+                    }
 
                     LogHelper.Info(this, "增加微信会员！");
                     tran.Commit();  //必须调用Commit()，不然数据不会保存
@@ -189,8 +221,7 @@ namespace LTHW.DAL.Mysql
             {
                 var fxglUserInfo = new FenxiaoGuanlianUsersEntity();
 
-                var users = from u in db.sline_member where u.mid == mid select u;
-                var user = users.FirstOrDefault();
+                var user = db.sline_member.FirstOrDefault(u => u.mid == mid);
 
                 if (user != null && !string.IsNullOrEmpty(user.pid))
                 {

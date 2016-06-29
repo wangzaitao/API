@@ -23,5 +23,14 @@ namespace LTHW.Model
 
         [StringLength(100)]
         public string nickname { get; set; }
+
+        [StringLength(500)]
+        public string headimgurl { get; set; }
+
+        public DateTime? subscribetime { get; set; }
+
+        public DateTime? unsubscribetime { get; set; }
+
+        public int? status { get; set; }
     }
 }

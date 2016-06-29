@@ -9,7 +9,7 @@ namespace LTHW.IBLL.Mysql
 {
     public interface IUserBLL: IBaseBLL<sline_member>
     {
-        int AddWeixinUser(WXUserInfoEntity wxUserInfoEntity);
+        int EditWeixinUser(WXUserInfoEntity wxUserInfoEntity);
 
         UserInfoEntity GetUserInfo(int mid, string thirdfrom, string openid);
         FenxiaoGuanlianUsersEntity GetFenxiaoGuanlianUsers(int mid, string thirdfrom);

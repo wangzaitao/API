@@ -279,6 +279,10 @@
       <Project>{504b2bb1-9637-49fa-a8a3-d2a74eb4bca9}</Project>
       <Name>LTHW.Utility</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LTHW.Weixin.Framework\LTHW.Weixin.Framework.csproj">
+      <Project>{84705e12-87ab-4e66-ad58-e4d0d359b6b4}</Project>
+      <Name>LTHW.Weixin.Framework</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

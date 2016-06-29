@@ -19,9 +19,9 @@ namespace LTHW.BLL.Mysql
             _IUserDAL = new UserDAL();
         }
 
-        public int AddWeixinUser(WXUserInfoEntity wxUserInfoEntity)
+        public int EditWeixinUser(WXUserInfoEntity wxUserInfoEntity)
         {
-            return _IUserDAL.AddWeixinUser(wxUserInfoEntity);
+            return _IUserDAL.EditWeixinUser(wxUserInfoEntity);
         }
 
         public UserInfoEntity GetUserInfo(int mid, string thirdfrom, string openid)

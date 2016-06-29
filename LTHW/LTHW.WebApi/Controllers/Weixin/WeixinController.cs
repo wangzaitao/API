@@ -1,11 +1,17 @@
-﻿using System;
+﻿using LTHW.IBLL.Mysql;
+using LTHW.Model;
+using LTHW.Utility;
+using LTHW.Weixin.Framework;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Web.Http;
 using System.Web.Security;
+using System.Xml;
 
 namespace LTHW.WebApi.Controllers.Weixin
 {
@@ -18,6 +24,17 @@ namespace LTHW.WebApi.Controllers.Weixin
         ///声明Token
         private string token = ConfigurationManager.AppSettings["WeixinToken"];
 
+        readonly IUserBLL _IUserBLL;
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="iUserBLL"></param>
+        public WeixinController(IUserBLL iUserBLL)
+        {
+            _IUserBLL = iUserBLL;
+        }
+
         /// <summary>
         /// 接入
         /// </summary>
@@ -26,36 +43,148 @@ namespace LTHW.WebApi.Controllers.Weixin
         /// <param name="nonce"></param>
         /// <param name="echostr"></param>
         /// <returns></returns>
-        public string get(string signature,string timestamp,string nonce,string echostr)
+        public HttpResponseMessage get(string signature, string timestamp, string nonce, string echostr)
         {
-            if (CheckSignature(signature, timestamp, nonce)) {
-                return echostr;
+            if (SignatureHandler.CheckSignature(token, signature, timestamp, nonce))
+            {
+                return ToHttpMsgForWeChat(echostr);
             }
-            return "";// _IHotelBLL.GetAll();
+            return ToHttpMsgForWeChat("验证失败");
         }
 
         /// <summary>
-        /// 验证微信签名
+        /// 微信post
         /// </summary>
-        /// * 将token、timestamp、nonce三个参数进行字典序排序
-        /// * 将三个参数字符串拼接成一个字符串进行sha1加密
-        /// * 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信。
+        /// <param name="signature"></param>
+        /// <param name="timestamp"></param>
+        /// <param name="nonce"></param>
+        /// <param name="echostr"></param>
         /// <returns></returns>
-        private bool CheckSignature(string signature, string timestamp, string nonce)
+        public string post(string signature, string timestamp, string nonce, string echostr)
         {
-            string[] ArrTmp = { token, timestamp, nonce };
-            Array.Sort(ArrTmp); //字典排序
-            string tmpStr = string.Join("", ArrTmp);
-            tmpStr = FormsAuthentication.HashPasswordForStoringInConfigFile(tmpStr, "SHA1");
-            tmpStr = tmpStr.ToLower();
-            if (tmpStr == signature)
+            if (!String.IsNullOrEmpty(echostr))
+                return echostr;
+            var retXML = string.Empty;
+            var xmlDoc = new XmlDocument();
+            try
             {
-                return true;
+                var postStr = Request.Content.ReadAsStreamAsync().Result;
+                LogHelper.Info(this, "微信参数：" + postStr);
+                xmlDoc.Load(postStr);
+
+                var msgType = ReadElementFromWXxml(xmlDoc, "MsgType");
+                var toUserName = ReadElementFromWXxml(xmlDoc, "ToUserName");
+                var fromUserName = ReadElementFromWXxml(xmlDoc, "FromUserName");
+
+                switch (msgType.ToLower())
+                {
+                    case "event": //事件
+                        //菜单KEY
+                        var menuKey = ReadElementFromWXxml(xmlDoc, "EventKey");
+
+                        var eventType = ReadElementFromWXxml(xmlDoc, "Event");
+                        switch (eventType.ToLower())
+                        {
+                            case "subscribe":
+                                //存入数据库
+                                var weixinModel = new WXUserInfoEntity
+                                {
+                                    from = "wx",
+                                    headimgurl = "",
+                                    status = 1,
+                                    nickname = "",
+                                    openid = fromUserName,
+                                    pwd = "",
+                                    recommendopenid = "",
+                                    subscribetime = DateTime.Now
+                                };
+                                _IUserBLL.EditWeixinUser(weixinModel);
+                                //推送消息
+                                retXML = ReturnTextXML(toUserName, fromUserName, "欢迎关注公众号！");
+                                break;
+                            case "unsubscribe":
+                                var un_weixinModel = new WXUserInfoEntity
+                                {
+                                    from = "wx",
+                                    headimgurl = "",
+                                    status = 0,
+                                    nickname = "",
+                                    openid = fromUserName,
+                                    pwd = "",
+                                    recommendopenid = "",
+                                    unsubscribetime = DateTime.Now
+                                };
+                                _IUserBLL.EditWeixinUser(un_weixinModel);
+                                //修改数据库
+                                break;
+                            case "click":
+                                //修改数据库
+                                break;
+                            case "location":
+                                //修改数据库
+                                var latitude = xmlDoc.SelectSingleNode("/xml/Latitude");
+                                var longitude = xmlDoc.SelectSingleNode("/xml/Longitude");
+                                //var baiduLatLng = BaiDuGeoCoder.GetAddressByLocation(lat, lng);
+                                //if (baiduLatLng != null && baiduLatLng.addressComponent != null)
+                                //{
+                                //    Session["currentCity"] = baiduLatLng.addressComponent.city;
+                                //}
+                                break;
+                        }
+                        break;
+                }
+
+                return retXML;
             }
-            else
+            catch (Exception ex)
             {
-                return false;
+                LogHelper.Error(this, "微信api出现错误！" + ex.Message);
+                return nonce;
             }
+
+        }
+
+        private string ReadElementFromWXxml(XmlDocument xmlDoc, string elementName)
+        {
+            var res = string.Empty;
+
+            var nodeList = xmlDoc.GetElementsByTagName(elementName);
+            for (int i = 0; i < nodeList.Count; i++)
+            {
+                if (nodeList[i].ChildNodes[0].NodeType == XmlNodeType.CDATA)
+                    res = nodeList[i].ChildNodes[0].Value;
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// 返回文本信息
+        /// </summary>
+        /// <param name="fromUserName">公众号id</param>
+        /// <param name="toUserName">用户id</param>
+        /// <param name="message">返回消息</param>
+        /// <returns></returns>
+        private string ReturnTextXML(string fromUserName, string toUserName, string message)
+        {
+            var sbRetXML = new StringBuilder();
+            sbRetXML.Append("<xml>")
+                .AppendFormat("<ToUserName><![CDATA[{0}]]></ToUserName>", toUserName)
+                .AppendFormat("<FromUserName><![CDATA[{0}]]></FromUserName>", fromUserName)
+                .AppendFormat("<CreateTime>{0}</CreateTime>", DateTime.Now.ToInt())
+                .Append("<MsgType><![CDATA[text]]></MsgType>")
+                .AppendFormat("<Content><![CDATA[{0}]]></Content>", message)
+                .Append("</xml>");
+
+            return sbRetXML.ToString();
+        }
+
+        private HttpResponseMessage ToHttpMsgForWeChat(string strMsg)
+        {
+            HttpResponseMessage result = new HttpResponseMessage
+            {
+                Content = new StringContent(strMsg, Encoding.GetEncoding("UTF-8"), "application/x-www-form-urlencoded")
+            };
+            return result;
         }
     }
 }

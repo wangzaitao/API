@@ -759,6 +759,12 @@
         <member name="F:LTHW.WebApi.Controllers.Weixin.WeixinController.token">
             声明Token
         </member>
+        <member name="M:LTHW.WebApi.Controllers.Weixin.WeixinController.#ctor(LTHW.IBLL.Mysql.IUserBLL)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="iUserBLL"></param>
+        </member>
         <member name="M:LTHW.WebApi.Controllers.Weixin.WeixinController.get(System.String,System.String,System.String,System.String)">
             <summary>
             接入
@@ -769,13 +775,23 @@
             <param name="echostr"></param>
             <returns></returns>
         </member>
-        <member name="M:LTHW.WebApi.Controllers.Weixin.WeixinController.CheckSignature(System.String,System.String,System.String)">
+        <member name="M:LTHW.WebApi.Controllers.Weixin.WeixinController.post(System.String,System.String,System.String,System.String)">
             <summary>
-            验证微信签名
+            微信post
             </summary>
-            * 将token、timestamp、nonce三个参数进行字典序排序
-            * 将三个参数字符串拼接成一个字符串进行sha1加密
-            * 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信。
+            <param name="signature"></param>
+            <param name="timestamp"></param>
+            <param name="nonce"></param>
+            <param name="echostr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LTHW.WebApi.Controllers.Weixin.WeixinController.ReturnTextXML(System.String,System.String,System.String)">
+            <summary>
+            返回文本信息
+            </summary>
+            <param name="fromUserName">公众号id</param>
+            <param name="toUserName">用户id</param>
+            <param name="message">返回消息</param>
             <returns></returns>
         </member>
     </members>

@@ -9,7 +9,7 @@ namespace LTHW.IDAL.Mysql
 {
     public interface IUserDAL : IBaseDAL<sline_member>
     {
-        int AddWeixinUser(WXUserInfoEntity wxUserInfoEntity);
+        int EditWeixinUser(WXUserInfoEntity wxUserInfoEntity);
 
         UserInfoEntity GetUserInfo(int mid, string thirdfrom, string openid);
 
