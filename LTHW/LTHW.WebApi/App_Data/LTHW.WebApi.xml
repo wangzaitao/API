@@ -775,7 +775,13 @@
             <param name="echostr"></param>
             <returns></returns>
         </member>
-        <member name="M:LTHW.WebApi.Controllers.Weixin.WeixinController.post(System.String,System.String,System.String,System.String)">
+        <member name="M:LTHW.WebApi.Controllers.Weixin.WeixinController.gettest">
+            <summary>
+            测试用
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LTHW.WebApi.Controllers.Weixin.WeixinController.post">
             <summary>
             微信post
             </summary>

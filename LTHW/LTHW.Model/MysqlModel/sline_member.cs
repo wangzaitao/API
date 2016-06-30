@@ -23,67 +23,57 @@ namespace LTHW.Model
         public string nickname { get; set; }
 
         [Column(TypeName = "char")]
-        [Required]
         [StringLength(32)]
         public string pwd { get; set; }
 
-        [Required]
         [StringLength(36)]
         public string truename { get; set; }
 
         [Column(TypeName = "enum")]
-        [Required]
         [StringLength(65532)]
         public string sex { get; set; }
 
         [Column(TypeName = "usmallint")]
-        public int rank { get; set; }
+        public int? rank { get; set; }
 
         [Column(TypeName = "umediumint")]
-        public int money { get; set; }
+        public int? money { get; set; }
 
         [Column(TypeName = "char")]
-        [Required]
         [StringLength(50)]
         public string email { get; set; }
 
-        [Required]
         [StringLength(15)]
         public string mobile { get; set; }
 
         [Column(TypeName = "umediumint")]
-        public int jifen { get; set; }
+        public int? jifen { get; set; }
 
-        [Required]
         [StringLength(255)]
         public string litpic { get; set; }
 
-        [Required]
         [StringLength(255)]
         public string safequestion { get; set; }
 
         [Column(TypeName = "char")]
-        [Required]
         [StringLength(30)]
         public string safeanswer { get; set; }
 
         [Column(TypeName = "uint")]
-        public long jointime { get; set; }
+        public long? jointime { get; set; }
 
         [Column(TypeName = "char")]
-        [Required]
         [StringLength(16)]
         public string joinip { get; set; }
 
         [Column(TypeName = "uint")]
-        public long logintime { get; set; }
+        public long? logintime { get; set; }
 
         [Column(TypeName = "char")]
-        [Required]
         [StringLength(16)]
         public string loginip { get; set; }
 
-        public short checkmail { get; set; }
+        public short? checkmail { get; set; }
 
         [Column(TypeName = "uint")]
         public long? checkphone { get; set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LTHW.Utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -23,12 +24,13 @@ namespace LTHW.Weixin.Framework
         /// <param name="timestamp">时间戳</param>
         /// <param name="nonce">随机数</param>
         /// <returns></returns>
-        public static bool CheckSignature(string token,string signature, string timestamp, string nonce)
+        public static bool CheckSignature(string token, string signature, string timestamp, string nonce)
         {
             var ArrTmp = new string[] { token, timestamp, nonce };
-            Array.Sort(ArrTmp); 
-            var tmpStr = string.Join("", ArrTmp);
-            return Sha1Encrypt(tmpStr) == signature;
+            var tmpStr = string.Join("", ArrTmp.OrderBy(m => m));
+            var tmpSign = Sha1Encrypt(tmpStr);
+            LogHelper.Info(typeof(SignatureHandler), string.Format("tmpSign:{0},signature:{1}", tmpSign, signature));
+            return tmpSign == signature;
         }
 
         #endregion

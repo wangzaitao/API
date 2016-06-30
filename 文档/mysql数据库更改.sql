@@ -1,4 +1,4 @@
-alter table sline_member add column `pid` varchar(255) NOT NULL DEFAULT '0' after `mid`;
+alter table sline_member add column `pid` varchar(255) NULL DEFAULT '' after `mid`;
 
 CREATE TABLE `sline_member_address`(
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -65,6 +65,19 @@ alter table sline_member_third add column `unsubscribetime` datetime DEFAULT NUL
 alter table sline_member_third add column `subscribetime` datetime DEFAULT NULL COMMENT '关注时间' after `nickname`;
 alter table sline_member_third add column `headimgurl` varchar(500) DEFAULT NULL COMMENT '头像地址' after `nickname`;
 
-alter table sline_region_province add column `code` varchar(20) DEFAULT NULL COMMENT '编号' after `id`;
-alter table sline_region_city add column `code` varchar(20) DEFAULT NULL COMMENT '编号' after `id`;
-alter table sline_region_county add column `code` varchar(20) DEFAULT NULL COMMENT '编号' after `id`;
+alter table sline_member modify column `pwd` char(32) NULL;
+alter table sline_member modify column `truename` varchar(36) NULL;
+alter table sline_member modify column `sex` enum('男','女','保密') NULL;
+alter table sline_member modify column `rank` smallint(5) unsigned NULL;
+alter table sline_member modify column `money` mediumint(8) unsigned NULL;
+alter table sline_member modify column `email` char(50) NULL;
+alter table sline_member modify column `mobile` varchar(15) NULL;
+alter table sline_member modify column `jifen` mediumint(8) NULL;
+alter table sline_member modify column `litpic` varchar(255) NULL;
+alter table sline_member modify column `safequestion` varchar(255) NULL;
+alter table sline_member modify column `safeanswer` char(30) NULL;
+alter table sline_member modify column `jointime` int(10) unsigned NULL;
+alter table sline_member modify column `joinip` char(16) NULL;
+alter table sline_member modify column `logintime` int(10) unsigned NULL;
+alter table sline_member modify column `loginip` char(16) NULL;
+alter table sline_member modify column `checkmail` smallint(6) NULL;

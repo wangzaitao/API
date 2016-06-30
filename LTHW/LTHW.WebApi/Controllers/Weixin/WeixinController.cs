@@ -45,11 +45,41 @@ namespace LTHW.WebApi.Controllers.Weixin
         /// <returns></returns>
         public HttpResponseMessage get(string signature, string timestamp, string nonce, string echostr)
         {
-            if (SignatureHandler.CheckSignature(token, signature, timestamp, nonce))
+            try
             {
-                return ToHttpMsgForWeChat(echostr);
+                LogHelper.Info(this, string.Format("signature:{0},timestamp:{1},nonce:{2},echostr:{3},token:{4}", signature, timestamp, nonce, echostr, token));
+                if (SignatureHandler.CheckSignature(token, signature, timestamp, nonce))
+                {
+                    return ToHttpMsgForWeChat(echostr);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(this, "验证微信接口代码错误：" + ex.Message + ex.InnerException.Message);
             }
             return ToHttpMsgForWeChat("验证失败");
+        }
+
+        /// <summary>
+        /// 测试用
+        /// </summary>
+        /// <returns></returns>
+        [Route("gettest")]
+        public int gettest()
+        {
+            var wxUser = UserHandler.GetUserInfoByopenID("oZ0NuwPJqqT77z68HmkVXjc1g5ns");
+            var weixinModel = new WXUserInfoEntity
+            {
+                from = "wx",
+                headimgurl = wxUser.headimgurl,
+                status = 1,
+                nickname = wxUser.nickname,
+                openid = "oZ0NuwPJqqT77z68HmkVXjc1g5ns",
+                pwd = "",
+                recommendopenid = "",
+                subscribetime = DateTime.Now
+            };
+            return _IUserBLL.EditWeixinUser(weixinModel);
         }
 
         /// <summary>
@@ -60,17 +90,15 @@ namespace LTHW.WebApi.Controllers.Weixin
         /// <param name="nonce"></param>
         /// <param name="echostr"></param>
         /// <returns></returns>
-        public string post(string signature, string timestamp, string nonce, string echostr)
+        public string post()
         {
-            if (!String.IsNullOrEmpty(echostr))
-                return echostr;
             var retXML = string.Empty;
             var xmlDoc = new XmlDocument();
             try
             {
-                var postStr = Request.Content.ReadAsStreamAsync().Result;
-                LogHelper.Info(this, "微信参数：" + postStr);
+                var postStr = Request.Content.ReadAsStreamAsync().Result;                
                 xmlDoc.Load(postStr);
+                LogHelper.Info(this, "微信参数：" + xmlDoc.OuterXml);
 
                 var msgType = ReadElementFromWXxml(xmlDoc, "MsgType");
                 var toUserName = ReadElementFromWXxml(xmlDoc, "ToUserName");
@@ -139,22 +167,20 @@ namespace LTHW.WebApi.Controllers.Weixin
             catch (Exception ex)
             {
                 LogHelper.Error(this, "微信api出现错误！" + ex.Message);
-                return nonce;
+                return "";
             }
 
         }
 
         private string ReadElementFromWXxml(XmlDocument xmlDoc, string elementName)
         {
-            var res = string.Empty;
-
-            var nodeList = xmlDoc.GetElementsByTagName(elementName);
-            for (int i = 0; i < nodeList.Count; i++)
-            {
-                if (nodeList[i].ChildNodes[0].NodeType == XmlNodeType.CDATA)
-                    res = nodeList[i].ChildNodes[0].Value;
-            }
-            return res;
+            var node = xmlDoc.SelectSingleNode("xml/" + elementName);
+            //for (int i = 0; i < nodeList.Count; i++)
+            //{
+            //    if (nodeList[i].ChildNodes[0].NodeType == XmlNodeType.CDATA)
+            //        res = nodeList[i].ChildNodes[0].Value;
+            //}
+            return node.InnerText;
         }
 
         /// <summary>

@@ -26,30 +26,36 @@ namespace LTHW.Weixin.Framework
                 var jsonText = HttpHandler.GetUrl(url);
                 LogHelper.Info(typeof(UserHandler), "获取用户基本信息,userinfo:" + jsonText);
 
-                var decodedJSON = JObject.Parse(jsonText);
-                if (decodedJSON["errcode"] != null)
+                var jsonUser = JObject.Parse(jsonText);
+                if (jsonUser["errcode"] != null)
                 {
-                    LogHelper.Info(typeof(UserHandler), "获取Token发生返回错误:" + decodedJSON["errmsg"].ToString());
+                    LogHelper.Info(typeof(UserHandler), "获取Token发生返回错误:" + jsonUser["errmsg"].ToString());
                 }
                 else
                 {
                     userInfo = new WXUserInfo
                     {
-                        subscribe = decodedJSON.Value<int>("subscribe"),
-                        nickname = decodedJSON.Value<string>("nickname"),
-                        headimgurl = decodedJSON.Value<string>("headimgurl"),
-                        openid = decodedJSON.Value<string>("openid"),
-                        city = decodedJSON.Value<string>("city"),
-                        country = decodedJSON.Value<string>("country"),
-                        province = decodedJSON.Value<string>("province"),
-                        language = decodedJSON.Value<string>("language"),
-                        unionid = decodedJSON.Value<string>("unionid"),
-                        remark = decodedJSON.Value<string>("remark"),
-                        sex = decodedJSON.Value<int>("sex"),
-                        groupid = decodedJSON.Value<int>("groupid"),
-                        tagid_list = decodedJSON.Value<int[]>("tagid_list"),
-                        subscribe_time = decodedJSON.Value<int>("subscribe_time").ToDateTime(),
+                        subscribe = jsonUser.Value<int>("subscribe"),
+                        nickname = jsonUser.Value<string>("nickname"),
+                        headimgurl = jsonUser.Value<string>("headimgurl"),
+                        openid = jsonUser.Value<string>("openid"),
+                        city = jsonUser.Value<string>("city"),
+                        country = jsonUser.Value<string>("country"),
+                        province = jsonUser.Value<string>("province"),
+                        language = jsonUser.Value<string>("language"),
+                        unionid = jsonUser.Value<string>("unionid"),
+                        remark = jsonUser.Value<string>("remark"),
+                        sex = jsonUser.Value<int>("sex"),
+                        groupid = jsonUser.Value<int>("groupid"),
+                        tagid_list = null,
+                        subscribe_time = jsonUser.Value<int>("subscribe_time").ToDateTime(),
                     };
+                    var tagidJArray = JArray.Parse(jsonUser["tagid_list"].ToString());
+                    userInfo.tagid_list = new int[tagidJArray.Count];
+                    for (var i = 0; i < tagidJArray.Count; i++)
+                    {
+                        userInfo.tagid_list[i] = (int)tagidJArray[i];
+                    }
                 }
             }
             catch (Exception ex)

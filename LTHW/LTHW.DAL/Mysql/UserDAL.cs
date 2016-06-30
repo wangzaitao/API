@@ -26,17 +26,17 @@ namespace LTHW.DAL.Mysql
                 {
                     var t_member = db.sline_member_third.FirstOrDefault(m => m.openid == wxUserInfoEntity.openid);
                     if (t_member != null && t_member.openid == wxUserInfoEntity.openid)
-                    {
+                    {//已添加到数据库
                         t_member.headimgurl = wxUserInfoEntity.headimgurl;
                         t_member.status = wxUserInfoEntity.status;
                         if (t_member.status == 1)
-                        {
+                        {//关注时修改
                             t_member.nickname = wxUserInfoEntity.nickname;
                             t_member.headimgurl = wxUserInfoEntity.headimgurl;
                             t_member.subscribetime = wxUserInfoEntity.subscribetime;
                         }
                         else
-                        {
+                        {//取消关注时修改
                             t_member.unsubscribetime = wxUserInfoEntity.unsubscribetime;
                         }
 
@@ -44,10 +44,15 @@ namespace LTHW.DAL.Mysql
                     }
                     else
                     {
+                        if (wxUserInfoEntity.status == 0)
+                        {//如果没加入到数据库，并且是取消关注时，直接返回
+                            return 1;
+                        }
+
                         var member = new sline_member
                         {
                             nickname = wxUserInfoEntity.nickname,
-                            pwd = wxUserInfoEntity.nickname,
+                            pwd = wxUserInfoEntity.pwd,
                             connectid = wxUserInfoEntity.openid,
                             from = string.IsNullOrEmpty(wxUserInfoEntity.from) ? "wx" : wxUserInfoEntity.from,//wx
                         };
@@ -65,7 +70,8 @@ namespace LTHW.DAL.Mysql
                         }
 
                         db.sline_member.Add(member);
-                        res = db.SaveChanges();
+                        db.SaveChanges();
+                        res = member.mid;
 
                         var member_third = new sline_member_third
                         {
@@ -74,16 +80,9 @@ namespace LTHW.DAL.Mysql
                             nickname = wxUserInfoEntity.nickname,
                             openid = wxUserInfoEntity.openid,
                             headimgurl = wxUserInfoEntity.headimgurl,
-                            status = wxUserInfoEntity.status
+                            status = wxUserInfoEntity.status,
+                            subscribetime = wxUserInfoEntity.subscribetime
                         };
-                        if (member_third.status == 1)
-                        {
-                            member_third.subscribetime = wxUserInfoEntity.subscribetime;
-                        }
-                        else
-                        {
-                            member_third.unsubscribetime = wxUserInfoEntity.unsubscribetime;
-                        }
 
                         db.sline_member_third.Add(member_third);
                         db.SaveChanges();
