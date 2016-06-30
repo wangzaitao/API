@@ -1,4 +1,6 @@
-﻿namespace LTHW.Utility
+﻿using System;
+
+namespace LTHW.Utility
 {
     /// <summary>
     /// 字符串扩展类
@@ -12,6 +14,22 @@
         public static string ToWebPath(this string path)
         {
             return path.Replace("\\", "/");
+        }
+
+        /// <summary>
+        /// 转成int型
+        /// </summary>
+        /// <returns></returns>
+        public static int ToInt(this string value)
+        {
+            try
+            {
+                return Convert.ToInt32(value);
+            }
+            catch
+            {
+                return 0;
+            }
         }
     }
 }

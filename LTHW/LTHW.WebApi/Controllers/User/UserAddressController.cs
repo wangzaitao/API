@@ -30,9 +30,9 @@ namespace LTHW.WebApi.Controllers.User
         /// </summary>
         /// <returns></returns>
         [Route("get")]
-        public ResponseBody<List<sline_member_address>> Get()
+        public ResponseBody<List<sline_member_address>> Get(int mid)
         {
-            var list = _IUserAddress.GetAll();
+            var list = _IUserAddress.GetByWhere(a => a.mid == mid);
             return new ResponseBody<List<sline_member_address>> { Result = list, Code = "", Message = "" };
         }
 

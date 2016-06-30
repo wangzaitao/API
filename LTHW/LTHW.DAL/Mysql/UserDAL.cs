@@ -31,6 +31,8 @@ namespace LTHW.DAL.Mysql
                         t_member.status = wxUserInfoEntity.status;
                         if (t_member.status == 1)
                         {
+                            t_member.nickname = wxUserInfoEntity.nickname;
+                            t_member.headimgurl = wxUserInfoEntity.headimgurl;
                             t_member.subscribetime = wxUserInfoEntity.subscribetime;
                         }
                         else

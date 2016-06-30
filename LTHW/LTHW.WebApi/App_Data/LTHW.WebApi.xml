@@ -561,7 +561,7 @@
             </summary>
             <param name="iUserAddressBLL"></param>
         </member>
-        <member name="M:LTHW.WebApi.Controllers.User.UserAddressController.Get">
+        <member name="M:LTHW.WebApi.Controllers.User.UserAddressController.Get(System.Int32)">
             <summary>
             查询
             </summary>

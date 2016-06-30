@@ -81,18 +81,18 @@ namespace LTHW.WebApi.Controllers.Weixin
                     case "event": //事件
                         //菜单KEY
                         var menuKey = ReadElementFromWXxml(xmlDoc, "EventKey");
-
                         var eventType = ReadElementFromWXxml(xmlDoc, "Event");
                         switch (eventType.ToLower())
                         {
                             case "subscribe":
                                 //存入数据库
+                                var wxUser = UserHandler.GetUserInfoByopenID(fromUserName);
                                 var weixinModel = new WXUserInfoEntity
                                 {
                                     from = "wx",
-                                    headimgurl = "",
+                                    headimgurl = wxUser.headimgurl,
                                     status = 1,
-                                    nickname = "",
+                                    nickname = wxUser.nickname,
                                     openid = fromUserName,
                                     pwd = "",
                                     recommendopenid = "",

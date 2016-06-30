@@ -58,3 +58,13 @@ CREATE TABLE `sline_region_county`(
   `remark` longtext COMMENT '备注说明',
   PRIMARY KEY (`id`)
 );
+
+
+alter table sline_member_third add column `status` int(3) DEFAULT '1' COMMENT '账号状态' after `nickname`;
+alter table sline_member_third add column `unsubscribetime` datetime DEFAULT NULL COMMENT '取消时间' after `nickname`;
+alter table sline_member_third add column `subscribetime` datetime DEFAULT NULL COMMENT '关注时间' after `nickname`;
+alter table sline_member_third add column `headimgurl` varchar(500) DEFAULT NULL COMMENT '头像地址' after `nickname`;
+
+alter table sline_region_province add column `code` varchar(20) DEFAULT NULL COMMENT '编号' after `id`;
+alter table sline_region_city add column `code` varchar(20) DEFAULT NULL COMMENT '编号' after `id`;
+alter table sline_region_county add column `code` varchar(20) DEFAULT NULL COMMENT '编号' after `id`;
