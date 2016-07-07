@@ -20,6 +20,7 @@ namespace LTHW.DAL.Mysql
         {
             using (var db = new LTHWMysqlModel())
             {
+                LogHelper.Info(this, "编辑微信会员！");
                 int res = 0;
                 var tran = db.Database.BeginTransaction();  //开启事务
                 try
@@ -34,10 +35,14 @@ namespace LTHW.DAL.Mysql
                             t_member.nickname = wxUserInfoEntity.nickname;
                             t_member.headimgurl = wxUserInfoEntity.headimgurl;
                             t_member.subscribetime = wxUserInfoEntity.subscribetime;
+
+                            LogHelper.Info(this, "微信会员重新关注！");
                         }
                         else
                         {//取消关注时修改
                             t_member.unsubscribetime = wxUserInfoEntity.unsubscribetime;
+
+                            LogHelper.Info(this, "微信会员取消关注！");
                         }
 
                         db.SaveChanges();
@@ -86,9 +91,10 @@ namespace LTHW.DAL.Mysql
 
                         db.sline_member_third.Add(member_third);
                         db.SaveChanges();
+
+                        LogHelper.Info(this, "增加微信会员！");
                     }
 
-                    LogHelper.Info(this, "增加微信会员！");
                     tran.Commit();  //必须调用Commit()，不然数据不会保存
                 }
                 catch (Exception ex)
@@ -97,6 +103,7 @@ namespace LTHW.DAL.Mysql
                     res = 0;
                     LogHelper.Error(this, ex.Message);
                 }
+                LogHelper.Info(this, "结束编辑微信会员！");
                 return res;
             }
         }
