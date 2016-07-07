@@ -29,7 +29,7 @@ namespace LTHW.Weixin.Framework
                 var jsonUser = JObject.Parse(jsonText);
                 if (jsonUser["errcode"] != null)
                 {
-                    LogHelper.Info(typeof(UserHandler), "获取Token发生返回错误:" + jsonUser["errmsg"].ToString());
+                    LogHelper.Info(typeof(UserHandler), "获取用户基本信息发生返回错误:" + jsonUser["errmsg"].ToString());
                 }
                 else
                 {

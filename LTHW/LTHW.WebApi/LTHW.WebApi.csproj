@@ -203,6 +203,7 @@
     <Compile Include="Controllers\WebSite\MuDiDiController.cs" />
     <Compile Include="Controllers\WebSite\SightController.cs" />
     <Compile Include="Controllers\WebSite\TripsController.cs" />
+    <Compile Include="Controllers\Weixin\AuthUserController.cs" />
     <Compile Include="Controllers\Weixin\WeixinController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

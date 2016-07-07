@@ -751,6 +751,20 @@
             <param name="id">线路id</param>
             <returns>线路详细信息</returns>
         </member>
+        <member name="T:LTHW.WebApi.Controllers.Weixin.AuthUserController">
+            <summary>
+            授权用户
+            </summary>
+        </member>
+        <member name="M:LTHW.WebApi.Controllers.Weixin.AuthUserController.getUserInfo(System.String,System.String,System.String)">
+            <summary>
+            获取网页授权用户基本信息
+            </summary>
+            <param name="appid"></param>
+            <param name="appsecret"></param>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
         <member name="T:LTHW.WebApi.Controllers.Weixin.WeixinController">
             <summary>
             微信接口

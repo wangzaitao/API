@@ -11,7 +11,7 @@ namespace LTHW.Weixin.Framework
     public class AccessTokenHandler
     {
         /// <summary>
-        /// 获取Token
+        /// 获取基础Access_Token
         /// </summary>
         /// <returns></returns>
         private static string GetAccessToken()
@@ -20,20 +20,20 @@ namespace LTHW.Weixin.Framework
             try
             {
                 var jsonText = HttpHandler.GetUrl(string.Format(WXUrlConfig.AccessToken_Url, BaseConfigurationManager.GetAppSettingsKeyValue("AppID"), BaseConfigurationManager.GetAppSettingsKeyValue("AppSecret")));
-                LogHelper.Info(typeof(AccessTokenHandler), "获取Token:" + jsonText);
-                var decodedJSON = JObject.Parse(jsonText);
-                if (decodedJSON["errcode"] != null)
+                LogHelper.Info(typeof(AccessTokenHandler), "获取基础Access_Token:" + jsonText);
+                var jsonObject = JObject.Parse(jsonText);
+                if (jsonObject["errcode"] != null)
                 {
-                    LogHelper.Info(typeof(AccessTokenHandler), "获取Token发生返回错误:" + decodedJSON["errmsg"].ToString());
+                    LogHelper.Info(typeof(AccessTokenHandler), "获取基础Access_Token发生返回错误:" + jsonObject["errmsg"].ToString());
                 }
                 else
                 {
-                    accessToken = decodedJSON["access_token"].ToString();
+                    accessToken = jsonObject["access_token"].ToString();
                 }
             }
             catch (Exception ex)
             {
-                LogHelper.Error(typeof(AccessTokenHandler), "获取Token发生代码错误！" + ex.Message);
+                LogHelper.Error(typeof(AccessTokenHandler), "获取基础Access_Token发生代码错误！" + ex.Message);
             }
             return accessToken;
         }
