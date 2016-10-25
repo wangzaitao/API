@@ -4,6 +4,22 @@
         <name>LTHW.WebApi</name>
     </assembly>
     <members>
+        <member name="T:LTHW.WebApi.RequestAuthorizeAttribute">
+            <summary>
+            自定义此特性用于接口的身份验证
+            </summary>
+        </member>
+        <member name="T:LTHW.WebApi.WebApiExceptionFilterAttribute">
+            <summary>
+            异常特性
+            </summary>
+        </member>
+        <member name="M:LTHW.WebApi.WebApiExceptionFilterAttribute.OnException(System.Web.Http.Filters.HttpActionExecutedContext)">
+            <summary>
+            重写基类的异常处理方法
+            </summary>
+            <param name="actionExecutedContext"></param>
+        </member>
         <member name="M:LTHW.WebApi.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
             <summary>
             Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
@@ -629,10 +645,18 @@
             <param name="thirdfrom">第三方来源，微信wx，可空</param>
             <returns></returns>
         </member>
+        <member name="M:LTHW.WebApi.Controllers.User.UserController.Login(System.String,System.String)">
+            <summary>
+            用户登录
+            </summary>
+            <param name="strUser"></param>
+            <param name="strPwd"></param>
+            <returns></returns>
+        </member>
         <member name="T:LTHW.WebApi.Controllers.WebSite.HotelController">
             <summary>
             酒店
-            </summary>
+            </summary>    
         </member>
         <member name="M:LTHW.WebApi.Controllers.WebSite.HotelController.#ctor(LTHW.IBLL.Mysql.IHotelBLL)">
             <summary>

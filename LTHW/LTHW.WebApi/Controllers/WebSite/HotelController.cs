@@ -1,5 +1,6 @@
 ﻿using LTHW.IBLL.Mysql;
 using LTHW.Model;
+//using LTHW.WebApi;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,9 @@ namespace LTHW.WebApi.Controllers.WebSite
 {
     /// <summary>
     /// 酒店
-    /// </summary>
+    /// </summary>    
     [RoutePrefix("api/hotel")]
+    //[WebApiExceptionFilter]
     public class HotelController : ApiController
     {
         readonly IHotelBLL _IHotelBLL;

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Web.Http;
 using System.Web.Security;
 using System.Xml;
@@ -23,6 +24,7 @@ namespace LTHW.WebApi.Controllers.Weixin
     {
         ///声明Token
         private string token = ConfigurationManager.AppSettings["WeixinToken"];
+        private object thisLock = new object();
 
         readonly IUserBLL _IUserBLL;
 
@@ -96,7 +98,7 @@ namespace LTHW.WebApi.Controllers.Weixin
             var xmlDoc = new XmlDocument();
             try
             {
-                var postStr = Request.Content.ReadAsStreamAsync().Result;                
+                var postStr = Request.Content.ReadAsStreamAsync().Result;
                 xmlDoc.Load(postStr);
                 LogHelper.Info(this, "微信参数：" + xmlDoc.OuterXml);
 
@@ -114,19 +116,21 @@ namespace LTHW.WebApi.Controllers.Weixin
                         {
                             case "subscribe":
                                 //存入数据库
-                                var wxUser = UserHandler.GetUserInfoByopenID(fromUserName);
-                                var weixinModel = new WXUserInfoEntity
-                                {
-                                    from = "wx",
-                                    headimgurl = wxUser.headimgurl,
-                                    status = 1,
-                                    nickname = wxUser.nickname,
-                                    openid = fromUserName,
-                                    pwd = "",
-                                    recommendopenid = "",
-                                    subscribetime = DateTime.Now
-                                };
-                                _IUserBLL.EditWeixinUser(weixinModel);
+                                //var wxUser = UserHandler.GetUserInfoByopenID(fromUserName);
+                                //var weixinModel = new WXUserInfoEntity
+                                //{
+                                //    from = "wx",
+                                //    headimgurl = wxUser.headimgurl,
+                                //    status = 1,
+                                //    nickname = wxUser.nickname,
+                                //    openid = fromUserName,
+                                //    pwd = "",
+                                //    recommendopenid = "",
+                                //    subscribetime = DateTime.Now
+                                //};
+                                //_IUserBLL.EditWeixinUser(weixinModel);
+                                Thread thread = new Thread(new ParameterizedThreadStart(SaveWXUserToDB));//创建一个线程
+                                thread.Start(fromUserName);//开始一个线程
                                 //推送消息
                                 retXML = ReturnTextXML(toUserName, fromUserName, "欢迎关注公众号！");
                                 break;
@@ -211,6 +215,26 @@ namespace LTHW.WebApi.Controllers.Weixin
                 Content = new StringContent(strMsg, Encoding.GetEncoding("UTF-8"), "application/x-www-form-urlencoded")
             };
             return result;
+        }
+
+        private void SaveWXUserToDB(object fromUserName)
+        {
+            lock (thisLock)
+            {
+                var wxUser = UserHandler.GetUserInfoByopenID(fromUserName.ToString());
+                var weixinModel = new WXUserInfoEntity
+                {
+                    from = "wx",
+                    headimgurl = wxUser.headimgurl,
+                    status = 1,
+                    nickname = wxUser.nickname,
+                    openid = fromUserName.ToString(),
+                    pwd = "",
+                    recommendopenid = "",
+                    subscribetime = DateTime.Now
+                };
+                _IUserBLL.EditWeixinUser(weixinModel);
+            }
         }
     }
 }

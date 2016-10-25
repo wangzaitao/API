@@ -6,7 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using LTHW.Utility;
+using System.Web.SessionState;
 
 namespace LTHW.WebApi
 {
@@ -23,8 +23,17 @@ namespace LTHW.WebApi
             //注册Cors跨域请求
             //GlobalConfiguration.Configuration.MessageHandlers.Add(new CorsHandler());
 
+            //异常处理
+            GlobalConfiguration.Configuration.Filters.Add(new WebApiExceptionFilterAttribute());
+
             //Ioc
             AutofacConfig.RegisterAutofac();
+        }
+
+        public override void Init()
+        {
+            this.PostAuthenticateRequest += (sender, e) => HttpContext.Current.SetSessionStateBehavior(SessionStateBehavior.Required);
+            base.Init();
         }
     }
 }
