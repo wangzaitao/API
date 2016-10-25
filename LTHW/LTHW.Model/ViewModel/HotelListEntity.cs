@@ -30,15 +30,6 @@ namespace LTHW.Model
         /// 星级
         /// </summary>
         public int? hotelrankid { get; set; }
-        /// <summary>
-        /// 推荐
-        /// </summary>
-        public long? isjian { get; set; }
-
-        /// <summary>
-        /// 置顶
-        /// </summary>
-        public string isding { get; set; }
 
         /// <summary>
         /// 经度
@@ -58,7 +49,7 @@ namespace LTHW.Model
         /// <summary>
         /// 满意度
         /// </summary>
-        public string satisfyscore { get; set; }
+        public int? satisfyscore { get; set; }
 
         /// <summary>
         /// 预定次数

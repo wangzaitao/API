@@ -31,8 +31,6 @@ namespace LTHW.DAL.Mysql
                                  bookcount = a.bookcount,
                                  recommendnum = a.recommendnum,
                                  satisfyscore = a.satisfyscore,
-                                 isding = a.isding,
-                                 isjian = a.isjian,
                                  lat = a.lat,
                                  lng = a.lng,
                                  kindlist = a.kindlist,
@@ -44,7 +42,6 @@ namespace LTHW.DAL.Mysql
                                  fuwu = a.fuwu,
                                  hotelrankid = a.hotelrankid,
                                  id = a.id,
-                                 mainrankid = a.mainrankid,
                                  notice = a.notice,
                                  opentime = a.opentime,
                                  telephone = a.telephone,
@@ -104,8 +101,6 @@ namespace LTHW.DAL.Mysql
                              bookcount = a.bookcount,
                              recommendnum = a.recommendnum,
                              satisfyscore = a.satisfyscore,
-                             isding = a.isding,
-                             isjian = a.isjian,
                              lat = a.lat,
                              lng = a.lng,
                              kindlist = a.kindlist,
@@ -120,16 +115,6 @@ namespace LTHW.DAL.Mysql
             if (!string.IsNullOrEmpty(pageParam.title))
             {
                 hotels = hotels.Where(p => p.title.Contains(pageParam.title));
-            }
-
-            if (pageParam.isjian >= 0)
-            {
-                hotels = hotels.Where(p => p.isjian == pageParam.isjian);
-            }
-
-            if (!string.IsNullOrEmpty(pageParam.isding))
-            {
-                hotels = hotels.Where(p => p.isding == pageParam.isding);
             }
 
             if (!string.IsNullOrEmpty(pageParam.kindlist))

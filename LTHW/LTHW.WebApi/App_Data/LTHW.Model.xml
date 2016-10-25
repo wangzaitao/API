@@ -69,16 +69,6 @@
             价格排序
             </summary>
         </member>
-        <member name="P:LTHW.Model.HotelQueryParam.isjian">
-            <summary>
-            是否推荐
-            </summary>
-        </member>
-        <member name="P:LTHW.Model.HotelQueryParam.isding">
-            <summary>
-            是否置顶
-            </summary>
-        </member>
         <member name="T:LTHW.Model.SightQueryParam">
             <summary>
             景点查询参数
@@ -104,16 +94,6 @@
             价格排序
             </summary>
         </member>
-        <member name="P:LTHW.Model.SightQueryParam.isjian">
-            <summary>
-            是否推荐
-            </summary>
-        </member>
-        <member name="P:LTHW.Model.SightQueryParam.isding">
-            <summary>
-            是否置顶
-            </summary>
-        </member>
         <member name="T:LTHW.Model.TripQueryParam">
             <summary>
             线路分页查询条件
@@ -123,16 +103,6 @@
             <summary>
             主题关键字
             </summary>       
-        </member>
-        <member name="P:LTHW.Model.TripQueryParam.isjian">
-            <summary>
-            是否推荐
-            </summary>
-        </member>
-        <member name="P:LTHW.Model.TripQueryParam.istejia">
-            <summary>
-            是否特价
-            </summary>
         </member>
         <member name="P:LTHW.Model.TripQueryParam.kindlist">
             <summary>
@@ -204,11 +174,6 @@
             描述
             </summary>
         </member>
-        <member name="P:LTHW.Model.HotelInfoEntity.mainrankid">
-            <summary>
-            主级别
-            </summary>
-        </member>
         <member name="P:LTHW.Model.HotelInfoEntity.traffic">
             <summary>
             交通方式
@@ -252,16 +217,6 @@
         <member name="P:LTHW.Model.HotelListEntity.hotelrankid">
             <summary>
             星级
-            </summary>
-        </member>
-        <member name="P:LTHW.Model.HotelListEntity.isjian">
-            <summary>
-            推荐
-            </summary>
-        </member>
-        <member name="P:LTHW.Model.HotelListEntity.isding">
-            <summary>
-            置顶
             </summary>
         </member>
         <member name="P:LTHW.Model.HotelListEntity.lng">
@@ -469,16 +424,6 @@
             纬度
             </summary>
         </member>
-        <member name="P:LTHW.Model.SightListEntity.isjian">
-            <summary>
-            推荐
-            </summary>
-        </member>
-        <member name="P:LTHW.Model.SightListEntity.isding">
-            <summary>
-            置顶
-            </summary>
-        </member>
         <member name="P:LTHW.Model.SightListEntity.litpic">
             <summary>
             缩略图
@@ -547,16 +492,6 @@
         <member name="T:LTHW.Model.TripListEntity">
             <summary>
             线路列表实体
-            </summary>
-        </member>
-        <member name="P:LTHW.Model.TripListEntity.isjian">
-            <summary>
-            是否推荐
-            </summary>
-        </member>
-        <member name="P:LTHW.Model.TripListEntity.istejia">
-            <summary>
-            是否特价
             </summary>
         </member>
         <member name="P:LTHW.Model.TripListEntity.id">

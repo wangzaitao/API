@@ -11,14 +11,14 @@ namespace LTHW.Model
     /// </summary>
     public class TripListEntity
     {
-        /// <summary>
-        /// 是否推荐
-        /// </summary>
-        public int? isjian { get; set; }
-        /// <summary>
-        /// 是否特价
-        /// </summary>
-        public int? istejia { get; set; }
+        ///// <summary>
+        ///// 是否推荐
+        ///// </summary>
+        //public int? isjian { get; set; }
+        ///// <summary>
+        ///// 是否特价
+        ///// </summary>
+        //public int? istejia { get; set; }
         /// <summary>
         /// 是否推荐
         /// </summary>

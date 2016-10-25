@@ -15,14 +15,14 @@ namespace LTHW.Model
         /// 主题关键字
         /// </summary>       
         public string title { get; set; }
-        /// <summary>
-        /// 是否推荐
-        /// </summary>
-        public int? isjian { get; set; }
-        /// <summary>
-        /// 是否特价
-        /// </summary>
-        public int? istejia { get; set; }
+        ///// <summary>
+        ///// 是否推荐
+        ///// </summary>
+        //public int? isjian { get; set; }
+        ///// <summary>
+        ///// 是否特价
+        ///// </summary>
+        //public int? istejia { get; set; }
         /// <summary>
         /// 目的地
         /// </summary>

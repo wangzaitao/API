@@ -43,8 +43,6 @@ namespace LTHW.DAL.Mysql
                                  bookcount = a.bookcount,
                                  recommendnum = a.recommendnum,
                                  satisfyscore = a.satisfyscore,
-                                 isding = a.isding,
-                                 isjian = a.isjian,
                                  lat = a.lat,
                                  lng = a.lng,
                                  litpic = a.litpic,
@@ -77,8 +75,6 @@ namespace LTHW.DAL.Mysql
                              bookcount = a.bookcount,
                              recommendnum = a.recommendnum,
                              satisfyscore = a.satisfyscore,
-                             isding = a.isding,
-                             isjian = a.isjian,
                              lat = a.lat,
                              lng = a.lng,
                              litpic = a.litpic,
@@ -88,16 +84,6 @@ namespace LTHW.DAL.Mysql
             if (!string.IsNullOrEmpty(pageParam.title))
             {
                 sights = sights.Where(p => p.title.Contains(pageParam.title));
-            }
-
-            if (pageParam.isjian >= 0)
-            {
-                sights = sights.Where(p => p.isjian == pageParam.isjian);
-            }
-
-            if (pageParam.isding >= 0)
-            {
-                sights = sights.Where(p => p.isding == pageParam.isding);
             }
 
             if (!string.IsNullOrEmpty(pageParam.kindlist))

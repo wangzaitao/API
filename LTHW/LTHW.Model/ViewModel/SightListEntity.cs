@@ -54,7 +54,7 @@ namespace LTHW.Model
         /// <summary>
         /// 满意次数
         /// </summary>
-        public string satisfyscore { get; set; }
+        public int? satisfyscore { get; set; }
 
         /// <summary>
         /// 推荐次数
@@ -100,16 +100,6 @@ namespace LTHW.Model
         /// 纬度
         /// </summary>
         public double? lat { get; set; }
-
-        /// <summary>
-        /// 推荐
-        /// </summary>
-        public int? isjian { get; set; }
-
-        /// <summary>
-        /// 置顶
-        /// </summary>
-        public int? isding { get; set; }
 
         /// <summary>
         /// 缩略图

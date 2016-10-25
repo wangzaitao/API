@@ -52,11 +52,6 @@ namespace LTHW.Model
         public string description { get; set; }
 
         /// <summary>
-        /// 主级别
-        /// </summary>
-        public string mainrankid { get; set; }
-
-        /// <summary>
         /// 交通方式
         /// </summary>
         public string traffic { get; set; }

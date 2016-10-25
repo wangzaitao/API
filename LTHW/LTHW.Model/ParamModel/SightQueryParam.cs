@@ -29,14 +29,5 @@ namespace LTHW.Model
         /// 价格排序
         /// </summary>
         public string orderprice { get; set; }
-
-        /// <summary>
-        /// 是否推荐
-        /// </summary>
-        public int? isjian { get; set; }
-        /// <summary>
-        /// 是否置顶
-        /// </summary>
-        public int? isding { get; set; }
     }
 }

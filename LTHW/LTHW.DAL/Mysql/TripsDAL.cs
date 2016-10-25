@@ -60,8 +60,8 @@ namespace LTHW.DAL.Mysql
             var trips = from a in db.sline_line
                         select new TripListEntity
                         {
-                            isjian = a.isjian,
-                            istejia = a.istejia,
+                            //isjian = a.isjian,
+                            //istejia = a.istejia,
                             id = a.id,
                             attrid = a.attrid,
                             kindlist = a.kindlist,
@@ -77,15 +77,15 @@ namespace LTHW.DAL.Mysql
                 trips = trips.Where(p => p.title.Contains(pageParam.title));
             }
 
-            if (pageParam.isjian >= 0)
-            {
-                trips = trips.Where(p => p.isjian == pageParam.isjian);
-            }
+            //if (pageParam.isjian >= 0)
+            //{
+            //    trips = trips.Where(p => p.isjian == pageParam.isjian);
+            //}
 
-            if (pageParam.istejia >= 0)
-            {
-                trips = trips.Where(p => p.istejia == pageParam.istejia);
-            }
+            //if (pageParam.istejia >= 0)
+            //{
+            //    trips = trips.Where(p => p.istejia == pageParam.istejia);
+            //}
 
             if (!string.IsNullOrEmpty(pageParam.kindlist))
             {
